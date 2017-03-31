@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验2-5.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验2-6.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验2-7">
-<meta property="og:updated_time" content="2017-03-31T11:28:43.563Z">
+<meta property="og:updated_time" content="2017-03-31T11:32:04.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络攻防实验(2)-缓冲区溢出">
 <meta name="twitter:description" content="题目说明说明：该题目由memory、flag两个文件组成。memory为可执行代码，存在缓冲区溢出漏洞，请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，5555端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a fla">
@@ -416,7 +416,7 @@
       
         <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由memory、flag两个文件组成。memory为可执行代码，存在缓冲区溢出漏洞，请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，5555端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
 <a id="more"></a>
-<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验1.rar">实验程序下载</a></p>
+<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验2.rar">实验程序下载</a></p>
 <h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
 <li>IDA pro</li>
 <li>pwntools(python2.7)</li>
@@ -428,11 +428,8 @@
 </li>
 <li><p>寻找要执行的函数。打开函数视图，找到win_func()函数，这个函数直接调用了system(),可以传递参数为”cat flag”，从而显示flag文件中的内容。<br><img src="/image/网络攻防实验2-3.png" alt="win_func"></p>
 </li>
-<li><p>使用IDA pro远程调试linux下的memory程序，在scanf()后添加断点。输入若干’0’后，观察栈变化。<br><img src="/image/网络攻防实验2-4.png" alt="栈"><br>观察到栈地址0xFFB21C5C保存的正式mem_test()的返回地址，将其覆盖为win_func()的地址，即可跳转执行win_func()</p>
+<li><p>使用IDA pro远程调试linux下的memory程序，在scanf()后添加断点。输入若干’0’后，观察栈变化。<br><img src="/image/网络攻防实验2-4.png" alt="栈"><br>观察到栈地址0xFFB21C5C保存的正式mem_test()的返回地址，将其覆盖为win_func()的地址，即可跳转执行win_func()<br>函数调用时，先将其返回地址入栈，再将参数入栈。0xFFB21C5C后面4字节为返回地址（可构造为任意可访问的地址）,再后面4字节为参数地址。</p>
 </li>
-</ol>
-<p>函数调用时，先将其返回地址入栈，再将参数入栈。0xFFB21C5C后面4字节为返回地址（可构造为任意可访问的地址）,再后面4字节为参数地址。</p>
-<ol>
 <li><p>查看string视图，找到”cat flag”字符串，其地址为0x08048840。查看function视图，找到win_func()函数地址为0x08048610<br><img src="/image/网络攻防实验2-5.png" alt="字符串地址"><br><img src="/image/网络攻防实验2-6.png" alt="函数地址"></p>
 </li>
 <li><p>构造payload为23字节字符+win_func地址+任意可访问地址+”cat flag”地址。使用pwntools编写exploit。</p>

