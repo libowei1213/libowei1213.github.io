@@ -314,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://libowei.net/网络攻防实验(2)-缓冲区溢出.html">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/网络攻防实验-4-缓冲区溢出.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lee">
@@ -336,7 +336,283 @@
             
               
                 
-                <a class="post-title-link" href="/网络攻防实验(2)-缓冲区溢出.html" itemprop="url">
+                <a class="post-title-link" href="/网络攻防实验-4-缓冲区溢出.html" itemprop="url">
+                  网络攻防实验(4)-缓冲区溢出
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T19:39:59+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/网络攻防实验-4-缓冲区溢出.html" class="leancloud_visitors" data-flag-title="网络攻防实验(4)-缓冲区溢出">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/网络攻防实验-3-逆向分析.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/学士服照片.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博伟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/网络攻防实验-3-逆向分析.html" itemprop="url">
+                  网络攻防实验(3)-逆向分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T19:39:31+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/网络攻防实验-3-逆向分析.html" class="leancloud_visitors" data-flag-title="网络攻防实验(3)-逆向分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由CrackMee.exe一个文件组成。该文件是一个简单的小程序，请大家逆向该程序，找到正确的字符串，输入到程序后即为成功。</p>
+<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验3.rar">实验程序下载</a></p>
+<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
+<li>IDA pro</li>
+</ul>
+<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><ol>
+<li><p>使用IDA pro F5查看反编译的程序代码。<br><img src="/image/网络攻防实验3-1.png" alt="代码"><br>这段程序就是构造出一个字符串，输入正确的话，就输出”Key Right!”。构造过程如下：前5个字节从q中取得，第6到9字节通过x和ans获得，第10字节为’3’(ASCII码51)，第11字节为’y’(ASCII码121)</p>
+</li>
+<li><p>找到以上变量的值。<br><img src="/image/网络攻防实验3-2.png" alt="变量q"><br>q为DWORD型，每四字节取一个值，可得v5前5字节为”thi5_”<br><img src="/image/网络攻防实验3-3.png" alt="变量x"><br>这里可找到x的值。<br><img src="/image/网络攻防实验3-4.png" alt="变量ans"><br>同理，可找到ans的值。</p>
+</li>
+<li><p>编写一个程序来构造目标字符串的第6-11字节，参照(1)中的代码。这里我选择用python来写<br><img src="/image/网络攻防实验3-5.png" alt="构造字符串"><br>运行结果为:<br><img src="/image/网络攻防实验3-6.png" alt="运行结果"><br>即要输入的字符串为<code>&quot;thi5_1s_K3y&quot;</code></p>
+</li>
+</ol>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验3-7.png" alt="实验结果"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/网络攻防实验-2-缓冲区溢出.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/学士服照片.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博伟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/网络攻防实验-2-缓冲区溢出.html" itemprop="url">
                   网络攻防实验(2)-缓冲区溢出
                 </a>
               
@@ -371,7 +647,7 @@
 
           
           
-             <span id="/网络攻防实验(2)-缓冲区溢出.html" class="leancloud_visitors" data-flag-title="网络攻防实验(2)-缓冲区溢出">
+             <span id="/网络攻防实验-2-缓冲区溢出.html" class="leancloud_visitors" data-flag-title="网络攻防实验(2)-缓冲区溢出">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -404,7 +680,7 @@
           <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由memory、flag两个文件组成。memory为可执行代码，存在缓冲区溢出漏洞，请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，5555端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/网络攻防实验(2)-缓冲区溢出.html#more" rel="contents">
+            <a class="btn" href="/网络攻防实验-2-缓冲区溢出.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -450,7 +726,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://libowei.net/网络攻防实验(1)-缓冲区溢出.html">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/网络攻防实验-1-缓冲区溢出.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lee">
@@ -472,7 +748,7 @@
             
               
                 
-                <a class="post-title-link" href="/网络攻防实验(1)-缓冲区溢出.html" itemprop="url">
+                <a class="post-title-link" href="/网络攻防实验-1-缓冲区溢出.html" itemprop="url">
                   网络攻防实验(1)-缓冲区溢出
                 </a>
               
@@ -507,7 +783,7 @@
 
           
           
-             <span id="/网络攻防实验(1)-缓冲区溢出.html" class="leancloud_visitors" data-flag-title="网络攻防实验(1)-缓冲区溢出">
+             <span id="/网络攻防实验-1-缓冲区溢出.html" class="leancloud_visitors" data-flag-title="网络攻防实验(1)-缓冲区溢出">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -540,7 +816,7 @@
           <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/网络攻防实验(1)-缓冲区溢出.html#more" rel="contents">
+            <a class="btn" href="/网络攻防实验-1-缓冲区溢出.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1399,283 +1675,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/学士服照片.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博伟的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Android-Studio-failed-to-create-a-child-event-loop.html" itemprop="url">
-                  Android Studio: failed to create a child event loop
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-13T17:31:03+08:00">
-                2016-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/Android-Studio-failed-to-create-a-child-event-loop.html" class="leancloud_visitors" data-flag-title="Android Studio: failed to create a child event loop">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>##出现的问题##<br>Android Studio启动时出现IllegalStateException错误，导致无法使用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">java.lang.IllegalStateException: failed to create a child event loop at </div><div class="line">...</div><div class="line">...</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Android-Studio-failed-to-create-a-child-event-loop.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://libowei.net/国科大抢课脚本.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/image/学士服照片.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博伟的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/国科大抢课脚本.html" itemprop="url">
-                  国科大抢课脚本
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-07T20:34:54+08:00">
-                2016-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/国科大抢课脚本.html" class="leancloud_visitors" data-flag-title="国科大抢课脚本">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>作为国科大研一新生，选课是一件头疼的事。已经开始选课有一周了，我还没有确定要保留哪些课，还有些想上的课名额已经满了。看来自己写个抢课的脚本是当下要做的一件大事。</p>
-<p>本来想用python写的，无奈自己水平不够，只能用js写写控制台脚本，基本上也能满足需求。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/国科大抢课脚本.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1718,7 +1724,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1731,7 +1737,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

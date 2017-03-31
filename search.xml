@@ -3,15 +3,29 @@
   
     
     <entry>
+      <title><![CDATA[网络攻防实验(4)-缓冲区溢出]]></title>
+      <url>%2F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C-4-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[网络攻防实验(3)-逆向分析]]></title>
+      <url>%2F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C-3-%E9%80%86%E5%90%91%E5%88%86%E6%9E%90.html</url>
+      <content type="text"><![CDATA[题目说明说明：该题目由CrackMee.exe一个文件组成。该文件是一个简单的小程序，请大家逆向该程序，找到正确的字符串，输入到程序后即为成功。 题目下载实验程序下载 使用工具 IDA pro 解题步骤 使用IDA pro F5查看反编译的程序代码。这段程序就是构造出一个字符串，输入正确的话，就输出”Key Right!”。构造过程如下：前5个字节从q中取得，第6到9字节通过x和ans获得，第10字节为’3’(ASCII码51)，第11字节为’y’(ASCII码121) 找到以上变量的值。q为DWORD型，每四字节取一个值，可得v5前5字节为”thi5_”这里可找到x的值。同理，可找到ans的值。 编写一个程序来构造目标字符串的第6-11字节，参照(1)中的代码。这里我选择用python来写运行结果为:即要输入的字符串为&quot;thi5_1s_K3y&quot; 实验结果]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[网络攻防实验(2)-缓冲区溢出]]></title>
-      <url>%2F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C(2)-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</url>
+      <url>%2F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C-2-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</url>
       <content type="text"><![CDATA[题目说明说明：该题目由memory、flag两个文件组成。memory为可执行代码，存在缓冲区溢出漏洞，请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，5555端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag} 题目下载实验程序下载 使用工具 IDA pro pwntools(python2.7) socat linux 解题步骤 使用IDA pro打开程序文件，按F5查看其反编译代码观察到mem_test()函数中调用了scanf()，可能造成缓冲区溢出。推测此题的解题思路为，scanf读入一定长度的字符，覆盖mem_test()的返回地址，导致任意代码执行。 寻找要执行的函数。打开函数视图，找到win_func()函数，这个函数直接调用了system(),可以传递参数为”cat flag”，从而显示flag文件中的内容。 使用IDA pro远程调试linux下的memory程序，在scanf()后添加断点。输入若干’0’后，观察栈变化。观察到栈地址123函数调用时，先将其返回地址入栈，再将参数入栈。```0xFFB21C5C```后面4字节为返回地址（可构造为任意可访问的地址）,再后面4字节为参数地址。4. 查看string视图，找到&quot;cat flag&quot;字符串，其地址为```0x08048840```。查看function视图，找到win_func()函数地址为```0x08048610 构造payload为23字节字符+win_func地址+任意可访问地址+”cat flag”地址。使用pwntools编写exploit。1234from pwn import *conn=remote('localhost',5555)conn.send('a'*23+p32(0x08048610)+p32(0x08048610)+p32(0x08048840))conn.interactive() 实验结果]]></content>
     </entry>
 
     
     <entry>
       <title><![CDATA[网络攻防实验(1)-缓冲区溢出]]></title>
-      <url>%2F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C(1)-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</url>
+      <url>%2F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C-1-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</url>
       <content type="text"><![CDATA[题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag} 题目下载实验程序下载 使用工具 IDA pro pwntools (python2.7) socat 解题步骤 使用IDA pro打开程序，按F5可查看其反汇编代码。注意到scanf函数可能存在缓冲区溢出漏洞。推断此题的解题思路为：通过scanf函数输入一定长度的字符，覆盖栈中的v5()函数的地址。 寻找要执行函数的地址。打开函数视图(view-&gt;subview-&gt;function)，找到win()函数：执行这个函数可以读出flag文件中内容。 寻找溢出点。在scanf函数后添加断点，调试程序。在程序中输入若干个’0’后，栈信息如下：输入的’a’的ASCII码为0x30，栈中lose()函数的地址为12345674. 构造payload为 64字节字符+win()函数地址。本题中，执行host.sh脚本可将程序输入/输出重定向到9999端口,可使用pwntools编写exploit。```pythonfrom pwn import *conn=remote(&apos;localhost&apos;,9999)conn.send(&apos;a&apos;*64+p32(0x0804861B))conn.interactive() 实验结果]]></content>
     </entry>
 
