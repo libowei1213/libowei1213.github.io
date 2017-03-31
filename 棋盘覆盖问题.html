@@ -1,0 +1,1145 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="U-X9XD2c_wV6AKCoj83wtV4l3xqUDXk8YHuUj3GiYxg" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="棋盘覆盖,分治法" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="问题描述在一个2^k*2^k个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。
+
+棋盘覆盖问题是指，要用下图中的四种不同形态的L型骨牌覆盖棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不能重叠覆盖。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="棋盘覆盖问题">
+<meta property="og:url" content="http://libowei.net/棋盘覆盖问题.html">
+<meta property="og:site_name" content="博伟的博客">
+<meta property="og:description" content="问题描述在一个2^k*2^k个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。
+
+棋盘覆盖问题是指，要用下图中的四种不同形态的L型骨牌覆盖棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不能重叠覆盖。">
+<meta property="og:image" content="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/328951/201306/14221040-4f79c8f9b1c1467e9f1f272737ba9ad7.x-png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/328951/201306/14221452-5dde1a9cdb6d41dd8c73f0e23ce0abb1.x-png">
+<meta property="og:updated_time" content="2017-03-31T04:07:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="棋盘覆盖问题">
+<meta name="twitter:description" content="问题描述在一个2^k*2^k个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。
+
+棋盘覆盖问题是指，要用下图中的四种不同形态的L型骨牌覆盖棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不能重叠覆盖。">
+<meta name="twitter:image" content="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://libowei.net/棋盘覆盖问题.html"/>
+
+
+
+
+
+  <title> 棋盘覆盖问题 | 博伟的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-96532270-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ff1e2d8efa5365ff70fa3071bee477bb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=61491911";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博伟的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Albert's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/棋盘覆盖问题.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/学士服照片.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博伟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                棋盘覆盖问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-27T22:18:45+08:00">
+                2016-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/棋盘覆盖问题.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/棋盘覆盖问题.html" class="leancloud_visitors" data-flag-title="棋盘覆盖问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在一个<code>2^k*2^k</code>个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。</p>
+<p><img src="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png" alt="棋盘图"></p>
+<p>棋盘覆盖问题是指，要用下图中的四种不同形态的L型骨牌覆盖棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不能重叠覆盖。</p>
+<p><img src="http://images.cnitblog.com/blog/328951/201306/14221040-4f79c8f9b1c1467e9f1f272737ba9ad7.x-png" alt="L型骨牌"></p>
+<a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>采用分治法来求解此问题</p>
+<ol>
+<li>若k=2，则直接用一个L型骨牌来覆盖非特殊方格</li>
+<li>k&gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特殊方格位于四个棋盘中的一个。其他三个子棋盘也可转化为特殊棋盘，做法是用一个L型骨牌覆盖三个子棋盘的连接处的三个方格，如图所示。此时原问题转化为4个小规模棋盘的覆盖问题，可递归求解。</li>
+</ol>
+<p><img src="http://images.cnitblog.com/blog/328951/201306/14221452-5dde1a9cdb6d41dd8c73f0e23ce0abb1.x-png" alt="四个子棋盘"></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ol>
+<li>设置一个全局变量mark，用于记录骨牌的序号</li>
+<li>如果边长为2，则将给定的特殊方格(x,y)用给定的序号标记，其他三个方格用mark标记。</li>
+<li><p>如果边长&gt;2，则把棋盘分割为四部分，判断特殊方格所处的子棋盘。对于有特殊方格的棋盘，继续递归求解。对于其他3个子棋盘：</p>
+<ul>
+<li>左上角的子棋盘：其右下角方格为“特殊方格”</li>
+<li>右上角的子棋盘：其右下角方格为“特殊方格”</li>
+<li>左下角的子棋盘：其右上角方格为“特殊方格”</li>
+<li>右下角的子棋盘：其左上角方格为“特殊方格”</li>
+</ul>
+</li>
+</ol>
+<p>这三个子棋盘的假想的“特殊方格”用同一个骨牌覆盖（标记相同），继续递归处理。</p>
+<h2 id="Python语言实现"><a href="#Python语言实现" class="headerlink" title="Python语言实现"></a>Python语言实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line">mark = <span class="number">1</span></div><div class="line">list = []</div><div class="line"><span class="comment"># 生成棋盘</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initTable</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">global</span> list;</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">        row = []</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</div><div class="line">            row.append(<span class="number">-1</span>)</div><div class="line">        list.append(row)</div><div class="line"></div><div class="line"><span class="comment"># 检查特殊点区域</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(midx, midy, x, y)</span>:</span></div><div class="line">    <span class="keyword">if</span> x &lt; midx <span class="keyword">and</span> y &lt; midy:</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>  <span class="comment"># 左上</span></div><div class="line">    <span class="keyword">elif</span> x &gt;= midx <span class="keyword">and</span> y &gt;= midy:</div><div class="line">        <span class="keyword">return</span> <span class="number">3</span>  <span class="comment"># 右下</span></div><div class="line">    <span class="keyword">elif</span> x &gt;= midx <span class="keyword">and</span> y &lt; midy:</div><div class="line">        <span class="keyword">return</span> <span class="number">2</span>  <span class="comment"># 右上</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>  <span class="comment"># 左下</span></div><div class="line"></div><div class="line"><span class="comment"># 覆盖x1~x2行，y1~y2列，特殊点为(x,y),用markX填充特殊点</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cover</span><span class="params">(x1, x2, y1, y2, x, y, markX)</span>:</span></div><div class="line">    <span class="keyword">global</span> mark</div><div class="line">    <span class="comment"># 如果是2*2的格子</span></div><div class="line">    <span class="keyword">if</span> x2 - x1 == <span class="number">1</span>:</div><div class="line">        <span class="comment"># 填充特殊点</span></div><div class="line">        list[x][y] = markX</div><div class="line">        <span class="comment"># 填充其他3个格子</span></div><div class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(x1, x2 + <span class="number">1</span>):</div><div class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(y1, y2 + <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> row != x <span class="keyword">or</span> col != y:</div><div class="line">                    list[row][col] = mark</div><div class="line">        mark += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="comment"># 其他情况: 2*2以上的格子</span></div><div class="line">    <span class="comment"># 用midx,midy把棋盘分为4部分</span></div><div class="line">    midx = (x1 + x2 + <span class="number">1</span>) / <span class="number">2</span></div><div class="line">    midy = (y1 + y2 + <span class="number">1</span>) / <span class="number">2</span></div><div class="line">    covered = &#123;<span class="number">0</span>:<span class="keyword">False</span>, <span class="number">1</span>:<span class="keyword">False</span>, <span class="number">2</span>:<span class="keyword">False</span>, <span class="number">3</span>:<span class="keyword">False</span>&#125;</div><div class="line">    <span class="comment"># 检查特殊点在哪个区域</span></div><div class="line">    area = check(midx, midy, x, y)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">0</span>:  <span class="comment"># 特殊格子在左上</span></div><div class="line">        cover(x1, midx - <span class="number">1</span>, y1, midy - <span class="number">1</span>, x, y, markX)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">1</span>:  <span class="comment"># 特殊格子在右上</span></div><div class="line">        cover(x1, midx - <span class="number">1</span>, midy, y2, x, y, markX)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">2</span>:  <span class="comment"># 特殊格子在左下</span></div><div class="line">        cover(midx, x2, y1, midy - <span class="number">1</span>, x, y, markX)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">3</span>:  <span class="comment"># 特殊格子在右下</span></div><div class="line">        cover(midx, x2, midy, y2, x, y, markX)</div><div class="line">        </div><div class="line">    <span class="comment"># 标记已经处理过的区域</span></div><div class="line">    covered[area] = <span class="keyword">True</span> </div><div class="line">    <span class="comment"># 其他3个区域 取内角的三个小格子为特殊点</span></div><div class="line">    newMark = mark</div><div class="line">    mark += <span class="number">1</span></div><div class="line">    <span class="comment"># 处理其他3个区域</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">0</span>]: </div><div class="line">        cover(x1, midx - <span class="number">1</span>, y1, midy - <span class="number">1</span>, midx - <span class="number">1</span>, midy - <span class="number">1</span>, newMark)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">1</span>]:</div><div class="line">        cover(x1, midx - <span class="number">1</span>, midy, y2, midx - <span class="number">1</span>, midy, newMark)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">2</span>]:</div><div class="line">        cover(midx, x2, y1, midy - <span class="number">1</span>, midx, midy - <span class="number">1</span>, newMark)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">3</span>]:</div><div class="line">        cover(midx, x2, midy, y2, midx, midy, newMark)</div><div class="line">        </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">printTable</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">global</span> list</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(list)):</div><div class="line">        row = <span class="string">""</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(list)):</div><div class="line">            row += (str(list[i][j]) + <span class="string">"\t"</span>)</div><div class="line">        print(row+<span class="string">"\n"</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    n = <span class="number">8</span></div><div class="line">    initTable(n)</div><div class="line">    cover(<span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>)</div><div class="line">    printTable()</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>感谢支持！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/image/wechat_reward.png" alt="Albert Lee WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/image/alipay_reward.jpg" alt="Albert Lee Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Django环境搭建及简单的视图与网址的配置.html" rel="next" title="Django环境搭建及简单的视图与网址的配置">
+                <i class="fa fa-chevron-left"></i> Django环境搭建及简单的视图与网址的配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/网页设计作品.html" rel="prev" title="网页设计作品">
+                网页设计作品 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/image/学士服照片.jpg"
+               alt="Albert Lee" />
+          <p class="site-author-name" itemprop="name">Albert Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个没人知道的地方</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/libowei1213" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/libowei1213" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-bo-wei-72" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huoche123.top/train/index" title="查火车" target="_blank">查火车</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huoche123.top/today" title="历史上的今天" target="_blank">历史上的今天</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://duzhihu.cc" title="读知乎" target="_blank">读知乎</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python语言实现"><span class="nav-number">4.</span> <span class="nav-text">Python语言实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Albert Lee</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "cf430319302742b9a50fd82c00ca3171",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1HjW8mQ2Mvqrnu7j9nRM17tm-gzGzoHsz", "lnkha8qqp0bLLPJEpucS0V1F");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
