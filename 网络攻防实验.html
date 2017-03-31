@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="缓冲区溢出,网络攻防实验," />
 
 
 
@@ -89,16 +89,21 @@
 
 
 
-<meta name="description" content="一个没人知道的地方">
+<meta name="description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络攻防实验">
+<meta property="og:title" content="网络攻防实验-缓冲区溢出(1)">
 <meta property="og:url" content="http://libowei.net/网络攻防实验.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="一个没人知道的地方">
-<meta property="og:updated_time" content="2017-03-31T04:14:34.188Z">
+<meta property="og:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-1.png">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-2.png">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-3.png">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验1-4.png">
+<meta property="og:updated_time" content="2017-03-31T09:07:56.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络攻防实验">
-<meta name="twitter:description" content="一个没人知道的地方">
+<meta name="twitter:title" content="网络攻防实验-缓冲区溢出(1)">
+<meta name="twitter:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta name="twitter:image" content="http://libowei.net/image/网络攻防实验1-1.png">
 
 
 
@@ -132,7 +137,7 @@
 
 
 
-  <title> 网络攻防实验 | 博伟的博客 </title>
+  <title> 网络攻防实验-缓冲区溢出(1) | 博伟的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -334,7 +339,7 @@
             
             
               
-                网络攻防实验
+                网络攻防实验-缓冲区溢出(1)
               
             
           </h1>
@@ -377,7 +382,7 @@
 
           
           
-             <span id="/网络攻防实验.html" class="leancloud_visitors" data-flag-title="网络攻防实验">
+             <span id="/网络攻防实验.html" class="leancloud_visitors" data-flag-title="网络攻防实验-缓冲区溢出(1)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -406,7 +411,29 @@
       
 
       
-        
+        <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
+<a id="more"></a>
+<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验1.rar">实验程序下载</a></p>
+<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
+<li>IDA pro</li>
+<li>pwntools (python2.7)</li>
+<li>socat</li>
+</ul>
+<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><ol>
+<li>使用IDA pro打开程序，按F5可查看其反汇编代码。<br><img src="/image/网络攻防实验1-1.png" alt="IDA pro F5"></li>
+</ol>
+<p>注意到scanf函数可能存在缓冲区溢出漏洞。推断此题的解题思路为：通过scanf函数输入一定长度的字符，覆盖栈中的v5()函数的地址。</p>
+<ol>
+<li><p>寻找要执行函数的地址。打开函数视图(view-&gt;subview-&gt;function)，找到win()函数：<br><img src="/image/网络攻防实验1-2.png" alt="win函数"><br>执行这个函数可以读出flag文件中内容。</p>
+</li>
+<li><p>寻找溢出点。在scanf函数后添加断点，调试程序。在程序中输入若干个’0’后，栈信息如下：<br><img src="/image/网络攻防实验1-3.png" alt="栈"><br>输入的’a’的ASCII码为0x30，栈中lose()函数的地址为0x08048634，向栈中填入64个字节即可覆盖到lose()的地址。</p>
+</li>
+<li><p>构造payload为 64字节字符+win()函数地址。本题中，执行host.sh脚本可将程序输入/输出重定向到9999端口,可使用pwntools编写exploit。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">conn=remote(<span class="string">'localhost'</span>,<span class="number">9999</span>)</div><div class="line">conn.send(<span class="string">'a'</span>*<span class="number">64</span>+p32(<span class="number">0x0804861B</span>))</div><div class="line">conn.interactive()</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验1-4.png" alt="实验结果"></p>
+
       
     </div>
 
@@ -453,6 +480,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/缓冲区溢出/" rel="tag"># 缓冲区溢出</a>
+          
+            <a href="/tags/网络攻防实验/" rel="tag"># 网络攻防实验</a>
+          
+        </div>
       
 
       
@@ -520,8 +555,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/image/学士服照片.jpg"
@@ -549,7 +593,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -625,6 +669,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目说明"><span class="nav-number">1.</span> <span class="nav-text">题目说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目下载"><span class="nav-number">2.</span> <span class="nav-text">题目下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用工具"><span class="nav-number">3.</span> <span class="nav-text">使用工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题步骤"><span class="nav-number">4.</span> <span class="nav-text">解题步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">5.</span> <span class="nav-text">实验结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
