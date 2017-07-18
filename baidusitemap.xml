@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://libowei.net/TensorFlow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ACNN-MNIST.html</loc>
+    <lastmod>2017-07-18T11:20:41.618Z</lastmod>
+    <data>
+        <display>
+        <title>TensorFlow学习笔记：CNN MNIST</title>
+        <pubTime>2017-07-18T11:17:12.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>tensorflow</tag>
+         
+        <tag>CNN</tag>
+         
+        <tag>卷积神经网络</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://libowei.net/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C-2-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</loc>
     <lastmod>2017-03-31T16:19:15.515Z</lastmod>
     <data>
@@ -11,9 +34,9 @@
         <title>网络攻防实验(2)-缓冲区溢出</title>
         <pubTime>2017-03-31T09:13:35.000Z</pubTime>
         
-        <tag>网络攻防实验</tag>
-         
         <tag>缓冲区溢出</tag>
+         
+        <tag>网络攻防实验</tag>
          
          
            
@@ -42,21 +65,6 @@
 
     
   <url>
-    <loc>http://libowei.net/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C-4-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</loc>
-    <lastmod>2017-03-31T11:39:59.103Z</lastmod>
-    <data>
-        <display>
-        <title>网络攻防实验(4)-缓冲区溢出</title>
-        <pubTime>2017-03-31T11:39:59.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://libowei.net/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C-1-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA.html</loc>
     <lastmod>2017-03-31T11:32:49.771Z</lastmod>
     <data>
@@ -64,9 +72,9 @@
         <title>网络攻防实验(1)-缓冲区溢出</title>
         <pubTime>2017-03-31T04:14:34.000Z</pubTime>
         
-        <tag>网络攻防实验</tag>
-         
         <tag>缓冲区溢出</tag>
+         
+        <tag>网络攻防实验</tag>
          
          
            
@@ -95,16 +103,20 @@
     
     
   <url>
-    <loc>http://libowei.net/%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0ipv6%E5%85%8D%E8%B4%B9%E4%B8%8A%E7%BD%91.html</loc>
+    <loc>http://libowei.net/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%8A%A2%E8%AF%BE%E8%84%9A%E6%9C%AC.html</loc>
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     <data>
         <display>
-        <title>搭建shadowsocks服务器实现ipv6免费上网</title>
-        <pubTime>2016-10-02T17:08:24.000Z</pubTime>
+        <title>国科大抢课脚本</title>
+        <pubTime>2016-09-07T12:34:54.000Z</pubTime>
         
-        <tag>shadowsocks</tag>
+        <tag>脚本</tag>
          
-        <tag>ipv6</tag>
+        <tag>国科大</tag>
+         
+        <tag>javascript</tag>
+         
+        <tag>js</tag>
          
          
            
@@ -133,18 +145,16 @@
 
     
   <url>
-    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
+    <loc>http://libowei.net/%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0ipv6%E5%85%8D%E8%B4%B9%E4%B8%8A%E7%BD%91.html</loc>
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     <data>
         <display>
-        <title>Django环境搭建及简单的视图与网址的配置</title>
-        <pubTime>2016-10-12T17:18:26.000Z</pubTime>
+        <title>搭建shadowsocks服务器实现ipv6免费上网</title>
+        <pubTime>2016-10-02T17:08:24.000Z</pubTime>
         
-        <tag>python</tag>
+        <tag>shadowsocks</tag>
          
-        <tag>django</tag>
-         
-        <tag>服务器</tag>
+        <tag>ipv6</tag>
          
          
            
@@ -161,30 +171,7 @@
         <title>国科大课件下载脚本</title>
         <pubTime>2016-10-02T16:31:53.000Z</pubTime>
         
-        <tag>脚本</tag>
-         
-        <tag>国科大</tag>
-         
         <tag>python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://libowei.net/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%8A%A2%E8%AF%BE%E8%84%9A%E6%9C%AC.html</loc>
-    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>国科大抢课脚本</title>
-        <pubTime>2016-09-07T12:34:54.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-        <tag>js</tag>
          
         <tag>脚本</tag>
          
@@ -206,6 +193,27 @@
         <pubTime>2016-09-13T09:31:03.000Z</pubTime>
         
         <tag>Android Studio</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
+    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>Django环境搭建及简单的视图与网址的配置</title>
+        <pubTime>2016-10-12T17:18:26.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>django</tag>
+         
+        <tag>服务器</tag>
          
          
            
