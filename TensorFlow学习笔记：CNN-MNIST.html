@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://libowei.net/TensorFlow学习笔记：CNN-MNIST.html">
 <meta property="og:site_name" content="博伟的博客">
 <meta property="og:description" content="官方文档地址：A Guide to TF Layers: Building a Convolutional Neural Network">
-<meta property="og:updated_time" content="2017-07-18T11:43:46.945Z">
+<meta property="og:updated_time" content="2017-07-18T11:46:03.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow学习笔记：CNN MNIST">
 <meta name="twitter:description" content="官方文档地址：A Guide to TF Layers: Building a Convolutional Neural Network">
@@ -434,7 +434,7 @@
 <li>dense    全连接层，参数为神经元数量、激活函数</li>
 </ul>
 <p>以上方法都接收tensor作为输入，然后输出一个处理后的tensor。可以直接使用返回值作为下一层的输入。</p>
-<h3 id="cnn-model-fn"><a href="#cnn-model-fn" class="headerlink" title="cnn_model_fn()"></a>cnn_model_fn()</h3><figure class="highlight plain"><figcaption><span>接受MNIST特征数据、标签、模型类型（TRAIN、EVAL、INFER）作为输入参数，配置CNN网络，返回预测结果、损失和训练步骤。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="cnn-model-fn"><a href="#cnn-model-fn" class="headerlink" title="cnn_model_fn()"></a>cnn_model_fn()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
 <p>def cnn_model_fn(features, labels, mode):<br>  “””Model function for CNN.”””</p>
 <h1 id="Input-Layer"><a href="#Input-Layer" class="headerlink" title="Input Layer"></a>Input Layer</h1><p>  input_layer = tf.reshape(features, [-1, 28, 28, 1])</p>
 <h1 id="Convolutional-Layer-1"><a href="#Convolutional-Layer-1" class="headerlink" title="Convolutional Layer #1"></a>Convolutional Layer #1</h1><p>  conv1 = tf.layers.conv2d(<br>      inputs=input_layer,<br>      filters=32,<br>      kernel_size=[5, 5],<br>      padding=”same”,<br>      activation=tf.nn.relu)</p>
@@ -453,7 +453,7 @@
 <li>image_height 输入图像高度</li>
 <li>channels 彩色图片为3（红绿蓝）,黑白图片为1（黑）</li>
 </ul>
-<p>MNIST数据为单色28*28像素，所以输入的shape为<figure class="highlight plain"><figcaption><span>28, 28, 1]```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">把输入转换为该shape，执行```reshape</div></pre></td></tr></table></figure></p>
+<p>MNIST数据为单色28*28像素，所以输入的shape为<figure class="highlight plain"><figcaption><span>28, 28, 1]``` </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">把输入转换为该shape，执行```reshape</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">input_layer = tf.reshape(features, [-1, 28, 28, 1])</div></pre></td></tr></table></figure>
 <p>上面的<figure class="highlight plain"><figcaption><span>(5*28*28)个值，shape为```[5,28,28,1]```，batch为100时，输入的值个数为78400</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 卷积层-1</div><div class="line">对输入层应用32个5*5的filter，并使用ReLU作为激活函数。可以使用```conv2d()```函数来创建这一层</div></pre></td></tr></table></figure></p>
 <p>conv1 = tf.layers.conv2d(<br>    inputs=input_layer,<br>    filters=32,<br>    kernel_size=[5, 5],<br>    padding=”same”,<br>    activation=tf.nn.relu)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">输入的tensor的形状必须是```[batch_size, image_width,image_height,channels]```,这样可以与输入层相连。</div><div class="line"></div><div class="line">- filters 卷积核数量</div><div class="line">- kernel_size 卷积核维度</div><div class="line">- padding 为&quot;valid&quot;或&quot;same&quot;。padding=&quot;same&quot;时，输出的tensor和输入tensor维度相同（边缘处补0）。没有padding的话，28*28经过5*5卷积，会产生24*24的tensor</div><div class="line">- activation 指定激活函数，这里使用ReLU（tf.nn.relu）</div><div class="line"></div><div class="line">输出tensor的形状为```[batch_size,28,28,32]```，宽度和高度和原来相同，但经过32个卷积核卷积，现在有32个channels</div><div class="line"></div><div class="line">### 池化层-1</div><div class="line">现在可以把第一个pooling层和上面创建好的卷积层连接。使用```max_pooling2d()```构建池化层</div></pre></td></tr></table></figure></p>
