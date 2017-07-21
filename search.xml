@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[CentOs安装TensorFlow]]></title>
+      <title><![CDATA[CentOS安装TensorFlow]]></title>
       <url>%2FCentOS%E5%AE%89%E8%A3%85TensorFlow.html</url>
       <content type="text"><![CDATA[在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&apos; not found 这个错误的原因是未安装2.17版本的glibc库。 而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。 glibc-2.17下载地址：https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz 下载glibc并解压缩12wget https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gztar -xvf glibc-2.17.tar.gz 编译安装12345cd glibc-2.17mkdir buildcd build../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/binmake &amp;&amp; make install 查看glibc共享库：1ll /lib64/libc.so.6 现libc.so.6已经软链接到2.17版本1lrwxrwxrwx 1 root root 12 7月 21 10:11 /lib64/libc.so.6 -&gt; libc-2.17.so 可以查看系统中可使用的glibc版本1strings /lib64/libc.so.6 |grep GLIBC_ 123456789101112131415161718192021GLIBC_2.2.5GLIBC_2.2.6GLIBC_2.3GLIBC_2.3.2GLIBC_2.3.3GLIBC_2.3.4GLIBC_2.4GLIBC_2.5GLIBC_2.6GLIBC_2.7GLIBC_2.8GLIBC_2.9GLIBC_2.10GLIBC_2.11GLIBC_2.12GLIBC_2.13GLIBC_2.14GLIBC_2.15GLIBC_2.16GLIBC_2.17GLIBC_PRIVATE 现在应该就没问题了。 参考资料：Linux/CentOS 升级C基本运行库CLIBC的注意事项]]></content>
     </entry>
