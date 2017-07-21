@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="centos,tensorflow," />
 
 
 
@@ -89,15 +89,22 @@
 
 
 
-<meta name="description" content="一个没人知道的地方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="博伟的博客">
-<meta property="og:url" content="http://libowei.net/tags/算法/index.html">
+<meta name="description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
+这个错误的原因是未安装2.17版本的glibc库。
+而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOs安装TensorFlow">
+<meta property="og:url" content="http://libowei.net/CentOS安装TensorFlow.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="一个没人知道的地方">
+<meta property="og:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
+这个错误的原因是未安装2.17版本的glibc库。
+而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
+<meta property="og:updated_time" content="2017-07-21T06:51:25.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博伟的博客">
-<meta name="twitter:description" content="一个没人知道的地方">
+<meta name="twitter:title" content="CentOs安装TensorFlow">
+<meta name="twitter:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
+这个错误的原因是未安装2.17版本的glibc库。
+而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
 
 
 
@@ -125,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://libowei.net/tags/算法/"/>
+  <link rel="canonical" href="http://libowei.net/CentOS安装TensorFlow.html"/>
 
 
 
 
 
-  <title> 标签: 算法 | 博伟的博客 </title>
+  <title> CentOs安装TensorFlow | 博伟的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -184,7 +191,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,46 +309,211 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        算法
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/CentOS安装TensorFlow.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/学士服照片.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博伟的博客">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CentOs安装TensorFlow
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-21T10:21:26+08:00">
+                2017-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/CentOS安装TensorFlow.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/CentOS安装TensorFlow.html" class="leancloud_visitors" data-flag-title="CentOs安装TensorFlow">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>在CentOS6上安装TensorFlow1.2后，<code>import tensorflow</code>时出现以下问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImportError: /lib64/libc.so.6: version `GLIBC_2.17&apos; not found</div></pre></td></tr></table></figure></p>
+<p>这个错误的原因是未安装2.17版本的glibc库。</p>
+<p>而在CentOS上，使用<code>yum install glibc</code>命令，只能更新到2.12版本。需要手动下载编译安装。</p>
+<p>glibc-2.17下载地址：<a href="https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz" target="_blank" rel="external">https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</a></p>
+<p>下载glibc并解压缩<br>···<br>wget <a href="https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz" target="_blank" rel="external">https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</a><br>tar -xvf glibc-2.17.tar.gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">编译安装</div></pre></td></tr></table></figure></p>
+<p>cd glibc-2.17<br>mkdir build<br>../configure –prefix=/usr –disable-profile –enable-add-ons –with-headers=/usr/include –with-binutils=/usr/bin<br>make &amp;&amp; make install<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">查看glibc共享库：</div></pre></td></tr></table></figure></p>
+<p>ll /lib64/libc.so.6<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">现`libc.so.6`已经软链接到2.17版本</div></pre></td></tr></table></figure></p>
+<p>lrwxrwxrwx 1 root root 12 7月  21 10:11 /lib64/libc.so.6 -&gt; libc-2.17.so<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可以查看系统中可使用的glibc版本</div></pre></td></tr></table></figure></p>
+<p>strings /lib64/libc.so.6 |grep GLIBC_<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>GLIBC_2.2.5<br>GLIBC_2.2.6<br>GLIBC_2.3<br>GLIBC_2.3.2<br>GLIBC_2.3.3<br>GLIBC_2.3.4<br>GLIBC_2.4<br>GLIBC_2.5<br>GLIBC_2.6<br>GLIBC_2.7<br>GLIBC_2.8<br>GLIBC_2.9<br>GLIBC_2.10<br>GLIBC_2.11<br>GLIBC_2.12<br>GLIBC_2.13<br>GLIBC_2.14<br>GLIBC_2.15<br>GLIBC_2.16<br>GLIBC_2.17<br>GLIBC_PRIVATE<br>```</p>
+<p>现在应该就没问题了。</p>
+<p>参考资料：<a href="http://blog.csdn.net/officercat/article/details/39520227" target="_blank" rel="external">Linux/CentOS 升级C基本运行库CLIBC的注意事项</a></p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/棋盘覆盖问题.html" itemprop="url">
-              
-                <span itemprop="name">棋盘覆盖问题</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>感谢支持！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/image/wechat_reward.png" alt="Albert Lee WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/image/alipay_reward.jpg" alt="Albert Lee Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-27T22:18:45+08:00"
-              content="2016-10-27" >
-          10-27
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/centos/" rel="tag"># centos</a>
+          
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TensorFlow学习笔记：CNN-CIFAR-10.html" rel="next" title="TensorFlow学习笔记：CIFAR-10 CNN">
+                <i class="fa fa-chevron-left"></i> TensorFlow学习笔记：CIFAR-10 CNN
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -349,6 +521,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -612,6 +790,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
