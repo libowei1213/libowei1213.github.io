@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="shadowsocks,ipv6," />
+  <meta name="keywords" content="TensorFlow,卷积神经网络," />
 
 
 
@@ -89,18 +89,19 @@
 
 
 
-<meta name="description" content="背景很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，从而实现免费上网。">
+<meta name="description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
+给定4维的输入和4维的过滤器Tensor，进行2卷积运算。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建shadowsocks服务器实现ipv6免费上网">
-<meta property="og:url" content="http://libowei.net/搭建shadowsocks服务器实现ipv6免费上网.html">
+<meta property="og:title" content="TensorFlow CNN 相关API">
+<meta property="og:url" content="http://libowei.net/TensorFlow-CNN-相关API.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="背景很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，从而实现免费上网。">
-<meta property="og:image" content="http://odszv0fof.bkt.clouddn.com/shadowsocks.png">
-<meta property="og:updated_time" content="2017-03-31T04:07:16.000Z">
+<meta property="og:description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
+给定4维的输入和4维的过滤器Tensor，进行2卷积运算。">
+<meta property="og:updated_time" content="2017-07-24T13:06:27.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建shadowsocks服务器实现ipv6免费上网">
-<meta name="twitter:description" content="背景很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，从而实现免费上网。">
-<meta name="twitter:image" content="http://odszv0fof.bkt.clouddn.com/shadowsocks.png">
+<meta name="twitter:title" content="TensorFlow CNN 相关API">
+<meta name="twitter:description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
+给定4维的输入和4维的过滤器Tensor，进行2卷积运算。">
 
 
 
@@ -128,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://libowei.net/搭建shadowsocks服务器实现ipv6免费上网.html"/>
+  <link rel="canonical" href="http://libowei.net/TensorFlow-CNN-相关API.html"/>
 
 
 
 
 
-  <title> 搭建shadowsocks服务器实现ipv6免费上网 | 博伟的博客 </title>
+  <title> TensorFlow CNN 相关API | 博伟的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -315,7 +316,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://libowei.net/搭建shadowsocks服务器实现ipv6免费上网.html">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/TensorFlow-CNN-相关API.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lee">
@@ -336,7 +337,7 @@
             
             
               
-                搭建shadowsocks服务器实现ipv6免费上网
+                TensorFlow CNN 相关API
               
             
           </h1>
@@ -351,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-03T01:08:24+08:00">
-                2016-10-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T21:03:47+08:00">
+                2017-07-24
               </time>
             
 
@@ -370,7 +371,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/搭建shadowsocks服务器实现ipv6免费上网.html#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/TensorFlow-CNN-相关API.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -379,7 +380,7 @@
 
           
           
-             <span id="/搭建shadowsocks服务器实现ipv6免费上网.html" class="leancloud_visitors" data-flag-title="搭建shadowsocks服务器实现ipv6免费上网">
+             <span id="/TensorFlow-CNN-相关API.html" class="leancloud_visitors" data-flag-title="TensorFlow CNN 相关API">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,17 +409,65 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，<br>从而实现免费上网。</p>
+        <h2 id="tf-nn-conv2d"><a href="#tf-nn-conv2d" class="headerlink" title="tf.nn.conv2d"></a><code>tf.nn.conv2d</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">conv2d(</div><div class="line">    input,</div><div class="line">    filter,</div><div class="line">    strides,</div><div class="line">    padding,</div><div class="line">    use_cudnn_on_gpu=None,</div><div class="line">    data_format=None,</div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>给定4维的输入和4维的过滤器Tensor，进行2卷积运算。</p>
 <a id="more"></a>
-<h2 id="所需要的工具"><a href="#所需要的工具" class="headerlink" title="所需要的工具"></a>所需要的工具</h2><p>shadowsocks、支持ipv6的VPS</p>
-<p>支持ipv6的VPS我推荐Conoha，我一直在用，百兆带宽、SSD、不限流量、基本配置900日元/月，可以支付宝付款，总之优点很多。<br>链接如下<br><a href="https://www.conoha.jp/referral/?token=WLoRtpcmNe7GzQc77Zz3qFUgHqVXJh3DstkHzd2P_o1UsydAlTM-Q47" target="_blank" rel="external">Conoha主机</a></p>
-<p>shadowsocks的安装和一些配置可以参考<br><a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">Shadowsocks 使用说明</a><br><a href="http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/" target="_blank" rel="external">科学上网之 Shadowsocks 安装及优化加速</a></p>
-<h2 id="IPv6-shadowsocks配置"><a href="#IPv6-shadowsocks配置" class="headerlink" title="IPv6 shadowsocks配置"></a>IPv6 shadowsocks配置</h2><h3 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h3><p>若按照上面的链接中的方法安装shadowsocks，其配置文件路径为<code>/etc/shadowsocks.json</code></p>
-<p>修改配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;server&quot;:&quot;::&quot;,</div><div class="line">    &quot;server_port&quot;:8989,</div><div class="line">    &quot;local_address&quot;: &quot;127.0.0.1&quot;,</div><div class="line">    &quot;local_port&quot;:1080,</div><div class="line">    &quot;password&quot;:&quot;你的密码&quot;,</div><div class="line">    &quot;timeout&quot;:600,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>与ipv4的不同之处为<code>&quot;sever&quot;:&quot;::&quot;</code>，如此修改即可启用ipv6</p>
-<p>启动shadowsocks服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start</div></pre></td></tr></table></figure></p>
-<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>客户端配置见下图，在服务器地址处填写服务器的ipv6地址<br><img src="http://odszv0fof.bkt.clouddn.com/shadowsocks.png" alt="客户端配置"></p>
-
+<p>输入Tensor的形状为[batch,height,width,channels]，过滤器张量的形状为[filter_height, filter_width, in_channels, out_channels]</p>
+<ol>
+<li>把过滤器转化为2-D，其形状为<code>[filter_height * filter_width * in_channels, output_channels]</code></li>
+<li>在图像中提取形状为<code>[batch, out_height, out_width, filter_height * filter_width * in_channels]</code>的Tensor</li>
+<li>图像块向量和过滤器矩阵相乘</li>
+</ol>
+<p>步长参数strides中，必须满足<code>strides[0]=strides[3]=1</code>。大多数情况下水平步长和垂直步长相等。</p>
+<p>参数：</p>
+<ul>
+<li><code>input</code> Tensor。维度的顺序由<code>data-format</code>确定。</li>
+<li><code>filter</code> Tensor。与<code>input</code>数据类型相同。形状是<code>[filter_height, filter_width, in_channels, out_channels]</code></li>
+<li><code>strides</code> 整数列表（长度为4的1-D Tensor）。每个维度滑动窗口的步长，维度的顺序由<code>data-format</code>确定。</li>
+<li><code>padding</code> 字符串：<code>&quot;SAME&quot;</code>或<code>&quot;VALID&quot;</code>。<code>&quot;SAME&quot;</code>是对输入的首尾补0，以满足每个滑动窗口的大小。<code>&quot;VALID&quot;</code>是丢弃末尾的数据。</li>
+<li><code>use_cudnn_on_gpu</code> 布尔值，默认为<code>True</code>。</li>
+<li><code>data_format</code> 可选<code>&quot;NHWC&quot;</code>或<code>&quot;NCHW&quot;</code>，默认为<code>&quot;NHWC&quot;</code></li>
+<li><code>name</code> 为这个操作取一个名字。</li>
+</ul>
+<h2 id="tf-nn-bias-add"><a href="#tf-nn-bias-add" class="headerlink" title="tf.nn.bias_add"></a><code>tf.nn.bias_add</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bias_add(</div><div class="line">    value,</div><div class="line">    bias,</div><div class="line">    data_format=None,</div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>这个函数的作用是将偏差项<code>bias</code>加到<code>value</code>上面。</p>
+<p>这个操作是<code>tf.add</code>的一个特例。其中<code>bias</code>必须为1维，而<code>value</code>可以为任意维度。与<code>tf.add</code>不同的是，数据被量化的情况下，<code>value</code>和<code>bias</code>的类型可以不同。</p>
+<p>参数：</p>
+<ul>
+<li><code>value</code> Tensor。</li>
+<li><code>bias</code> 1维的Tensor。大小与<code>value</code>最后一维相同。类型也须与<code>value</code>相同，除非<code>value</code>被量化。</li>
+<li><code>data_format</code> <code>&quot;NHWC&quot;</code>或<code>&quot;NCHW&quot;</code>。</li>
+<li><code>name</code> 为这个操作取一个名字。</li>
+</ul>
+<h2 id="tf-nn-relu"><a href="#tf-nn-relu" class="headerlink" title="tf.nn.relu"></a><code>tf.nn.relu</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">relu(</div><div class="line">    features,</div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>计算非线性激活函数<code>max(features,0)</code></p>
+<p>参数:</p>
+<ul>
+<li><code>features</code> Tensor。</li>
+<li><code>name</code> 为这个操作取个名字</li>
+</ul>
+<h2 id="tf-nn-max-pool"><a href="#tf-nn-max-pool" class="headerlink" title="tf.nn.max_pool"></a><code>tf.nn.max_pool</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    value,</div><div class="line">    ksize,</div><div class="line">    strides,</div><div class="line">    padding,</div><div class="line">    data_format=&apos;NHWC&apos;,</div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>对输入数据进行最大池化</p>
+<p>参数：</p>
+<ul>
+<li><code>value</code> 4维Tensor，形状为<code>[batch, height, width, channels]</code>，类型为<code>tf.float32</code></li>
+<li><code>ksize</code> 长度&gt;=4的整形列表。每个维度的窗口大小。</li>
+<li><code>strides</code> 长度&gt;=4的整形列表。每个维度的滑动步长。</li>
+<li><code>padding</code> <code>&quot;SAME&quot;</code>或<code>&quot;VALID&quot;</code>。输出形状为：<code>output_height/output_width = (height/width - pool_size) stride + 1</code>，<code>&quot;SAME&quot;</code>为向上取整，<code>&quot;VALID&quot;</code>为向下取整</li>
+</ul>
+<h2 id="tf-nn-lrn"><a href="#tf-nn-lrn" class="headerlink" title="tf.nn.lrn"></a><code>tf.nn.lrn</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">lrn(</div><div class="line">    input, </div><div class="line">    depth_radius=None, </div><div class="line">    bias=None, </div><div class="line">    alpha=None, </div><div class="line">    beta=None,</div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>局部响应归一化</p>
+<p>4维的<code>input</code>Tensor可以看做3维的1维向量（沿着最后一维），对每个向量归一化。<br>计算公式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqr_sum[a, b, c, d] = sum(input[a, b, c, d - depth_radius : d + depth_radius + 1] ** 2)</div><div class="line">output = input / (bias + alpha * sqr_sum) ** beta</div></pre></td></tr></table></figure></p>
+<p>参数:</p>
+<ul>
+<li><code>input</code> Tensor</li>
+<li><code>depth_radius</code> 默认为5</li>
+<li><code>bias</code> 默认为1.0</li>
+<li><code>alpha</code> 默认为1.0</li>
+<li><code>beta</code> 默认为0.5，指数项</li>
+<li><code>name</code> 为这个操作取个名字</li>
+</ul>
+<h2 id="tf-nn-sparse-softmax-cross-entropy-with-logits"><a href="#tf-nn-sparse-softmax-cross-entropy-with-logits" class="headerlink" title="tf.nn.sparse_softmax_cross_entropy_with_logits"></a><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code></h2><h2 id="tf-train-exponential-decay"><a href="#tf-train-exponential-decay" class="headerlink" title="tf.train.exponential_decay"></a><code>tf.train.exponential_decay</code></h2><h2 id="tf-control-dependencies"><a href="#tf-control-dependencies" class="headerlink" title="tf.control_dependencies"></a><code>tf.control_dependencies</code></h2><h2 id="tf-train-ExponentialMovingAverage"><a href="#tf-train-ExponentialMovingAverage" class="headerlink" title="tf.train.ExponentialMovingAverage"></a><code>tf.train.ExponentialMovingAverage</code></h2>
       
     </div>
 
@@ -468,9 +517,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shadowsocks/" rel="tag"># shadowsocks</a>
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
           
-            <a href="/tags/ipv6/" rel="tag"># ipv6</a>
+            <a href="/tags/卷积神经网络/" rel="tag"># 卷积神经网络</a>
           
         </div>
       
@@ -483,8 +532,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/国科大课件下载脚本.html" rel="next" title="国科大课件下载脚本">
-                <i class="fa fa-chevron-left"></i> 国科大课件下载脚本
+              <a href="/CentOS安装TensorFlow.html" rel="next" title="CentOS安装TensorFlow">
+                <i class="fa fa-chevron-left"></i> CentOS安装TensorFlow
               </a>
             
           </div>
@@ -492,10 +541,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Django环境搭建及简单的视图与网址的配置.html" rel="prev" title="Django环境搭建及简单的视图与网址的配置">
-                Django环境搭建及简单的视图与网址的配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -668,7 +713,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所需要的工具"><span class="nav-number">2.</span> <span class="nav-text">所需要的工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv6-shadowsocks配置"><span class="nav-number">3.</span> <span class="nav-text">IPv6 shadowsocks配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端配置"><span class="nav-number">3.1.</span> <span class="nav-text">服务端配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端配置"><span class="nav-number">3.2.</span> <span class="nav-text">客户端配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-conv2d"><span class="nav-number">1.</span> <span class="nav-text">tf.nn.conv2d</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-bias-add"><span class="nav-number">2.</span> <span class="nav-text">tf.nn.bias_add</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-relu"><span class="nav-number">3.</span> <span class="nav-text">tf.nn.relu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-max-pool"><span class="nav-number">4.</span> <span class="nav-text">tf.nn.max_pool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-lrn"><span class="nav-number">5.</span> <span class="nav-text">tf.nn.lrn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-sparse-softmax-cross-entropy-with-logits"><span class="nav-number">6.</span> <span class="nav-text">tf.nn.sparse_softmax_cross_entropy_with_logits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-train-exponential-decay"><span class="nav-number">7.</span> <span class="nav-text">tf.train.exponential_decay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-control-dependencies"><span class="nav-number">8.</span> <span class="nav-text">tf.control_dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-train-ExponentialMovingAverage"><span class="nav-number">9.</span> <span class="nav-text">tf.train.ExponentialMovingAverage</span></a></li></ol></div>
             
 
           </div>
