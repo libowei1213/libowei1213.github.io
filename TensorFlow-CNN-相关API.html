@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="博伟的博客">
 <meta property="og:description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
 给定4维的输入和4维的过滤器Tensor，进行2卷积运算。">
-<meta property="og:updated_time" content="2017-07-24T13:06:27.945Z">
+<meta property="og:updated_time" content="2017-07-25T02:43:58.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow CNN 相关API">
 <meta name="twitter:description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
@@ -467,7 +467,34 @@
 <li><code>beta</code> 默认为0.5，指数项</li>
 <li><code>name</code> 为这个操作取个名字</li>
 </ul>
-<h2 id="tf-nn-sparse-softmax-cross-entropy-with-logits"><a href="#tf-nn-sparse-softmax-cross-entropy-with-logits" class="headerlink" title="tf.nn.sparse_softmax_cross_entropy_with_logits"></a><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code></h2><h2 id="tf-train-exponential-decay"><a href="#tf-train-exponential-decay" class="headerlink" title="tf.train.exponential_decay"></a><code>tf.train.exponential_decay</code></h2><h2 id="tf-control-dependencies"><a href="#tf-control-dependencies" class="headerlink" title="tf.control_dependencies"></a><code>tf.control_dependencies</code></h2><h2 id="tf-train-ExponentialMovingAverage"><a href="#tf-train-ExponentialMovingAverage" class="headerlink" title="tf.train.ExponentialMovingAverage"></a><code>tf.train.ExponentialMovingAverage</code></h2>
+<h2 id="tf-nn-sparse-softmax-cross-entropy-with-logits"><a href="#tf-nn-sparse-softmax-cross-entropy-with-logits" class="headerlink" title="tf.nn.sparse_softmax_cross_entropy_with_logits"></a><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sparse_softmax_cross_entropy_with_logits(</div><div class="line">    _sentinel=None,</div><div class="line">    labels=None,</div><div class="line">    logits=None,</div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>计算<code>logists</code>和<code>labels</code>的稀疏softmax交叉熵。</p>
+<p>用于度量互斥的离散分类任务（每个样本只属于一类）的概率误差，如CIFAR-10图像，每个图像只属于一类。</p>
+<p>注意：这个操作接受未处理的输入，为了提高效率，函数内部对<code>logits</code>做了softmax运算。所以不要输入softmax后的数值，这会产生不正确的结果。</p>
+<p>常见的情况，<code>logits</code>的形状为<code>[batch_size, num_classes]</code>，<code>labels</code>为<code>[batch_size]</code>。更高维度的也支持。</p>
+<p>为了避免混淆，传递参数时需要带上参数名（如<code>sparse_softmax_cross_entropy_with_logits(logits=logits,labels=labels)</code></p>
+<p>参数：</p>
+<ul>
+<li><code>labels</code> 形状为<code>[d_0, d_1, ..., d_{r-1}]</code>的Tensor（<code>r</code>为<code>label</code>的rank）。<code>labels</code>取值必须为<code>[0, num_classes)</code></li>
+<li><code>logits</code> 对数概率(?)，形状为<code>[d_0, d_1, ..., d_{r-1}, num_classes]</code></li>
+<li><code>name</code> 为操作取一个名字</li>
+</ul>
+<h2 id="tf-train-exponential-decay"><a href="#tf-train-exponential-decay" class="headerlink" title="tf.train.exponential_decay"></a><code>tf.train.exponential_decay</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">exponential_decay(</div><div class="line">    learning_rate, </div><div class="line">    global_step, </div><div class="line">    decay_steps, </div><div class="line">    decay_rate,</div><div class="line">    staircase=False, </div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>对学习率应用指数衰减。</p>
+<p>训练模型时，随着训练的进行，逐渐减小学习率是好的做法。这个函数对初始的学习率应用指数衰减方法。需要<code>global_step</code>作为参数计算衰减后的学习率。可以传递一个TensorFlow变量，每次训练对其加一。</p>
+<p>函数计算方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ecayed_learning_rate = learning_rate * decay_rate ^ (global_step / decay_steps)</div></pre></td></tr></table></figure></p>
+<p>若<code>staircase</code>为<code>True</code>，<code>global_step / decay_steps</code>计算结果为整数，此时学习率呈阶梯状下降。</p>
+<p>参数:</p>
+<ul>
+<li><code>learning_rate</code> 标量，初始学习率</li>
+<li><code>global_step</code> 标量（整数），不能为负</li>
+<li><code>decay_steps</code> 标量（整数），必须为正</li>
+<li><code>decay_rate</code> 标量，衰减率</li>
+<li><code>staircase</code> 布尔。</li>
+</ul>
+<h2 id="tf-control-dependencies"><a href="#tf-control-dependencies" class="headerlink" title="tf.control_dependencies"></a><code>tf.control_dependencies</code></h2><p>控制计算顺序</p>
+<h2 id="tf-train-ExponentialMovingAverage"><a href="#tf-train-ExponentialMovingAverage" class="headerlink" title="tf.train.ExponentialMovingAverage"></a><code>tf.train.ExponentialMovingAverage</code></h2><p><a href="https://www.tensorflow.org/versions/r1.3/api_docs/python/tf/train/ExponentialMovingAverage" target="_blank" rel="external">tf.train.ExponentialMovingAverage</a></p>
+
       
     </div>
 
