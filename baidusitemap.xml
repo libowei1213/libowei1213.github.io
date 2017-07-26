@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://libowei.net/TensorBoard%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3.html</loc>
+    <lastmod>2017-07-26T12:20:22.020Z</lastmod>
+    <data>
+        <display>
+        <title>TensorBoard说明文档</title>
+        <pubTime>2017-07-26T12:19:10.000Z</pubTime>
+        
+        <tag>tensorflow</tag>
+         
+        <tag>tensorboard</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://libowei.net/TensorFlow-CNN-%E7%9B%B8%E5%85%B3API.html</loc>
     <lastmod>2017-07-25T02:43:58.367Z</lastmod>
     <data>
@@ -183,14 +202,18 @@
 
     
   <url>
-    <loc>http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html</loc>
+    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     <data>
         <display>
-        <title>Android Studio: failed to create a child event loop</title>
-        <pubTime>2016-09-13T09:31:03.000Z</pubTime>
+        <title>Django环境搭建及简单的视图与网址的配置</title>
+        <pubTime>2016-10-12T17:18:26.000Z</pubTime>
         
-        <tag>Android Studio</tag>
+        <tag>python</tag>
+         
+        <tag>django</tag>
+         
+        <tag>服务器</tag>
          
          
            
@@ -240,18 +263,14 @@
 
     
   <url>
-    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
+    <loc>http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html</loc>
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     <data>
         <display>
-        <title>Django环境搭建及简单的视图与网址的配置</title>
-        <pubTime>2016-10-12T17:18:26.000Z</pubTime>
+        <title>Android Studio: failed to create a child event loop</title>
+        <pubTime>2016-09-13T09:31:03.000Z</pubTime>
         
-        <tag>python</tag>
-         
-        <tag>django</tag>
-         
-        <tag>服务器</tag>
+        <tag>Android Studio</tag>
          
          
            

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://libowei.net/TensorBoard%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3.html</loc>
+    
+    <lastmod>2017-07-26T12:20:22.020Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://libowei.net/TensorFlow-CNN-%E7%9B%B8%E5%85%B3API.html</loc>
     
     <lastmod>2017-07-25T02:43:58.367Z</lastmod>
@@ -79,7 +86,7 @@
   </url>
   
   <url>
-    <loc>http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html</loc>
+    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
     
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     
@@ -100,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
+    <loc>http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html</loc>
     
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     
