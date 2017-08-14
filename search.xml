@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[12306席别代码]]></title>
+      <url>%2F12306%E5%B8%AD%E5%88%AB%E4%BB%A3%E7%A0%81.html</url>
+      <content type="text"><![CDATA[在12306查询车票时，可从返回的JSON字符串得到车次、始发站、终点站、时间、余票数量等信息。其中有一个字段，其包含的字符串常见的有OM9,1413,OMO等。 这个字段代表该车次发售车票的席别，即硬卧、软卧、二等座、一等座等。 1 硬座 2 软座 3 硬卧 4 软卧 6 高级软卧 9 商务座 F 动卧 M 一等座 O 二等座 P 特等座 12306页面上还有一个席别为其他，可能的席位类型为软卧包厢，单人包厢等，可能的代码为H,F等（具体代表哪种席别我也没弄清楚）]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[TensorBoard说明文档]]></title>
       <url>%2FTensorBoard%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3.html</url>
       <content type="text"><![CDATA[TensorBoardTensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。 本文档介绍如何利用TensorBoard还嫌可视化，并给出TensorBoard的一些关键概念。更深入的例子请参见教程 TensorBoard: Visualizing Learning。要更深入了解图表可视化工具，请看教程TensorBoard: Graph Visualization。 还可以看这个视频教程，了解如何安装和使用TensorBoard。 使用方法在运行TensorBoard之前，确定已经生成并通过summary writer把训练摘要数据保存到文件夹中：1file_writer = tf.summary.FileWriter(&apos;/path/to/logs&apos;, sess.graph) 查看TensorBoard tutorial了解更多细节。当有了事件文件，指定其所在文件夹，就可以运行TensorBoard：1tensorboard --logdir=path/to/logs 执行上述命令后会显示TensorBoard已经启动的信息。现在可以访问http://localhost:6006。 TensorBoard从logdir中读入日志数据。若要了解TensorBoard的配置等信息，运行tensorboard --help TensorBoard可以在Chrome和Firefox浏览器中使用，其他浏览器可能会出现错误或其他性能问题。 关键概念摘要运算：TensorBoard如何从TensorFlow中获取数据使用TensorBoard的第一步是从运行中的TensorFlow程序中获取数据，这需要摘要运算(summary ops)，摘要操作像tf.matmul或tf.nn.relu等运算操作一样：接收Tensor、产生Tensor，在TensorFlow Graph中求值。但摘要运算有所不同的是：这些Tensor包含serialized protobufs(我理解为可以持久化的一些东西)，可以写入磁盘并在TensorBoard中展示。为了在TensorBoard中对记录的摘要数据可视化，需要对摘要计算求值，得到其结果并将其以摘要的形式写入磁盘。对FileWriter的详细解释和例子在教程中。 支持的摘要计算包括： tf.summary.scalar tf.summary.image tf.summary.audio tf.summary.text tf.summary.histogram 标签：对数据取名字进行摘要计算时，要对其取一个标签tag。这个标签是该计算所记录的数据的名字，而且用于在前端页面展示。Scalar和histogram面板通过标签来标记数据，通过层次化的标签名对数据分组。如果有很多标签的话，我们建议使用/对其分组。 事件文件和日志文件夹：TensorBoard如何读取数据Runs：对比模型不同的训练结果可视化数值面板（Scalar）柱状图面板（Histogram）统计分布面板（Distribution）图像面板（Image）声音面板（Audio）计算图展示（Graph Explorer）Embedding Projector文本面板（Text）常见问题TensorBoard不显示任何数据TensorBoard只显示一部分数据TensorBoard支持多线程或分布式的summary writer吗？数据重叠在一起如何处理ensorFlow程序重新启动的问题如何从TensorBoard导出数据可以重叠多个图表吗可以自己生成散点图吗（或其他自定义图表）]]></content>
