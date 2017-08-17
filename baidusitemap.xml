@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://libowei.net/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%AC%A6%E5%8F%B7.html</loc>
+    <lastmod>2017-08-17T12:05:56.506Z</lastmod>
+    <data>
+        <display>
+        <title>LaTeX数学公式符号</title>
+        <pubTime>2017-08-17T12:03:56.000Z</pubTime>
+        
+        <tag>LaTeX</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://libowei.net/12306%E5%B8%AD%E5%88%AB%E4%BB%A3%E7%A0%81.html</loc>
     <lastmod>2017-08-14T09:05:24.399Z</lastmod>
     <data>
@@ -47,9 +64,9 @@
         <title>TensorFlow CNN 相关API</title>
         <pubTime>2017-07-24T13:03:47.000Z</pubTime>
         
-        <tag>TensorFlow</tag>
-         
         <tag>卷积神经网络</tag>
+         
+        <tag>TensorFlow</tag>
          
          
            
@@ -87,11 +104,11 @@
         
         <tag>tensorflow</tag>
          
-        <tag>卷积神经网络</tag>
-         
         <tag>深度学习</tag>
          
         <tag>CNN</tag>
+         
+        <tag>卷积神经网络</tag>
          
          
            
@@ -110,11 +127,11 @@
         
         <tag>tensorflow</tag>
          
-        <tag>卷积神经网络</tag>
-         
         <tag>深度学习</tag>
          
         <tag>CNN</tag>
+         
+        <tag>卷积神经网络</tag>
          
          
            
@@ -200,23 +217,6 @@
     
     
   <url>
-    <loc>http://libowei.net/%E4%BE%9D%E6%B3%95%E6%B2%BB%E5%9B%BD%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%8A%E5%AF%B9%E5%BD%93%E4%BB%A3%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B3%95%E6%B2%BB%E7%B4%A0%E5%85%BB%E7%9A%84%E6%8E%A2%E8%AE%A8.html</loc>
-    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>依法治国的发展及对当代大学生法治素养的探讨</title>
-        <pubTime>2016-11-11T14:41:16.000Z</pubTime>
-        
-        <tag>中国特色社会主义</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://libowei.net/%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0ipv6%E5%85%8D%E8%B4%B9%E4%B8%8A%E7%BD%91.html</loc>
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     <data>
@@ -236,58 +236,16 @@
 
     
   <url>
-    <loc>http://libowei.net/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%8A%A2%E8%AF%BE%E8%84%9A%E6%9C%AC.html</loc>
+    <loc>http://libowei.net/%E6%A3%8B%E7%9B%98%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98.html</loc>
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     <data>
         <display>
-        <title>国科大抢课脚本</title>
-        <pubTime>2016-09-07T12:34:54.000Z</pubTime>
+        <title>棋盘覆盖问题</title>
+        <pubTime>2016-10-27T14:18:45.000Z</pubTime>
         
-        <tag>javascript</tag>
+        <tag>算法</tag>
          
-        <tag>js</tag>
-         
-        <tag>脚本</tag>
-         
-        <tag>国科大</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html</loc>
-    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android Studio: failed to create a child event loop</title>
-        <pubTime>2016-09-13T09:31:03.000Z</pubTime>
-        
-        <tag>Android Studio</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
-    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>Django环境搭建及简单的视图与网址的配置</title>
-        <pubTime>2016-10-12T17:18:26.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>django</tag>
-         
-        <tag>服务器</tag>
+        <tag>Python</tag>
          
          
            
@@ -318,16 +276,75 @@
 
     
   <url>
-    <loc>http://libowei.net/%E6%A3%8B%E7%9B%98%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98.html</loc>
+    <loc>http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html</loc>
     <lastmod>2017-03-31T04:07:16.000Z</lastmod>
     <data>
         <display>
-        <title>棋盘覆盖问题</title>
-        <pubTime>2016-10-27T14:18:45.000Z</pubTime>
+        <title>Android Studio: failed to create a child event loop</title>
+        <pubTime>2016-09-13T09:31:03.000Z</pubTime>
         
-        <tag>算法</tag>
+        <tag>Android Studio</tag>
          
-        <tag>Python</tag>
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://libowei.net/%E4%BE%9D%E6%B3%95%E6%B2%BB%E5%9B%BD%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%8A%E5%AF%B9%E5%BD%93%E4%BB%A3%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B3%95%E6%B2%BB%E7%B4%A0%E5%85%BB%E7%9A%84%E6%8E%A2%E8%AE%A8.html</loc>
+    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>依法治国的发展及对当代大学生法治素养的探讨</title>
+        <pubTime>2016-11-11T14:41:16.000Z</pubTime>
+        
+        <tag>中国特色社会主义</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://libowei.net/Django%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E7%AE%80%E5%8D%95%E7%9A%84%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E9%85%8D%E7%BD%AE.html</loc>
+    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>Django环境搭建及简单的视图与网址的配置</title>
+        <pubTime>2016-10-12T17:18:26.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>django</tag>
+         
+        <tag>服务器</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://libowei.net/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%8A%A2%E8%AF%BE%E8%84%9A%E6%9C%AC.html</loc>
+    <lastmod>2017-03-31T04:07:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>国科大抢课脚本</title>
+        <pubTime>2016-09-07T12:34:54.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>js</tag>
+         
+        <tag>脚本</tag>
+         
+        <tag>国科大</tag>
          
          
            
