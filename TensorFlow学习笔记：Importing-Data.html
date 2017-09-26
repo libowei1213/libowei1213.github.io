@@ -1,0 +1,1166 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="U-X9XD2c_wV6AKCoj83wtV4l3xqUDXk8YHuUj3GiYxg" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TensorFlow," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow学习笔记：Importing Data">
+<meta property="og:url" content="http://libowei.net/TensorFlow学习笔记：Importing-Data.html">
+<meta property="og:site_name" content="博伟的博客">
+<meta property="og:description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。">
+<meta property="og:updated_time" content="2017-09-26T06:11:54.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow学习笔记：Importing Data">
+<meta name="twitter:description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://libowei.net/TensorFlow学习笔记：Importing-Data.html"/>
+
+
+
+
+
+  <title> TensorFlow学习笔记：Importing Data | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-96532270-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ff1e2d8efa5365ff70fa3071bee477bb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=61491911";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博伟的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Albert's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/TensorFlow学习笔记：Importing-Data.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/学士服照片.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博伟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                TensorFlow学习笔记：Importing Data
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T14:08:44+08:00">
+                2017-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/TensorFlow学习笔记：Importing-Data.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/TensorFlow学习笔记：Importing-Data.html" class="leancloud_visitors" data-flag-title="TensorFlow学习笔记：Importing Data">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>Dataset</code>API可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。<code>Dataset</code>API可以很容易的处理大量数据、不同数据格式和复杂的变换。</p>
+<a id="more"></a>
+<p><code>Dataset</code>API引入了两个抽象概念：</p>
+<ul>
+<li>一个<code>tf.contrib.data.Dataset</code>代表一个元素序列，每个元素包含一个或多个Tensor对象。例如图像管道中，一个元素可能是包含一对表示图像数据和类别标签的Tensor的单一训练样本。有两种创建dataset的方式：<ul>
+<li>创建<strong>source</strong>（如<code>Dataset.from_tensor_slices()</code>），由一个或多个<code>tf.Tensor</code>对象构建一个dataset。</li>
+<li>应用<strong>transformation</strong>（如<code>Dataset.batch()</code>），从一个或多个<code>tf.contrib.data.Dataset</code>对象中创建新dataset。</li>
+</ul>
+</li>
+<li>一个<code>tf.contrib.data.Iterator</code>提供从dataset提取元素的方法。<code>Iterator.get_next()</code>返回的op执行时产生<code>Dataset</code>的下一个元素，这通常作为输入管道和模型之间的接口。最简单的迭代器是”one-shot 迭代器”，它与一个特定的<code>Dataset</code>相关联，作一次性遍历。<code>Iterator.initializer</code>op能够让你用不同的数据集再初始化和参数化一个迭代器，这样你可以在相同的程序中多次迭代训练集/验证集数据。</li>
+</ul>
+<h2 id="基本机制"><a href="#基本机制" class="headerlink" title="基本机制"></a>基本机制</h2><p>这一节讲了创建不同种类的<code>Dataset</code>和<code>Iterator</code>对象的基本方法，和如何从其中提取数据。</p>
+<p>启动输入管道前，必须定义一个<em>source</em>。例如，从内存中的一些Tensor中创建一个<code>Dataset</code>，可使用<code>tf.contrib.data.Dataset.from_tensors()</code>或<code>tf.contrib.data.Dataset.from_tensor_slices()</code>。如果你的输入数据来自磁盘中的TFRecord，使用<code>tf.contrib.data.TFRecordDataset</code>。</p>
+<p>一旦有了<code>Dataset</code>对象，可以<em>transform</em>它，调用链接方法生成新的<code>Dataset</code>。例如，可以应用每元变换（per-element transformations）如<code>Dataset.map()</code>，和多元变换（multi-element transformations）如<code>Dataset.batch()</code>。查看<a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/Dataset" target="_blank" rel="external"><code>tf.contrib.data.Dataset</code>文档</a>了解所有的变换方法。</p>
+<p>从<code>Dataset</code>中取值最常见的方法是通过<strong>iterator</strong>对象每次获取数据集中的一个元素（如调用<code>Dataset.make_one_shot_iterator</code>）。<code>tf.contrib.data.Iterator</code>对象提供两种运算：<code>Iterator.initializer</code>可（再）初始化迭代器的状态；<code>Iterator.get_next()</code>返回下一个元素的Tensor对象。取决于你的应用，可以选择不同类型的迭代器，概述如下。</p>
+<h3 id="数据集结构"><a href="#数据集结构" class="headerlink" title="数据集结构"></a>数据集结构</h3><p>一个dataset包含的每个元素都有相同的结构。每个元素包含一个或多个<code>tf.Tensor</code>对象，称为<em>component</em>。每个component的<code>tf.DType</code>代表tensor中元素的类型，<code>tf.TensorShape</code>代表每个元素的固定的形状（可能只指定一部分维度）。<code>Dataset.output_types</code>和<code>Dataset.output_shapes</code>属性使你能对推断出的数据集元素的类型和形状进行检查。这种属性的嵌套结构对应元素的结构，元素可以是单个Tensor，Tensor元组或嵌套的Tensor元组，例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">dataset1 = tf.contrib.data.Dataset.from_tensor_slices(tf.random_uniform([<span class="number">4</span>, <span class="number">10</span>]))</div><div class="line">print(dataset1.output_types)  <span class="comment"># ==&gt; "tf.float32"</span></div><div class="line">print(dataset1.output_shapes)  <span class="comment"># ==&gt; "(10,)"</span></div><div class="line"></div><div class="line">dataset2 = tf.contrib.data.Dataset.from_tensor_slices(</div><div class="line">   (tf.random_uniform([<span class="number">4</span>]),</div><div class="line">    tf.random_uniform([<span class="number">4</span>, <span class="number">100</span>], maxval=<span class="number">100</span>, dtype=tf.int32)))</div><div class="line">print(dataset2.output_types)  <span class="comment"># ==&gt; "(tf.float32, tf.int32)"</span></div><div class="line">print(dataset2.output_shapes)  <span class="comment"># ==&gt; "((), (100,))"</span></div><div class="line"></div><div class="line">dataset3 = tf.contrib.data.Dataset.zip((dataset1, dataset2))</div><div class="line">print(dataset3.output_types)  <span class="comment"># ==&gt; (tf.float32, (tf.float32, tf.int32))</span></div><div class="line">print(dataset3.output_shapes)  <span class="comment"># ==&gt; "(10, ((), (100,)))"</span></div></pre></td></tr></table></figure></p>
+<p>给元素的每个component命名很方便，如果不同的component表示训练样本的不同的特征。除了使用元组之外，还可以用<code>collections.namedtuple</code>或一个{string : tensor}的字典表示数据集的一个元素。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dataset = tf.contrib.data.Dataset.from_tensor_slices(</div><div class="line">   &#123;<span class="string">"a"</span>: tf.random_uniform([<span class="number">4</span>]),</div><div class="line">    <span class="string">"b"</span>: tf.random_uniform([<span class="number">4</span>, <span class="number">100</span>], maxval=<span class="number">100</span>, dtype=tf.int32)&#125;)</div><div class="line">print(dataset.output_types)  <span class="comment"># ==&gt; "&#123;'a': tf.float32, 'b': tf.int32&#125;"</span></div><div class="line">print(dataset.output_shapes)  <span class="comment"># ==&gt; "&#123;'a': (), 'b': (100,)&#125;"</span></div></pre></td></tr></table></figure></p>
+<p><code>Dataset</code>变换支持任何结构的数据集。当使用<code>Dataset.map()</code>，<code>Dataset.flat_map()</code>和<code>Dataset.filter()</code>变换时，需要根据元素的结构来定义这些函数的参数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dataset1 = dataset1.map(<span class="keyword">lambda</span> x: ...)</div><div class="line"></div><div class="line">dataset2 = dataset2.flat_map(<span class="keyword">lambda</span> x, y: ...)</div><div class="line"></div><div class="line"><span class="comment"># Note: Argument destructuring is not available in Python 3.</span></div><div class="line">dataset3 = dataset3.filter(<span class="keyword">lambda</span> x, (y, z): ...)</div></pre></td></tr></table></figure></p>
+<h3 id="创建迭代器"><a href="#创建迭代器" class="headerlink" title="创建迭代器"></a>创建迭代器</h3><p>你已经创建了表示输入数据的<code>Dataset</code>，下一步就是创建一个<code>Iterator</code>来获取数据集中的元素。<code>Dataset</code>API目前支持三种迭代器：</p>
+<ul>
+<li><strong>one-shot</strong></li>
+<li><strong>initializable</strong></li>
+<li><strong>reinitializable</strong> 和 <strong>feedable</strong></li>
+</ul>
+<p><strong>one shot</strong> 迭代器是最简单的形式，只支持一次性遍历数据集，不需要显式的初始化操作。当前绝大多数基于队列的输入管道所支持的情况它都能处理，但不支持参数化。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">dataset = tf.contrib.data.Dataset.range(<span class="number">100</span>)</div><div class="line">iterator = dataset.make_one_shot_iterator()</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</div><div class="line">  value = sess.run(next_element)</div><div class="line">  <span class="keyword">assert</span> i == value</div></pre></td></tr></table></figure></p>
+<p><strong>initializable</strong> 迭代器需要在使用前显示的定义<code>iterator.initializer</code>。可以根据数据集对迭代器操作进行参数化，可在初始化时使用<code>tf.placeholder()</code>Tensor作为feed。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">max_value = tf.placeholder(tf.int64, shape=[])</div><div class="line">dataset = tf.contrib.data.Dataset.range(max_value)</div><div class="line">iterator = dataset.make_initializable_iterator()</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line"><span class="comment"># Initialize an iterator over a dataset with 10 elements.</span></div><div class="line">sess.run(iterator.initializer, feed_dict=&#123;max_value: <span class="number">10</span>&#125;)</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">  value = sess.run(next_element)</div><div class="line">  <span class="keyword">assert</span> i == value</div><div class="line"></div><div class="line"><span class="comment"># Initialize the same iterator over a dataset with 100 elements.</span></div><div class="line">sess.run(iterator.initializer, feed_dict=&#123;max_value: <span class="number">100</span>&#125;)</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</div><div class="line">  value = sess.run(next_element)</div><div class="line">  <span class="keyword">assert</span> i == value</div></pre></td></tr></table></figure></p>
+<p><strong>reinitializable</strong> 迭代器可以以多个不同的<code>Dataset</code>对象进行初始化。例如，你可能有一个这样的训练集输入管道：对输入的图像进行随机扰动，和用于在原始图像进行评估的验证集输入管道。这两个管道使用不同的<code>Dataset</code>对象，但是它们的结构是相同的（每个component有相同类型和兼容的形状）。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Define training and validation datasets with the same structure.</span></div><div class="line">training_dataset = tf.contrib.data.Dataset.range(<span class="number">100</span>).map(</div><div class="line">    <span class="keyword">lambda</span> x: x + tf.random_uniform([], <span class="number">-10</span>, <span class="number">10</span>, tf.int64))</div><div class="line">validation_dataset = tf.contrib.data.Dataset.range(<span class="number">50</span>)</div><div class="line"></div><div class="line"><span class="comment"># A reinitializable iterator is defined by its structure. We could use the</span></div><div class="line"><span class="comment"># `output_types` and `output_shapes` properties of either `training_dataset`</span></div><div class="line"><span class="comment"># or `validation_dataset` here, because they are compatible.</span></div><div class="line">iterator = Iterator.from_structure(training_dataset.output_types,</div><div class="line">                                   training_dataset.output_shapes)</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line">training_init_op = iterator.make_initializer(training_dataset)</div><div class="line">validation_init_op = iterator.make_initializer(validation_dataset)</div><div class="line"></div><div class="line"><span class="comment"># Run 20 epochs in which the training dataset is traversed, followed by the</span></div><div class="line"><span class="comment"># validation dataset.</span></div><div class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">20</span>):</div><div class="line">  <span class="comment"># Initialize an iterator over the training dataset.</span></div><div class="line">  sess.run(training_init_op)</div><div class="line">  <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">100</span>):</div><div class="line">    sess.run(next_element)</div><div class="line"></div><div class="line">  <span class="comment"># Initialize an iterator over the validation dataset.</span></div><div class="line">  sess.run(validation_init_op)</div><div class="line">  <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">50</span>):</div><div class="line">    sess.run(next_element)</div></pre></td></tr></table></figure></p>
+<p><strong>feedable</strong> 迭代器可以在调用<code>tf.Session.run</code>时和<code>tf.placeholder</code>一起使用，通过<code>feed_dict</code>机制，以选择使用哪种<code>Iterator</code>。它与reinitializable迭代器有相同的功能，但在你切换迭代器时不需要从数据集的开始初始化迭代器。举例：使用和上面例子相同的训练和验证样本，可以使用<code>tf.contrib.data.Iterator.from_string_handle</code>来定义一个feedable迭代器，用来在两个数据集间切换。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Define training and validation datasets with the same structure.</span></div><div class="line">training_dataset = tf.contrib.data.Dataset.range(<span class="number">100</span>).map(</div><div class="line">    <span class="keyword">lambda</span> x: x + tf.random_uniform([], <span class="number">-10</span>, <span class="number">10</span>, tf.int64)).repeat()</div><div class="line">validation_dataset = tf.contrib.data.Dataset.range(<span class="number">50</span>)</div><div class="line"></div><div class="line"><span class="comment"># A feedable iterator is defined by a handle placeholder and its structure. We</span></div><div class="line"><span class="comment"># could use the `output_types` and `output_shapes` properties of either</span></div><div class="line"><span class="comment"># `training_dataset` or `validation_dataset` here, because they have</span></div><div class="line"><span class="comment"># identical structure.</span></div><div class="line">handle = tf.placeholder(tf.string, shape=[])</div><div class="line">iterator = tf.contrib.data.Iterator.from_string_handle(</div><div class="line">    handle, training_dataset.output_types, training_dataset.output_shapes)</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line"><span class="comment"># You can use feedable iterators with a variety of different kinds of iterator</span></div><div class="line"><span class="comment"># (such as one-shot and initializable iterators).</span></div><div class="line">training_iterator = training_dataset.make_one_shot_iterator()</div><div class="line">validation_iterator = validation_dataset.make_initializable_iterator()</div><div class="line"></div><div class="line"><span class="comment"># The `Iterator.string_handle()` method returns a tensor that can be evaluated</span></div><div class="line"><span class="comment"># and used to feed the `handle` placeholder.</span></div><div class="line">training_handle = sess.run(training_iterator.string_handle())</div><div class="line">validation_handle = sess.run(validation_iterator.string_handle())</div><div class="line"></div><div class="line"><span class="comment"># Loop forever, alternating between training and validation.</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">  <span class="comment"># Run 200 steps using the training dataset. Note that the training dataset is</span></div><div class="line">  <span class="comment"># infinite, and we resume from where we left off in the previous `while` loop</span></div><div class="line">  <span class="comment"># iteration.</span></div><div class="line">  <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">200</span>):</div><div class="line">    sess.run(next_element, feed_dict=&#123;handle: training_handle&#125;)</div><div class="line"></div><div class="line">  <span class="comment"># Run one pass over the validation dataset.</span></div><div class="line">  sess.run(validation_iterator.initializer)</div><div class="line">  <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">50</span>):</div><div class="line">    sess.run(next_element, feed_dict=&#123;handle: validation_handle&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="从迭代器中取值"><a href="#从迭代器中取值" class="headerlink" title="从迭代器中取值"></a>从迭代器中取值</h3><p><code>Iterator.get_next()</code>方法返回一个或多个Tensor对象，对应迭代器的下一个元素。每次这些Tensor被求值时，它们从底层的数据集中取下一个元素的值。（注意：同其他具有状态的对象相似，调用<code>Iterator.get_next()</code>不会立即执行，你必须在<code>tf.Session.run</code>中传递其返回的Tensor对象的相应表达式，才会取得下一个元素并推进迭代器。）</p>
+<p>如果迭代器到达数据集的末端，执行<code>Iterator.get_next()</code>会产生<code>tf.errors.OutOfRangeError</code>。之后迭代器会变成不可用状态，如果想再次使用必须对其重新初始化。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">dataset = tf.contrib.data.Dataset.range(<span class="number">5</span>)</div><div class="line">iterator = dataset.make_initializable_iterator()</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line"><span class="comment"># Typically `result` will be the output of a model, or an optimizer's</span></div><div class="line"><span class="comment"># training operation.</span></div><div class="line">result = tf.add(next_element, next_element)</div><div class="line"></div><div class="line">sess.run(iterator.initializer)</div><div class="line">print(sess.run(result))  <span class="comment"># ==&gt; "0"</span></div><div class="line">print(sess.run(result))  <span class="comment"># ==&gt; "2"</span></div><div class="line">print(sess.run(result))  <span class="comment"># ==&gt; "4"</span></div><div class="line">print(sess.run(result))  <span class="comment"># ==&gt; "6"</span></div><div class="line">print(sess.run(result))  <span class="comment"># ==&gt; "8"</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">  sess.run(result)</div><div class="line"><span class="keyword">except</span> tf.errors.OutOfRangeError:</div><div class="line">  print(<span class="string">"End of dataset"</span>)  <span class="comment"># ==&gt; "End of dataset"</span></div></pre></td></tr></table></figure></p>
+<p>常见的形式是在<code>try-except</code>里进行训练循环：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sess.run(iterator.initializer)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">  <span class="keyword">try</span>:</div><div class="line">    sess.run(result)</div><div class="line">  <span class="keyword">except</span> tf.errors.OutOfRangeError:</div><div class="line">    <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
+<p>如果数据集中的每个元素都是嵌套结构，<code>Iterator.get_next()</code>返回的一个或多个Tensor也是这种相同的嵌套结构：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dataset1 = tf.contrib.data.Dataset.from_tensor_slices(tf.random_uniform([<span class="number">4</span>, <span class="number">10</span>]))</div><div class="line">dataset2 = tf.contrib.data.Dataset.from_tensor_slices((tf.random_uniform([<span class="number">4</span>]), tf.random_uniform([<span class="number">4</span>, <span class="number">100</span>])))</div><div class="line">dataset3 = tf.contrib.data.Dataset.zip((dataset1, dataset2))</div><div class="line"></div><div class="line">iterator = dataset3.make_initializable_iterator()</div><div class="line"></div><div class="line">sess.run(iterator.initializer)</div><div class="line">next1, (next2, next3) = iterator.get_next()</div></pre></td></tr></table></figure></p>
+<p>注意对<code>next1</code>,<code>next2</code>或<code>next3</code>任意一个求值都会推进迭代器，典型的迭代器取值的做法是在一个表达式中包含其所有component。</p>
+<h2 id="读输入数据"><a href="#读输入数据" class="headerlink" title="读输入数据"></a>读输入数据</h2><h3 id="Numpy-数组"><a href="#Numpy-数组" class="headerlink" title="Numpy 数组"></a>Numpy 数组</h3><p>如果全部输入数据都在内存中，最简单的方式是由其创建<code>Dataset</code>，转化为<code>tf.Tensor</code>，使用<code>Dataset.from_tensor_slices()</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Load the training data into two NumPy arrays, for example using `np.load()`.</span></div><div class="line"><span class="keyword">with</span> np.load(<span class="string">"/var/data/training_data.npy"</span>) <span class="keyword">as</span> data:</div><div class="line">  features = data[<span class="string">"features"</span>]</div><div class="line">  labels = data[<span class="string">"labels"</span>]</div><div class="line"></div><div class="line"><span class="comment"># Assume that each row of `features` corresponds to the same row as `labels`.</span></div><div class="line"><span class="keyword">assert</span> features.shape[<span class="number">0</span>] == labels.shape[<span class="number">0</span>]</div><div class="line"></div><div class="line">dataset = tf.contrib.data.Dataset.from_tensor_slices((features, labels))</div></pre></td></tr></table></figure></p>
+<p>上面的代码会以<code>tf.constant()</code>op在TensorFlow计算图种表示<code>features</code>和<code>labels</code>数组。这适合小的数据集，但是很浪费内存，因为数组的内容会被复制多次，可能会超出<code>tf.GraphDef</code>定义的protocol buffer的2GB大小限制。</p>
+<p>作为替代方案，可以以<code>tf.placeholder()</code>Tensor的形式定义<code>Dataset</code>，在迭代器初始化时 <em>feed</em> Numpy 数组。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Load the training data into two NumPy arrays, for example using `np.load()`.</span></div><div class="line"><span class="keyword">with</span> np.load(<span class="string">"/var/data/training_data.npy"</span>) <span class="keyword">as</span> data:</div><div class="line">  features = data[<span class="string">"features"</span>]</div><div class="line">  labels = data[<span class="string">"labels"</span>]</div><div class="line"></div><div class="line"><span class="comment"># Assume that each row of `features` corresponds to the same row as `labels`.</span></div><div class="line"><span class="keyword">assert</span> features.shape[<span class="number">0</span>] == labels.shape[<span class="number">0</span>]</div><div class="line"></div><div class="line">features_placeholder = tf.placeholder(features.dtype, features.shape)</div><div class="line">labels_placeholder = tf.placeholder(labels.dtype, labels.shape)</div><div class="line"></div><div class="line">dataset = tf.contrib.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))</div><div class="line"><span class="comment"># [Other transformations on `dataset`...]</span></div><div class="line">dataset = ...</div><div class="line">iterator = dataset.make_initializable_iterator()</div><div class="line"></div><div class="line">sess.run(iterator.initializer, feed_dict=&#123;features_placeholder: features,</div><div class="line">                                          labels_placeholder: labels&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="TFRecord-数据"><a href="#TFRecord-数据" class="headerlink" title="TFRecord 数据"></a>TFRecord 数据</h3><p><code>Dataset</code>API支持多种文件格式类型，所以你可以处理不能完整读入内存的大的数据集。以TFRecord为例，TFRecord是一种面向记录的二进制文件，很多TensorFlow应用使用它作为训练数据。<code>tf.contrib.data.TFRecordDataset</code>能够使TFRecord文件作为输入管道的输入流。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Creates a dataset that reads all of the examples from two files.</span></div><div class="line">filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">dataset = tf.contrib.data.TFRecordDataset(filenames)</div></pre></td></tr></table></figure></p>
+<p>传递给<code>TFRecordDataset</code>的参数<code>filenames</code>可以是字符串，字符串列表或<code>tf.Tensor</code>类型的字符串。因此，如果有两组文件分别作为训练和验证，可以使用<code>tf.placeholder(tf.string)</code>来表示文件名，使用适当的文件名来初始化一个迭代器。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">filenames = tf.placeholder(tf.string, shape=[<span class="keyword">None</span>])</div><div class="line">dataset = tf.contrib.data.TFRecordDataset(filenames)</div><div class="line">dataset = dataset.map(...)  <span class="comment"># Parse the record into tensors.</span></div><div class="line">dataset = dataset.repeat()  <span class="comment"># Repeat the input indefinitely.</span></div><div class="line">dataset = dataset.batch(<span class="number">32</span>)</div><div class="line">iterator = dataset.make_initializable_iterator()</div><div class="line"></div><div class="line"><span class="comment"># You can feed the initializer with the appropriate filenames for the current</span></div><div class="line"><span class="comment"># phase of execution, e.g. training vs. validation.</span></div><div class="line"></div><div class="line"><span class="comment"># Initialize `iterator` with training data.</span></div><div class="line">training_filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">sess.run(iterator.initializer, feed_dict=&#123;filenames: training_filenames&#125;)</div><div class="line"></div><div class="line"><span class="comment"># Initialize `iterator` with validation data.</span></div><div class="line">validation_filenames = [<span class="string">"/var/data/validation1.tfrecord"</span>, ...]</div><div class="line">sess.run(iterator.initializer, feed_dict=&#123;filenames: validation_filenames&#125;)</div></pre></td></tr></table></figure></p>
+<p>###文本数据<br>很多数据集是一个或多个文本文件。<code>tf.contrib.data.TextLineDataset</code>提供了一种简单的方式来提取这些文件的每一行。给定一个或多个文件名，<code>TextLineDataset</code>会对这些文件的每行生成一个值为字符串的元素。<code>TextLineDataset</code>也可以接受<code>tf.Tensor</code>作为<code>filenames</code>，所以你可以传递一个<code>tf.placeholder(tf.string)</code>作为参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">filenames = [<span class="string">"/var/data/file1.txt"</span>, <span class="string">"/var/data/file2.txt"</span>]</div><div class="line">dataset = tf.contrib.data.TextLineDataset(filenames)</div></pre></td></tr></table></figure></p>
+<p>默认下，<code>TextLineDataset</code>生成每个文件中的每一行，这可能不是你所需要的，例如文件中有标题行，或包含注释。可以使用<code>Dataset.skip()</code>和<code>Dataset.filter()</code>来剔除这些行。为了对每个文件都各自应用这些变换，使用<code>Dataset.flat_map()</code>来对每个文件创建一个嵌套的<code>Dataset</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">filenames = [<span class="string">"/var/data/file1.txt"</span>, <span class="string">"/var/data/file2.txt"</span>]</div><div class="line"></div><div class="line">dataset = tf.contrib.data.Dataset.from_tensor_slices(filenames)</div><div class="line"></div><div class="line"><span class="comment"># Use `Dataset.flat_map()` to transform each file as a separate nested dataset,</span></div><div class="line"><span class="comment"># and then concatenate their contents sequentially into a single "flat" dataset.</span></div><div class="line"><span class="comment"># * Skip the first line (header row).</span></div><div class="line"><span class="comment"># * Filter out lines beginning with "#" (comments).</span></div><div class="line">dataset = dataset.flat_map(</div><div class="line">    <span class="keyword">lambda</span> filename: (</div><div class="line">        tf.contrib.data.TextLineDataset(filename)</div><div class="line">        .skip(<span class="number">1</span>)</div><div class="line">        .filter(<span class="keyword">lambda</span> line: tf.not_equal(tf.substr(line, <span class="number">0</span>, <span class="number">1</span>), <span class="string">"#"</span>))))</div></pre></td></tr></table></figure></p>
+<h2 id="使用Dataset-map-进行数据预处理"><a href="#使用Dataset-map-进行数据预处理" class="headerlink" title="使用Dataset.map()进行数据预处理"></a>使用Dataset.map()进行数据预处理</h2><p><code>Dataset.map(f)</code>变换对每个元素应用给定的函数<code>f</code>生成一个新的dataset。这个函数基于函数式编程中通用的<code>map()</code>函数，应用于列表型的数据结构。函数<code>f</code>接受代表单个元素的<code>tf.Tensor</code>作为输入，返回<code>tf.Tensor</code>对象作为新数据集中的元素。在实现上，使用了标准的TensorFlow op将一个元素转换为另一个。</p>
+<p>这一节介绍了使用<code>Dataset.map()</code>的例子。</p>
+<h3 id="解析tf-Example-protocol-buffer"><a href="#解析tf-Example-protocol-buffer" class="headerlink" title="解析tf.Example protocol buffer"></a>解析tf.Example protocol buffer</h3><p>很多输入管道从TFRecord格式的文件中提取<code>tf.train.Example</code> protocol buffer。每个<code>tf.train.Example</code>记录包含一个或多个features，输入管道把这些featrues转换成Tensor。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Transforms a scalar string `example_proto` into a pair of a scalar string and</span></div><div class="line"><span class="comment"># a scalar integer, representing an image and its label, respectively.</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_parse_function</span><span class="params">(example_proto)</span>:</span></div><div class="line">  features = &#123;<span class="string">"image"</span>: tf.FixedLenFeature((), tf.string, default_value=<span class="string">""</span>),</div><div class="line">              <span class="string">"label"</span>: tf.FixedLenFeature((), tf.int32, default_value=<span class="number">0</span>)&#125;</div><div class="line">  parsed_features = tf.parse_single_example(example_proto, features)</div><div class="line">  <span class="keyword">return</span> parsed_features[<span class="string">"image"</span>], parsed_features[<span class="string">"label"</span>]</div><div class="line"></div><div class="line"><span class="comment"># Creates a dataset that reads all of the examples from two files, and extracts</span></div><div class="line"><span class="comment"># the image and label features.</span></div><div class="line">filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">dataset = tf.contrib.data.TFRecordDataset(filenames)</div><div class="line">dataset = dataset.map(_parse_function)</div></pre></td></tr></table></figure></p>
+<h3 id="解码图像、调整大小"><a href="#解码图像、调整大小" class="headerlink" title="解码图像、调整大小"></a>解码图像、调整大小</h3><p>利用真实世界的图像数据训练神经网络时，通常需要把不同大小的图像转换为常见的尺寸，这样可以组织为一批固定大小的数据。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Reads an image from a file, decodes it into a dense tensor, and resizes it</span></div><div class="line"><span class="comment"># to a fixed shape.</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_parse_function</span><span class="params">(filename, label)</span>:</span></div><div class="line">  image_string = tf.read_file(filename)</div><div class="line">  image_decoded = tf.image.decode_image(image_string)</div><div class="line">  image_resized = tf.image.resize_images(image_decoded, [<span class="number">28</span>, <span class="number">28</span>])</div><div class="line">  <span class="keyword">return</span> image_resized, label</div><div class="line"></div><div class="line"><span class="comment"># A vector of filenames.</span></div><div class="line">filenames = tf.constant([<span class="string">"/var/data/image1.jpg"</span>, <span class="string">"/var/data/image2.jpg"</span>, ...])</div><div class="line"></div><div class="line"><span class="comment"># `labels[i]` is the label for the image in `filenames[i].</span></div><div class="line">labels = tf.constant([<span class="number">0</span>, <span class="number">37</span>, ...])</div><div class="line"></div><div class="line">dataset = tf.contrib.data.Dataset.from_tensor_slices((filenames, labels))</div><div class="line">dataset = dataset.map(_parse_function)</div></pre></td></tr></table></figure></p>
+<h3 id="使用tf-py-func-应用Python逻辑"><a href="#使用tf-py-func-应用Python逻辑" class="headerlink" title="使用tf.py_func()应用Python逻辑"></a>使用tf.py_func()应用Python逻辑</h3><p>为了提高性能，我们鼓励你使用TensorFlow中的操作进行数据预处理。但有时使用内置的Python库来解析输入数据也有效。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div><div class="line"></div><div class="line"><span class="comment"># Use a custom OpenCV function to read the image, instead of the standard</span></div><div class="line"><span class="comment"># TensorFlow `tf.read_file()` operation.</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_read_py_function</span><span class="params">(filename, label)</span>:</span></div><div class="line">  image_decoded = cv2.imread(image_string, cv2.IMREAD_GRAYSCALE)</div><div class="line">  <span class="keyword">return</span> image_decoded, label</div><div class="line"></div><div class="line"><span class="comment"># Use standard TensorFlow operations to resize the image to a fixed shape.</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_resize_function</span><span class="params">(image_decoded, label)</span>:</span></div><div class="line">  image_decoded.set_shape([<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>])</div><div class="line">  image_resized = tf.image.resize_images(image_decoded, [<span class="number">28</span>, <span class="number">28</span>])</div><div class="line">  <span class="keyword">return</span> image_resized, label</div><div class="line"></div><div class="line">filenames = [<span class="string">"/var/data/image1.jpg"</span>, <span class="string">"/var/data/image2.jpg"</span>, ...]</div><div class="line">labels = [<span class="number">0</span>, <span class="number">37</span>, <span class="number">29</span>, <span class="number">1</span>, ...]</div><div class="line"></div><div class="line">dataset = tf.contrib.data.Dataset.from_tensor_slices((filenames, labels))</div><div class="line">dataset = dataset.map(</div><div class="line">    <span class="keyword">lambda</span> filename, label: tf.py_func(</div><div class="line">        _read_py_function, [filename, label], [tf.uint8, label.dtype]))</div><div class="line">dataset = dataset.map(_resize_function)</div></pre></td></tr></table></figure></p>
+<h2 id="输出Batch"><a href="#输出Batch" class="headerlink" title="输出Batch"></a>输出Batch</h2><h3 id="简单的Batching"><a href="#简单的Batching" class="headerlink" title="简单的Batching"></a>简单的Batching</h3><p>最简单的形式是堆叠n个连续的数据集元素，组织成一个单一的元素。<code>Dataset.batch()</code>变换正是这么做的。和<code>tf.stack()</code>具有相同的限制条件，对每个元素、每个component的Tensor都必须有相同的形状。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">inc_dataset = tf.contrib.data.Dataset.range(<span class="number">100</span>)</div><div class="line">dec_dataset = tf.contrib.data.Dataset.range(<span class="number">0</span>, <span class="number">-100</span>, <span class="number">-1</span>)</div><div class="line">dataset = tf.contrib.data.Dataset.zip((inc_dataset, dec_dataset))</div><div class="line">batched_dataset = dataset.batch(<span class="number">4</span>)</div><div class="line"></div><div class="line">iterator = batched_dataset.make_one_shot_iterator()</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line">print(sess.run(next_element))  <span class="comment"># ==&gt; ([0, 1, 2,   3],   [ 0, -1,  -2,  -3])</span></div><div class="line">print(sess.run(next_element))  <span class="comment"># ==&gt; ([4, 5, 6,   7],   [-4, -5,  -6,  -7])</span></div><div class="line">print(sess.run(next_element))  <span class="comment"># ==&gt; ([8, 9, 10, 11],   [-8, -9, -10, -11])</span></div></pre></td></tr></table></figure></p>
+<h3 id="带边距的Batching-Tensors"><a href="#带边距的Batching-Tensors" class="headerlink" title="带边距的Batching Tensors"></a>带边距的Batching Tensors</h3><p>上面的方法可以处理相同形状的Tensor。但是很多模型的输入数据的大小不一（如长度不同的序列）。为了处理这个情况，<code>Dataset.padded_batch()</code>变换可以对某些维度指定边距，以处理不同形状的Tensor。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">dataset = tf.contrib.data.Dataset.range(<span class="number">100</span>)</div><div class="line">dataset = dataset.map(<span class="keyword">lambda</span> x: tf.fill([tf.cast(x, tf.int32)], x))</div><div class="line">dataset = dataset.padded_batch(<span class="number">4</span>, padded_shapes=[<span class="keyword">None</span>])</div><div class="line"></div><div class="line">iterator = dataset.make_one_shot_iterator()</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line">print(sess.run(next_element))  <span class="comment"># ==&gt; [[0, 0, 0], [1, 0, 0], [2, 2, 0], [3, 3, 3]]</span></div><div class="line">print(sess.run(next_element))  <span class="comment"># ==&gt; [[4, 4, 4, 4, 0, 0, 0],</span></div><div class="line">                               <span class="comment">#      [5, 5, 5, 5, 5, 0, 0],</span></div><div class="line">                               <span class="comment">#      [6, 6, 6, 6, 6, 6, 0],</span></div><div class="line">                               <span class="comment">#      [7, 7, 7, 7, 7, 7, 7]]</span></div></pre></td></tr></table></figure></p>
+<p><code>Dataset.padded_batch()</code>变换允许你对每一个component的每一维度设置不同的边距，边距也可以是可变的长度（设置为<code>None</code>，参考上面的例子），也可以为边距赋值，默认为0。</p>
+<h2 id="训练流程"><a href="#训练流程" class="headerlink" title="训练流程"></a>训练流程</h2><h3 id="处理多轮epoch"><a href="#处理多轮epoch" class="headerlink" title="处理多轮epoch"></a>处理多轮epoch</h3><p><code>Dataset</code>API提供了两种处理多轮相同数据的方法。</p>
+<p>迭代一个数据集多次最简单的方法是使用<code>Dataset.repeat()</code>变换。下面的例子是创建一个数据集来重复输入10个epochs：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">dataset = tf.contrib.data.TFRecordDataset(filenames)</div><div class="line">dataset = dataset.map(...)</div><div class="line">dataset = dataset.repeat(<span class="number">10</span>)</div><div class="line">dataset = dataset.batch(<span class="number">32</span>)</div></pre></td></tr></table></figure></p>
+<p>不带参数的<code>Dataset.repeat()</code>会无限的重复输入。<code>Dataset.repeat()</code>变换不会提示一个epoch的结束或新的epoch的开始。</p>
+<p>如果想接收epoch起始或结束的信号，可以写一个训练循环，在每个数据集结束时捕获<code>tf.errors.OutOfRangeError</code>，在每轮结束时可以计算一些统计量（如验证集错误率）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">dataset = tf.contrib.data.TFRecordDataset(filenames)</div><div class="line">dataset = dataset.map(...)</div><div class="line">dataset = dataset.batch(<span class="number">32</span>)</div><div class="line">iterator = dataset.make_initializable_iterator()</div><div class="line">next_element = iterator.get_next()</div><div class="line"></div><div class="line"><span class="comment"># Compute for 100 epochs.</span></div><div class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">100</span>):</div><div class="line">  sess.run(iterator.initializer)</div><div class="line">  <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">      sess.run(next_element)</div><div class="line">    <span class="keyword">except</span> tf.errors.OutOfRangeError:</div><div class="line">      <span class="keyword">break</span></div><div class="line"></div><div class="line">  <span class="comment"># [Perform end-of-epoch calculations here.]</span></div></pre></td></tr></table></figure></p>
+<h3 id="随机打乱数据"><a href="#随机打乱数据" class="headerlink" title="随机打乱数据"></a>随机打乱数据</h3><p><code>Dataset.shuffle()</code>变换使用类似<code>tf.RandomShuffleQueue</code>的算法来随机打乱输入数据：其内部有固定长度的缓冲区，并从该缓冲区中随机的选择下一个元素。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">dataset = tf.contrib.data.TFRecordDataset(filenames)</div><div class="line">dataset = dataset.map(...)</div><div class="line">dataset = dataset.shuffle(buffer_size=<span class="number">10000</span>)</div><div class="line">dataset = dataset.batch(<span class="number">32</span>)</div><div class="line">dataset = dataset.repeat()</div></pre></td></tr></table></figure></p>
+<h3 id="使用高级API"><a href="#使用高级API" class="headerlink" title="使用高级API"></a>使用高级API</h3><p><code>tf.train.MonitoredTrainingSession</code>API在分布式的设置下在很多方面简化运行TensorFlow。<code>MonitoredTrainSession</code>使用<code>tf.errors.OutOfRangeError</code>来标志训练完成，如果和<code>Dataset</code>API一起用的话，推荐使用<code>Dataset.make_one_shot_iterator()</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">dataset = tf.contrib.data.TFRecordDataset(filenames)</div><div class="line">dataset = dataset.map(...)</div><div class="line">dataset = dataset.shuffle(buffer_size=<span class="number">10000</span>)</div><div class="line">dataset = dataset.batch(<span class="number">32</span>)</div><div class="line">dataset = dataset.repeat(num_epochs)</div><div class="line">iterator = dataset.make_one_shot_iterator()</div><div class="line"></div><div class="line">next_example, next_label = iterator.get_next()</div><div class="line">loss = model_function(next_example, next_label)</div><div class="line"></div><div class="line">training_op = tf.train.AdagradOptimizer(...).minimize(loss)</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.train.MonitoredTrainingSession(...) <span class="keyword">as</span> sess:</div><div class="line">  <span class="keyword">while</span> <span class="keyword">not</span> sess.should_stop():</div><div class="line">    sess.run(training_op)</div></pre></td></tr></table></figure></p>
+<p>如果把<code>Dataset</code>作为<code>tf.estimator.Estimator</code>的<code>input_fn</code>来使用，也推荐用<code>Dataset.make_one_shot_iterator</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dataset_input_fn</span><span class="params">()</span>:</span></div><div class="line">  filenames = [<span class="string">"/var/data/file1.tfrecord"</span>, <span class="string">"/var/data/file2.tfrecord"</span>]</div><div class="line">  dataset = tf.contrib.data.TFRecordDataset(filenames)</div><div class="line"></div><div class="line">  <span class="comment"># Use `tf.parse_single_example()` to extract data from a `tf.Example`</span></div><div class="line">  <span class="comment"># protocol buffer, and perform any additional per-record preprocessing.</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">parser</span><span class="params">(record)</span>:</span></div><div class="line">    keys_to_features = &#123;</div><div class="line">        <span class="string">"image_data"</span>: tf.FixedLenFeature((), tf.string, default_value=<span class="string">""</span>),</div><div class="line">        <span class="string">"date_time"</span>: tf.FixedLenFeature((), tf.int64, default_value=<span class="string">""</span>),</div><div class="line">        <span class="string">"label"</span>: tf.FixedLenFeature((), tf.int64,</div><div class="line">                                    default_value=tf.zeros([], dtype=tf.int64)),</div><div class="line">    &#125;</div><div class="line">    parsed = tf.parse_single_example(record, keys_to_features)</div><div class="line"></div><div class="line">    <span class="comment"># Perform additional preprocessing on the parsed data.</span></div><div class="line">    image = tf.decode_jpeg(parsed[<span class="string">"image_data"</span>])</div><div class="line">    image = tf.reshape(image, [<span class="number">299</span>, <span class="number">299</span>, <span class="number">1</span>])</div><div class="line">    label = tf.cast(parsed[<span class="string">"label"</span>], tf.int32)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;<span class="string">"image_data"</span>: image, <span class="string">"date_time"</span>: parsed[<span class="string">"date_time"</span>]&#125;, label</div><div class="line"></div><div class="line">  <span class="comment"># Use `Dataset.map()` to build a pair of a feature dictionary and a label</span></div><div class="line">  <span class="comment"># tensor for each example.</span></div><div class="line">  dataset = dataset.map(parser)</div><div class="line">  dataset = dataset.shuffle(buffer_size=<span class="number">10000</span>)</div><div class="line">  dataset = dataset.batch(<span class="number">32</span>)</div><div class="line">  dataset = dataset.repeat(num_epochs)</div><div class="line">  iterator = dataset.make_one_shot_iterator()</div><div class="line"></div><div class="line">  <span class="comment"># `features` is a dictionary in which each value is a batch of values for</span></div><div class="line">  <span class="comment"># that feature; `labels` is a batch of labels.</span></div><div class="line">  features, labels = iterator.get_next()</div><div class="line">  <span class="keyword">return</span> features, labels</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>感谢支持！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/image/wechat_reward.png" alt="Albert Lee WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/image/alipay_reward.jpg" alt="Albert Lee Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/LaTeX数学公式符号.html" rel="next" title="LaTeX数学公式符号">
+                <i class="fa fa-chevron-left"></i> LaTeX数学公式符号
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/image/学士服照片.jpg"
+               alt="Albert Lee" />
+          <p class="site-author-name" itemprop="name">Albert Lee</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个没人知道的地方</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/libowei1213" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/libowei1213" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-bo-wei-72" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huoche123.top/train/index" title="查火车" target="_blank">查火车</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://huoche123.top/today" title="历史上的今天" target="_blank">历史上的今天</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://duzhihu.cc" title="读知乎" target="_blank">读知乎</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本机制"><span class="nav-number">1.</span> <span class="nav-text">基本机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集结构"><span class="nav-number">1.1.</span> <span class="nav-text">数据集结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建迭代器"><span class="nav-number">1.2.</span> <span class="nav-text">创建迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从迭代器中取值"><span class="nav-number">1.3.</span> <span class="nav-text">从迭代器中取值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读输入数据"><span class="nav-number">2.</span> <span class="nav-text">读输入数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Numpy-数组"><span class="nav-number">2.1.</span> <span class="nav-text">Numpy 数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TFRecord-数据"><span class="nav-number">2.2.</span> <span class="nav-text">TFRecord 数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Dataset-map-进行数据预处理"><span class="nav-number">3.</span> <span class="nav-text">使用Dataset.map()进行数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析tf-Example-protocol-buffer"><span class="nav-number">3.1.</span> <span class="nav-text">解析tf.Example protocol buffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解码图像、调整大小"><span class="nav-number">3.2.</span> <span class="nav-text">解码图像、调整大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用tf-py-func-应用Python逻辑"><span class="nav-number">3.3.</span> <span class="nav-text">使用tf.py_func()应用Python逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出Batch"><span class="nav-number">4.</span> <span class="nav-text">输出Batch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的Batching"><span class="nav-number">4.1.</span> <span class="nav-text">简单的Batching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带边距的Batching-Tensors"><span class="nav-number">4.2.</span> <span class="nav-text">带边距的Batching Tensors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练流程"><span class="nav-number">5.</span> <span class="nav-text">训练流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理多轮epoch"><span class="nav-number">5.1.</span> <span class="nav-text">处理多轮epoch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机打乱数据"><span class="nav-number">5.2.</span> <span class="nav-text">随机打乱数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用高级API"><span class="nav-number">5.3.</span> <span class="nav-text">使用高级API</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Albert Lee</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "cf430319302742b9a50fd82c00ca3171",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1HjW8mQ2Mvqrnu7j9nRM17tm-gzGzoHsz", "lnkha8qqp0bLLPJEpucS0V1F");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
