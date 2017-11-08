@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="TensorFlow," />
 
 
 
@@ -89,15 +89,16 @@
 
 
 
-<meta name="description" content="一个没人知道的地方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="博伟的博客">
-<meta property="og:url" content="http://libowei.net/tags/卷积神经网络/index.html">
+<meta name="description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow运行多个计算图">
+<meta property="og:url" content="http://libowei.net/TensorFlow运行多个计算图.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="一个没人知道的地方">
+<meta property="og:description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。">
+<meta property="og:updated_time" content="2017-11-08T02:11:31.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博伟的博客">
-<meta name="twitter:description" content="一个没人知道的地方">
+<meta name="twitter:title" content="TensorFlow运行多个计算图">
+<meta name="twitter:description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。">
 
 
 
@@ -125,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://libowei.net/tags/卷积神经网络/"/>
+  <link rel="canonical" href="http://libowei.net/TensorFlow运行多个计算图.html"/>
 
 
 
 
 
-  <title> 标签: 卷积神经网络 | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> TensorFlow运行多个计算图 | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -184,7 +185,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,102 +303,214 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        卷积神经网络
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/TensorFlow-CNN-相关API.html" itemprop="url">
-              
-                <span itemprop="name">TensorFlow CNN 相关API</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-24T21:03:47+08:00"
-              content="2017-07-24" >
-          07-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/TensorFlow学习笔记：CNN-CIFAR-10.html" itemprop="url">
-              
-                <span itemprop="name">TensorFlow学习笔记：CIFAR-10 CNN</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-19T19:23:41+08:00"
-              content="2017-07-19" >
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/TensorFlow学习笔记：CNN-MNIST.html" itemprop="url">
-              
-                <span itemprop="name">TensorFlow学习笔记：CNN MNIST</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-18T19:17:12+08:00"
-              content="2017-07-18" >
-          07-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/TensorFlow运行多个计算图.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/学士服照片.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博伟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                TensorFlow运行多个计算图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T09:24:17+08:00">
+                2017-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/TensorFlow运行多个计算图.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/TensorFlow运行多个计算图.html" class="leancloud_visitors" data-flag-title="TensorFlow运行多个计算图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。<br>如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。</p>
+<a id="more"></a>
+<p>这是由于TensorFlow的运行基于计算图(Graph)，在代码中不明确指定当前所用的图的情况下，TensorFlow会自动创建一个图，作为当前的默认图。创建的所有Tensor和计算(op)都会添加到当前默认图中。</p>
+<p>而TensorFlow的会话(Session)也是需要基于图来创建，<code>tf.Session()</code>可以通过<code>graph</code>参数来指定Session运行于哪个图上。</p>
+<p>当在不明确指定图的情况下，创建两个模型时，两个模型会在同一张图中，可能会出现变量名相同、变量形状不匹配、Session不能启动等问题。</p>
+<p>解决方法是在每个模型中自行定义所使用的图，并在向图中添加Tensor和op时将该模型的图作为默认图，在启动Session时指定运行图为当前的图。<br>例如两个模型分别封装在两个类中</p>
+<ol>
+<li>在创建类时，定义变量<code>self.graph = tf.Graph()</code></li>
+<li>在定义网络结构时，在每个Tensor和op前添加<code>with self.graph.as_default():</code></li>
+<li>运行Session时，传入当前的图：<code>self.sess = tf.Session(graph=self.graph)</code></li>
+</ol>
+<p>这样，定义模型结构和运行会话都分别在两个图中进行，不会产生冲突。</p>
+<p>参考资料：</p>
+<ol>
+<li><a href="http://blog.csdn.net/xierhacker/article/details/53860379" target="_blank" rel="external">http://blog.csdn.net/xierhacker/article/details/53860379</a></li>
+<li><a href="https://stackoverflow.com/questions/42593771/session-graph-is-empty" target="_blank" rel="external">https://stackoverflow.com/questions/42593771/session-graph-is-empty</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>感谢支持！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/image/wechat_reward.png" alt="Albert Lee WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/image/alipay_reward.jpg" alt="Albert Lee Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TensorFlow-DataSet-API的一个问题.html" rel="next" title="TensorFlow DataSet API的一个问题">
+                <i class="fa fa-chevron-left"></i> TensorFlow DataSet API的一个问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -405,6 +518,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -668,6 +787,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

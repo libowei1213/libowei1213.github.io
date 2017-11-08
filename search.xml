@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[TensorFlow运行多个计算图]]></title>
+      <url>%2FTensorFlow%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E8%AE%A1%E7%AE%97%E5%9B%BE.html</url>
+      <content type="text"><![CDATA[有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。 这是由于TensorFlow的运行基于计算图(Graph)，在代码中不明确指定当前所用的图的情况下，TensorFlow会自动创建一个图，作为当前的默认图。创建的所有Tensor和计算(op)都会添加到当前默认图中。 而TensorFlow的会话(Session)也是需要基于图来创建，tf.Session()可以通过graph参数来指定Session运行于哪个图上。 当在不明确指定图的情况下，创建两个模型时，两个模型会在同一张图中，可能会出现变量名相同、变量形状不匹配、Session不能启动等问题。 解决方法是在每个模型中自行定义所使用的图，并在向图中添加Tensor和op时将该模型的图作为默认图，在启动Session时指定运行图为当前的图。例如两个模型分别封装在两个类中 在创建类时，定义变量self.graph = tf.Graph() 在定义网络结构时，在每个Tensor和op前添加with self.graph.as_default(): 运行Session时，传入当前的图：self.sess = tf.Session(graph=self.graph) 这样，定义模型结构和运行会话都分别在两个图中进行，不会产生冲突。 参考资料： http://blog.csdn.net/xierhacker/article/details/53860379 https://stackoverflow.com/questions/42593771/session-graph-is-empty]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[TensorFlow DataSet API的一个问题]]></title>
       <url>%2FTensorFlow-DataSet-API%E7%9A%84%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98.html</url>
       <content type="text"><![CDATA[在使用TensorFlow新的DataSet API时遇到了一个坑。 123batched_dataset = dataset.batch(4)iterator = batched_dataset.make_one_shot_iterator()next_element = iterator.get_next() DataSet.batch(batch_size)会返回一个第一个维度为batch_size大小的Tensor。但当不断调用interator.get_next()，遍历到样本集的末端时，返回的Tensor的大小可能不为batch_size。 例如样本集中有17个元素，batch_size为4时，第5次调用iterator.get_next()只能返回大小为1的batch。 DataSet.repeat()会返回一个无限重复原数据集的DataSet对象，当调用了repeat()时，也会产生上面的问题，有问题代码如下：123456789101112def read_batch(self, batch_size=None, shuffle_buffer=None, repeat=None): dataset = tf.contrib.data.TFRecordDataset(self._files) dataset = dataset.map(self.__parse_function) if batch_size: dataset = dataset.batch(batch_size) if shuffle_buffer: dataset = dataset.shuffle(buffer_size=shuffle_buffer) if repeat != 0: dataset = dataset.repeat(repeat) iterator = dataset.make_one_shot_iterator() batch_data = iterator.get_next() return self._extract_batch(batch_data) 在遍历数据集的最后一个batch的大小不为batch_size。 在stackoverflow找到了类似的问题：returned size of tensorflow’s dataset API is not constant 解决方法为：在batch()之前调用repeat() …… …… 123456789101112def read_batch(self, batch_size=None, shuffle_buffer=None, repeat=None): dataset = tf.contrib.data.TFRecordDataset(self._files) dataset = dataset.map(self.__parse_function) if shuffle_buffer: dataset = dataset.shuffle(buffer_size=shuffle_buffer) if repeat != 0: dataset = dataset.repeat(repeat) if batch_size: dataset = dataset.batch(batch_size) iterator = dataset.make_one_shot_iterator() batch_data = iterator.get_next() return self._extract_batch(batch_data)]]></content>
