@@ -89,19 +89,25 @@
 
 
 
-<meta name="description" content="简介终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。其实也差不了多少，毕竟我对python也用的不多，哈哈。">
+<meta name="description" content="简介终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。其实也差不了多少，毕竟我对python也用的不多，哈哈。
+课件是个好东西，但是每次都要手动下载很烦，就想写个东西帮我完成这繁琐的事情。正好最近研究了一下requests库和beautifulsoup，可以用来练练手。
+原理原理很简单了，登录，然后访问课程中心的网页，分析标签">
 <meta property="og:type" content="article">
 <meta property="og:title" content="国科大课件下载脚本">
 <meta property="og:url" content="http://libowei.net/国科大课件下载脚本.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="简介终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。其实也差不了多少，毕竟我对python也用的不多，哈哈。">
+<meta property="og:description" content="简介终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。其实也差不了多少，毕竟我对python也用的不多，哈哈。
+课件是个好东西，但是每次都要手动下载很烦，就想写个东西帮我完成这繁琐的事情。正好最近研究了一下requests库和beautifulsoup，可以用来练练手。
+原理原理很简单了，登录，然后访问课程中心的网页，分析标签">
 <meta property="og:image" content="http://odszv0fof.bkt.clouddn.com/%E8%AF%BE%E4%BB%B6%E8%84%9A%E6%9C%AC1.png">
 <meta property="og:image" content="http://odszv0fof.bkt.clouddn.com/%E8%AF%BE%E4%BB%B6%E4%B8%8B%E8%BD%BD2.png">
 <meta property="og:image" content="http://odszv0fof.bkt.clouddn.com/%E8%AF%BE%E4%BB%B6%E4%B8%8B%E8%BD%BD3.png">
-<meta property="og:updated_time" content="2017-03-31T04:07:16.000Z">
+<meta property="og:updated_time" content="2017-11-10T04:13:30.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="国科大课件下载脚本">
-<meta name="twitter:description" content="简介终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。其实也差不了多少，毕竟我对python也用的不多，哈哈。">
+<meta name="twitter:description" content="简介终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。其实也差不了多少，毕竟我对python也用的不多，哈哈。
+课件是个好东西，但是每次都要手动下载很烦，就想写个东西帮我完成这繁琐的事情。正好最近研究了一下requests库和beautifulsoup，可以用来练练手。
+原理原理很简单了，登录，然后访问课程中心的网页，分析标签">
 <meta name="twitter:image" content="http://odszv0fof.bkt.clouddn.com/%E8%AF%BE%E4%BB%B6%E8%84%9A%E6%9C%AC1.png">
 
 
@@ -411,7 +417,6 @@
 
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。<br>其实也差不了多少，毕竟我对python也用的不多，哈哈。</p>
-<a id="more"></a>
 <p>课件是个好东西，但是每次都要手动下载很烦，就想写个东西帮我完成这繁琐的事情。正好最近研究了一下requests库和beautifulsoup，<br>可以用来练练手。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>原理很简单了，登录，然后访问课程中心的网页，分析标签找链接，最后取得课件的下载地址。</p>
 <p>使用requests库访问网页，调用requests.Session()，在session中请求网页能保留登录信息，不用自己再处理cookie等，很方便。</p>

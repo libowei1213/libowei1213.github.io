@@ -89,16 +89,22 @@
 
 
 
-<meta name="description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。">
+<meta name="description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。
+这是由于TensorFlow的运行基于计算图(Graph)，在代码中不明确指定当前所用的图的情况下，TensorFlow会自动创建一个图，作为当前的默认图。创建的所有Tensor和计算(op)都会添加到当前默认图中。
+而TensorFlow的会话">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow运行多个计算图">
 <meta property="og:url" content="http://libowei.net/TensorFlow运行多个计算图.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。">
-<meta property="og:updated_time" content="2017-11-08T02:11:31.156Z">
+<meta property="og:description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。
+这是由于TensorFlow的运行基于计算图(Graph)，在代码中不明确指定当前所用的图的情况下，TensorFlow会自动创建一个图，作为当前的默认图。创建的所有Tensor和计算(op)都会添加到当前默认图中。
+而TensorFlow的会话">
+<meta property="og:updated_time" content="2017-11-10T04:13:19.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow运行多个计算图">
-<meta name="twitter:description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。">
+<meta name="twitter:description" content="有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。
+这是由于TensorFlow的运行基于计算图(Graph)，在代码中不明确指定当前所用的图的情况下，TensorFlow会自动创建一个图，作为当前的默认图。创建的所有Tensor和计算(op)都会添加到当前默认图中。
+而TensorFlow的会话">
 
 
 
@@ -407,7 +413,6 @@
 
       
         <p>有这样的需求：在同一个程序中需要运行两个训练好的TensorFlow模型。<br>如果仅仅是把两个模型放到两个类中，简单的把两个类的代码组合到一起，会出现问题。</p>
-<a id="more"></a>
 <p>这是由于TensorFlow的运行基于计算图(Graph)，在代码中不明确指定当前所用的图的情况下，TensorFlow会自动创建一个图，作为当前的默认图。创建的所有Tensor和计算(op)都会添加到当前默认图中。</p>
 <p>而TensorFlow的会话(Session)也是需要基于图来创建，<code>tf.Session()</code>可以通过<code>graph</code>参数来指定Session运行于哪个图上。</p>
 <p>当在不明确指定图的情况下，创建两个模型时，两个模型会在同一张图中，可能会出现变量名相同、变量形状不匹配、Session不能启动等问题。</p>

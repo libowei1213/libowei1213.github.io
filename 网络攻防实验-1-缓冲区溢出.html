@@ -89,20 +89,23 @@
 
 
 
-<meta name="description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta name="description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}
+题目下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络攻防实验(1)-缓冲区溢出">
 <meta property="og:url" content="http://libowei.net/网络攻防实验-1-缓冲区溢出.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta property="og:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}
+题目下">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验1-1.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验1-2.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验1-3.png">
 <meta property="og:image" content="http://libowei.net/image/网络攻防实验1-4.png">
-<meta property="og:updated_time" content="2017-03-31T11:32:49.771Z">
+<meta property="og:updated_time" content="2017-11-10T04:13:49.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络攻防实验(1)-缓冲区溢出">
-<meta name="twitter:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}">
+<meta name="twitter:description" content="题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}
+题目下">
 <meta name="twitter:image" content="http://libowei.net/image/网络攻防实验1-1.png">
 
 
@@ -412,7 +415,6 @@
 
       
         <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
-<a id="more"></a>
 <h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验1.rar">实验程序下载</a></p>
 <h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
 <li>IDA pro</li>

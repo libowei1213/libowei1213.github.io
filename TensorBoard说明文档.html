@@ -89,16 +89,19 @@
 
 
 
-<meta name="description" content="TensorBoardTensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。">
+<meta name="description" content="TensorBoardTensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。
+本文档介绍如何利用TensorBoard还嫌可视化，并给出TensorBoard的一些关键概念。更深入的例子请参见教程 TensorBoard: Visualizing Learning。要更深入了解图表可视化工具，请看教程TensorBoard: Graph Visualizati">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorBoard说明文档">
 <meta property="og:url" content="http://libowei.net/TensorBoard说明文档.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="TensorBoardTensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。">
-<meta property="og:updated_time" content="2017-07-26T12:20:22.020Z">
+<meta property="og:description" content="TensorBoardTensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。
+本文档介绍如何利用TensorBoard还嫌可视化，并给出TensorBoard的一些关键概念。更深入的例子请参见教程 TensorBoard: Visualizing Learning。要更深入了解图表可视化工具，请看教程TensorBoard: Graph Visualizati">
+<meta property="og:updated_time" content="2017-11-10T04:12:33.430Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorBoard说明文档">
-<meta name="twitter:description" content="TensorBoardTensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。">
+<meta name="twitter:description" content="TensorBoardTensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。
+本文档介绍如何利用TensorBoard还嫌可视化，并给出TensorBoard的一些关键概念。更深入的例子请参见教程 TensorBoard: Visualizing Learning。要更深入了解图表可视化工具，请看教程TensorBoard: Graph Visualizati">
 
 
 
@@ -407,7 +410,6 @@
 
       
         <h2 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h2><p>TensorBoard是用来了解TensorFlow如何运行、展示图表的一套Web应用程序。</p>
-<a id="more"></a>
 <p>本文档介绍如何利用TensorBoard还嫌可视化，并给出TensorBoard的一些关键概念。更深入的例子请参见教程<a href="https://www.tensorflow.org/get_started/summaries_and_tensorboard" target="_blank" rel="external"> TensorBoard: Visualizing Learning</a>。要更深入了解图表可视化工具，请看教程<a href="https://www.tensorflow.org/get_started/graph_viz" target="_blank" rel="external">TensorBoard: Graph Visualization</a>。</p>
 <p>还可以看这个<a href="https://www.youtube.com/watch?v=eBbEDRsCmv4" target="_blank" rel="external">视频教程</a>，了解如何安装和使用TensorBoard。</p>
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>在运行TensorBoard之前，确定已经生成并通过<code>summary writer</code>把训练摘要数据保存到文件夹中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">file_writer = tf.summary.FileWriter(&apos;/path/to/logs&apos;, sess.graph)</div></pre></td></tr></table></figure></p>

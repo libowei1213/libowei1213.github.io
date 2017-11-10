@@ -90,18 +90,21 @@
 
 
 <meta name="description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。">
+这个错误的原因是未安装2.17版本的glibc库。
+而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS安装TensorFlow">
 <meta property="og:url" content="http://libowei.net/CentOS安装TensorFlow.html">
 <meta property="og:site_name" content="博伟的博客">
 <meta property="og:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。">
-<meta property="og:updated_time" content="2017-07-21T07:03:25.117Z">
+这个错误的原因是未安装2.17版本的glibc库。
+而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
+<meta property="og:updated_time" content="2017-11-10T04:12:10.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS安装TensorFlow">
 <meta name="twitter:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。">
+这个错误的原因是未安装2.17版本的glibc库。
+而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
 
 
 
@@ -411,7 +414,6 @@
       
         <p>在CentOS6上安装TensorFlow1.2后，<code>import tensorflow</code>时出现以下问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImportError: /lib64/libc.so.6: version `GLIBC_2.17&apos; not found</div></pre></td></tr></table></figure></p>
 <p>这个错误的原因是未安装2.17版本的glibc库。</p>
-<a id="more"></a>
 <p>而在CentOS上，使用<code>yum install glibc</code>命令，只能更新到2.12版本。需要手动下载编译安装。</p>
 <p>glibc-2.17下载地址：<a href="https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz" target="_blank" rel="external">https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</a></p>
 <p>下载glibc并解压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</div><div class="line">tar -xvf glibc-2.17.tar.gz</div></pre></td></tr></table></figure></p>

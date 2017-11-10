@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TensorFlow,卷积神经网络," />
+  <meta name="keywords" content="卷积神经网络,TensorFlow," />
 
 
 
@@ -90,18 +90,21 @@
 
 
 <meta name="description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
-给定4维的输入和4维的过滤器Tensor，进行2卷积运算。">
+给定4维的输入和4维的过滤器Tensor，进行2卷积运算。
+输入Tensor的形状为[batch,height,width,cha">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow CNN 相关API">
 <meta property="og:url" content="http://libowei.net/TensorFlow-CNN-相关API.html">
 <meta property="og:site_name" content="博伟的博客">
 <meta property="og:description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
-给定4维的输入和4维的过滤器Tensor，进行2卷积运算。">
-<meta property="og:updated_time" content="2017-07-25T02:43:58.367Z">
+给定4维的输入和4维的过滤器Tensor，进行2卷积运算。
+输入Tensor的形状为[batch,height,width,cha">
+<meta property="og:updated_time" content="2017-11-10T04:12:39.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow CNN 相关API">
 <meta name="twitter:description" content="tf.nn.conv2d123456789conv2d(    input,    filter,    strides,    padding,    use_cudnn_on_gpu=None,    data_format=None,    name=None)
-给定4维的输入和4维的过滤器Tensor，进行2卷积运算。">
+给定4维的输入和4维的过滤器Tensor，进行2卷积运算。
+输入Tensor的形状为[batch,height,width,cha">
 
 
 
@@ -411,7 +414,6 @@
       
         <h2 id="tf-nn-conv2d"><a href="#tf-nn-conv2d" class="headerlink" title="tf.nn.conv2d"></a><code>tf.nn.conv2d</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">conv2d(</div><div class="line">    input,</div><div class="line">    filter,</div><div class="line">    strides,</div><div class="line">    padding,</div><div class="line">    use_cudnn_on_gpu=None,</div><div class="line">    data_format=None,</div><div class="line">    name=None</div><div class="line">)</div></pre></td></tr></table></figure>
 <p>给定4维的输入和4维的过滤器Tensor，进行2卷积运算。</p>
-<a id="more"></a>
 <p>输入Tensor的形状为[batch,height,width,channels]，过滤器张量的形状为[filter_height, filter_width, in_channels, out_channels]</p>
 <ol>
 <li>把过滤器转化为2-D，其形状为<code>[filter_height * filter_width * in_channels, output_channels]</code></li>
@@ -563,9 +565,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
-          
             <a href="/tags/卷积神经网络/" rel="tag"># 卷积神经网络</a>
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
           
         </div>
       

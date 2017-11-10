@@ -89,16 +89,19 @@
 
 
 
-<meta name="description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。">
+<meta name="description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。
+Datas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow学习笔记：Importing Data">
 <meta property="og:url" content="http://libowei.net/TensorFlow学习笔记：Importing-Data.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。">
-<meta property="og:updated_time" content="2017-09-26T06:11:54.445Z">
+<meta property="og:description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。
+Datas">
+<meta property="og:updated_time" content="2017-11-10T04:13:14.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow学习笔记：Importing Data">
-<meta name="twitter:description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。">
+<meta name="twitter:description" content="DatasetAPI可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。DatasetAPI可以很容易的处理大量数据、不同数据格式和复杂的变换。
+Datas">
 
 
 
@@ -407,7 +410,6 @@
 
       
         <p><code>Dataset</code>API可使你从简单、可重用的片段构建复杂的输入管道。例如，一个图像模型的输入管道可能从分布式的系统中聚合数据，对每个图像进行随机扰动，并随机选择一批图像用于训练；文本模型的输入管道可能从原始的文本中提取特征，利用查找表将其转化为embedding identifiers，并将不同长度的序列组合在一起。<code>Dataset</code>API可以很容易的处理大量数据、不同数据格式和复杂的变换。</p>
-<a id="more"></a>
 <p><code>Dataset</code>API引入了两个抽象概念：</p>
 <ul>
 <li>一个<code>tf.contrib.data.Dataset</code>代表一个元素序列，每个元素包含一个或多个Tensor对象。例如图像管道中，一个元素可能是包含一对表示图像数据和类别标签的Tensor的单一训练样本。有两种创建dataset的方式：<ul>
