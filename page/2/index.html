@@ -79,6 +79,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="博伟的博客" type="application/atom+xml" />
+
 
 
 
@@ -402,22 +404,21 @@
       
         
           
-            <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由CrackMee.exe一个文件组成。该文件是一个简单的小程序，请大家逆向该程序，找到正确的字符串，输入到程序后即为成功。</p>
-<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验3.rar">实验程序下载</a></p>
-<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
-<li>IDA pro</li>
-</ul>
-<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><ol>
-<li><p>使用IDA pro F5查看反编译的程序代码。<br><img src="/image/网络攻防实验3-1.png" alt="代码"><br>这段程序就是构造出一个字符串，输入正确的话，就输出”Key Right!”。构造过程如下：前5个字节从q中取得，第6到9字节通过x和ans获得，第10字节为’3’(ASCII码51)，第11字节为’y’(ASCII码121)</p>
-</li>
-<li><p>找到以上变量的值。<br><img src="/image/网络攻防实验3-2.png" alt="变量q"><br>q为DWORD型，每四字节取一个值，可得v5前5字节为”thi5_”<br><img src="/image/网络攻防实验3-3.png" alt="变量x"><br>这里可找到x的值。<br><img src="/image/网络攻防实验3-4.png" alt="变量ans"><br>同理，可找到ans的值。</p>
-</li>
-<li><p>编写一个程序来构造目标字符串的第6-11字节，参照(1)中的代码。这里我选择用python来写<br><img src="/image/网络攻防实验3-5.png" alt="构造字符串"><br>运行结果为:<br><img src="/image/网络攻防实验3-6.png" alt="运行结果"><br>即要输入的字符串为<code>&quot;thi5_1s_K3y&quot;</code></p>
-</li>
-</ol>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验3-7.png" alt="实验结果"></p>
+          题目说明说明：该题目由CrackMee.exe一个文件组成。该文件是一个简单的小程序，请大家逆向该程序，找到正确的字符串，输入到程序后即为成功。
+题目下载实验程序下载
+使用工具
+IDA pro
 
-          
+解题步骤
+使用IDA pro F5查看反编译的程序代码。这段程序就是构造出一个字符串，输入正确的话，就输出”Key Right!”。构造过程如下：前5个字节从q中取得，第6到9字节通过x和ans获得，第1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/网络攻防实验-3-逆向分析.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -553,30 +554,15 @@
       
         
           
-            <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由memory、flag两个文件组成。memory为可执行代码，存在缓冲区溢出漏洞，请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，5555端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
-<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验2.rar">实验程序下载</a></p>
-<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
-<li>IDA pro</li>
-<li>pwntools(python2.7)</li>
-<li>socat </li>
-<li>linux</li>
-</ul>
-<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><ol>
-<li><p>使用IDA pro打开程序文件，按F5查看其反编译代码<br><img src="/image/网络攻防实验2-1.png" alt="代码1"><br><img src="/image/网络攻防实验2-2.png" alt="代码2"><br>观察到mem_test()函数中调用了scanf()，可能造成缓冲区溢出。推测此题的解题思路为，scanf读入一定长度的字符，覆盖mem_test()的返回地址，导致任意代码执行。</p>
-</li>
-<li><p>寻找要执行的函数。打开函数视图，找到win_func()函数，这个函数直接调用了system(),可以传递参数为”cat flag”，从而显示flag文件中的内容。<br><img src="/image/网络攻防实验2-3.png" alt="win_func"></p>
-</li>
-<li><p>使用IDA pro远程调试linux下的memory程序，在scanf()后添加断点。输入若干’0’后，观察栈变化。<br><img src="/image/网络攻防实验2-4.png" alt="栈"><br>观察到栈地址0xFFB21C5C保存的正式mem_test()的返回地址，将其覆盖为win_func()的地址，即可跳转执行win_func()<br>函数调用时，先将其返回地址入栈，再将参数入栈。0xFFB21C5C后面4字节为返回地址（可构造为任意可访问的地址）,再后面4字节为参数地址。</p>
-</li>
-<li><p>查看string视图，找到”cat flag”字符串，其地址为0x08048840。查看function视图，找到win_func()函数地址为0x08048610<br><img src="/image/网络攻防实验2-5.png" alt="字符串地址"><br><img src="/image/网络攻防实验2-6.png" alt="函数地址"></p>
-</li>
-<li><p>构造payload为23字节字符+win_func地址+任意可访问地址+”cat flag”地址。使用pwntools编写exploit。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">conn=remote(<span class="string">'localhost'</span>,<span class="number">5555</span>)</div><div class="line">conn.send(<span class="string">'a'</span>*<span class="number">23</span>+p32(<span class="number">0x08048610</span>)+p32(<span class="number">0x08048610</span>)+p32(<span class="number">0x08048840</span>))</div><div class="line">conn.interactive()</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验2-7.png" alt="实验结果"></p>
-
-          
+          题目说明说明：该题目由memory、flag两个文件组成。memory为可执行代码，存在缓冲区溢出漏洞，请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，5555端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a fla
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/网络攻防实验-2-缓冲区溢出.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -712,24 +698,16 @@
       
         
           
-            <h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p>说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。<br>单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：<br>{FLAG:this is a flag}</p>
-<h2 id="题目下载"><a href="#题目下载" class="headerlink" title="题目下载"></a>题目下载</h2><p><a href="/file/网络攻防实验1.rar">实验程序下载</a></p>
-<h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><ul>
-<li>IDA pro</li>
-<li>pwntools (python2.7)</li>
-<li>socat</li>
-</ul>
-<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><ol>
-<li><p>使用IDA pro打开程序，按F5可查看其反汇编代码。<br><img src="/image/网络攻防实验1-1.png" alt="IDA pro F5"><br>注意到scanf函数可能存在缓冲区溢出漏洞。推断此题的解题思路为：通过scanf函数输入一定长度的字符，覆盖栈中的v5()函数的地址。</p>
-</li>
-<li><p>寻找要执行函数的地址。打开函数视图(view-&gt;subview-&gt;function)，找到win()函数：<br><img src="/image/网络攻防实验1-2.png" alt="win函数"><br>执行这个函数可以读出flag文件中内容。</p>
-</li>
-<li><p>寻找溢出点。在scanf函数后添加断点，调试程序。在程序中输入若干个’0’后，栈信息如下：<br><img src="/image/网络攻防实验1-3.png" alt="栈"><br>输入的’a’的ASCII码为0x30，栈中lose()函数的地址为<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">4. 构造payload为 64字节字符+win()函数地址。本题中，执行host.sh脚本可将程序输入/输出重定向到9999端口,可使用pwntools编写exploit。</div><div class="line">```python</div><div class="line">from pwn import *</div><div class="line">conn=remote(&apos;localhost&apos;,9999)</div><div class="line">conn.send(&apos;a&apos;*64+p32(0x0804861B))</div><div class="line">conn.interactive()</div></pre></td></tr></table></figure></p>
-</li>
-</ol>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/image/网络攻防实验1-4.png" alt="实验结果"></p>
-
-          
+          题目说明说明：该题目由100、flag两个文件组成。100为可执行代码，存在缓冲区溢出漏洞。请同学们分析该程序的二进制代码找到漏洞成因，并通过修改程序的执行流程导致任意代码执行漏洞将flag中的FLAG信息输出出来。单机执行：请同学们在自己的机器上运行脚本：./host，9999端口即为程序输入端口。如果编写exploit攻击成功，会出现以下提示：{FLAG:this is a flag}
+题目下
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/网络攻防实验-1-缓冲区溢出.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -865,26 +843,16 @@
       
         
           
-            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>　　本文阐述了依法治国的发展历程：从法治建设“十六字方针”到提出依法治国的基本方略；从依法治国被写入宪法，到提出全面推进依法治国。社会主义依法治国理论日益走向成熟，社会主义依法治国实践迈入更高阶段。最后，在总结依法治国的基础上，探讨了依法治国大背景下如何提高当代大学生的法制素养。</p>
-<h2 id="依法治国的发展历程"><a href="#依法治国的发展历程" class="headerlink" title="依法治国的发展历程"></a>依法治国的发展历程</h2><p>　　1954年制定了共和国第一部宪法，初步奠定了社会主义法制的基础。但在“文革”十年，社会主义法制遭到严重破坏。在党的十一届三中全会召开前的中央工作会议上，邓小平提出了“为了保障人民民主，必须加强法制，使民主制度化、法律化，做到有法可依，有法必依，执法必严，违法必究。”这段谈话，为我国依法治国基本方略的形成奠定了基本理论基础。</p>
-<p>　　党的十一届三中全会确立了解放思想、实事求是的思想路线，同时提出了加强社会主义民主，健全社会主义法制的任务目标。会议公报<sup>[1]</sup>指出：“为了保障人民民主，必须加强社会主义法制，使民主制度化、法律化，使这种制度和法律具有稳定性、连续性和极大的权威，做到<strong>有法可依，有法必依，执法必严，违法必究</strong>。”这准确地描述了法治的基本精神内核，阐述了依法治国的基本内涵，为依法治国方略的最终提出奠定了思想基础。</p>
-<p>　　在党的十一届三中全会精神指引下，在党的领导下我国进行了一系列重大立法工作。党的十一届三中全会以后，按照**“建设有中国特色的社会主义”和“以经济建设为中心”的方针和指导思想，立法进程被不断推进，先后制定了一系列重要的民事、经济法律，为改革开放和社会主义现代化建设提供了坚实的法律保障。</p>
-<p>　　1989年，颁布行政诉讼法，是我国法治政府建设的重要开端。1993年，党的十四届三中全会通过的《决定》<sup>[2]</sup>提出：<strong>“各级政府都要依法行政，依法办事。”</strong>这是第一次在党的正式文件中提出“依法行政”，将法治政府建设作为法治建设的重点，进一步丰富了依法治国的内涵。此时，依法治国方略虽然尚未提出，但“十六字方针”和宪法及一系列重要法律的修订出台，清晰阐释了依法治国的基本精神，社会主义法制体系开始形成，这为依法治国方略的形成奠定了思想基础和制度基础。</p>
-<p>　　党的十五大正式提出依法治国基本方略。十五大报告<sup>[3]</sup>中指出：“<strong>依法治国，是党领导人民治理国家的基本方略</strong>，是发展社会主义市场经济的客观需要，是社会文明进步的重要标志，是国家长治久安的重要保障。”这就正式将依法治国提升为国家治理的基本方略。依法治国方略的提出，是对我们党治国理政经验的全面总结与升华，标志着党在执政理念、领导方式上实现了一次历史性跨越，为我国此后的国家治理和社会治理指明了方向，具有里程碑意义。</p>
-<p>　　1999年3月通过的宪法修正案<sup>[4]</sup>规定：<strong>“中华人民共和国实行依法治国，建设社会主义法治国家”</strong>。这正式将依法治国确立为宪法的基本原则，通过国家根本法对依法治国予以保障，使其有了宪法保障，也使“依法治国”这一基本方略有了长期性、稳定性的制度基础。</p>
-<p>　　在党的十五大提出依法治国基本方略的基础上，党的十六大提出了坚持依法执政、不断提高执政能力的思想，要求不断改革和完善党的领导方式和执政方式，将民主、法治、人权建设从以往的“精神文明”范畴中独立出来，正式提出“政治文明”的概念，这就进一步丰富了依法治国的内涵，明晰了依法治国与其他治理方式的关系。党的十六大还提出“三统一”的法治原则，即“发展社会主义民主政治，最根本的是要<strong>把坚持党的领导、人民当家作主和依法治国有机统一起来</strong>”，这就确立了中国特色社会主义依法治国方略的根本原则。</p>
-<p>　　十八大确立了依法治国的新任务和目标，即到2020年全面建成小康社会时，实现“依法治国基本方略全面落实，法治政府基本建成，司法公信力不断提高，人权得到切实尊重和保障。”这个战略目标与全面建成小康社会的目标同时提出，进一步凸显了依法治国的重要性。2014年10月，十八届四中全会的主题为“依法治国”，总结了依法治国的经验，研究了全面推进依法治国若干重大问题，对依法治国进行总体部署和全面规划。</p>
-<p>　　在我们这样一个13亿多人口的发展中大国全面推进依法治国，是国家治理领域一场广泛而深刻的革命。全面推进依法治国，总目标是建设中国特色社会主义法治体系，建设社会主义法治国家。这就是，在中国共产党领导下，坚持中国特色社会主义制度，贯彻中国特色社会主义法治理论，形成完备的法律规范体系、高效的法治实施体系、严密的法治监督体系、有力的法治保障体系，形成完善的党内法规体系，坚持依法治国、依法执政、依法行政共同推进，坚持法治国家、法治政府、法治社会一体建设，实现科学立法、严格执法、公正司法、全民守法，促进国家治理体系和治理能力现代化。</p>
-<h2 id="对当代青年大学生的法治素养的探讨"><a href="#对当代青年大学生的法治素养的探讨" class="headerlink" title="对当代青年大学生的法治素养的探讨"></a>对当代青年大学生的法治素养的探讨</h2><p>　　党的十八届四中全会对全面推进依法治国战略做出了总部署，在《决定》<sup>[5]</sup>中提出了“把法治教育纳入国民教育体系，从青少年抓起”的要求和目标。高等学校是法治教育的重要场所，大学生是高素质青年群体的重要组成部分，是学法、守法、护法、用法的生力军，提升大学生的法制素养是实现全面依法治国方略的一个十分重要的部分。</p>
-<p>　　大学生的综合素质发展不但要求有较高的文化素养、扎实的专业基础知识和较强的工作能力，还要有自觉的规则意识和法律观念。 树立宪法至上的观念，把遵守法律规范作为自己行为的首要标准，这是新时代对当代大学生素质结构的新要求，因此，提高大学生法治素养就成为了高校立德树人的重要内容。</p>
-<p>　　全面建设小康社会所需要的不仅仅是高水平的科技人才，更需要思想政治素质高，具备一定法治素养的创新型复合型建设人才。只有加强大学生法治教育，提升法治素养， 才能够让他们意识到全面实施依法治国的重要性， 并成为一个懂法的社会主义建设者和接班人，才能够自觉拿起法律武器维护自身、他人以及国家的权益，才能在经济建设中、在法律框架内充分发挥自身优势，为全面建设小康社会作出贡献.</p>
-<p>　　对于广大高校学生，只有他们的法治素养提升了，才能保证法治校园的建立，同样，也只有依法治校落到了实处，才能保证大学生法治教育内容与法治教育环境高度一致，从而有效提升大学生法治素养。</p>
-<p>　　对于学校而言，只有各高校注重大学生法治素养的提升，形成大学生参与学校依法管理的良好氛围，使大学生能够积极参与制定、宣传、践行学校的各项规章制度，同时通过法治学习，做到知法、守法，懂得用法律武器维护自我权益，才能更好地保障高校教育的依法顺利实施。</p>
-<p>　　通过建设校园法治文化可以潜移默化地提升大学生法治素养，让遵法守法意识在学校蔚然成风，让法治文化在师生心中落地生根。要充分利用校园新闻、校园报纸、学生社团以及新兴媒体等载体加大法治文化宣传，以学生喜闻乐见的形式宣传法治文化。还要将法治教育融入大学生教育中，融入学生社会实践中，在学生自我教育、自我管理、自我服务中体现和培养法治精神、法治思维等法治素养，达到内化于心、外化于行的效果。推进法治文化主题活动。搭建形式多样的法治文化主题活动，打造法治文化宣传教育活动品牌，让学生在活动中体验法治精神。 可以通过开展“国家宪法日”主题活动，让学生牢固树立公民权利与义务相统一的观念。通过开展“校园诚信教育”活动，使遵纪守法成为大学生的共同追求和自觉行动。</p>
-<p>　　要探索法治文化长效机制。高校要注重将法治文化培育纳入学生成长成才的全过程，以制度形式规范法治文化建设的领导体制、运行机制、活动载体、队伍建设、考核管理、经费投入和硬件保障。要站在“四个全面”战略布局的高度，将通过法治文化熏陶提升大学生法治素养作为一项常抓不懈的工作，让法治精神在一代代大学生群体中传承和发扬。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>　　[1] 中国共产党第十一届中央委员会第三次全体会议公报[M]. 人民出版社, 1979.<br>　　[2] 中共中央关于建立社会主义市场经济体制若干问题的决定[J]. 求实, 1993(12):1-13.<br>　　[3] 江泽民. 高举邓小平理论伟大旗帜把建设有中国特色社会主义事业全面推向二十一世纪[M]. 人民出版社, 1997.<br>　　[4] 中华人民共和国宪法修正案[C] 1999.<br>　　[5] 中新网. 中共中央 关于全面推进依法治国若干重大问题的决定[M]. 中国法制出版社, 2014.<br>　　[6] 李艳. 大学生法治教育[J]. 教育, 2015(35):210-210.<br>　　[7] 李全文. 全面依法治国视域中的大学生法治教育[J]. 思想理论教育导刊, 2016(5).</p>
-
-          
+          摘要　　本文阐述了依法治国的发展历程：从法治建设“十六字方针”到提出依法治国的基本方略；从依法治国被写入宪法，到提出全面推进依法治国。社会主义依法治国理论日益走向成熟，社会主义依法治国实践迈入更高阶段。最后，在总结依法治国的基础上，探讨了依法治国大背景下如何提高当代大学生的法制素养。
+依法治国的发展历程　　1954年制定了共和国第一部宪法，初步奠定了社会主义法制的基础。但在“文革”十年，社会主义法
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/依法治国的发展及对当代大学生法治素养的探讨.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1020,15 +988,22 @@
       
         
           
-            <p>女朋友的部分网页设计作品</p>
-<h3 id="教育年度盘点"><a href="#教育年度盘点" class="headerlink" title="教育年度盘点"></a>教育年度盘点</h3><p>网页链接：<a href="http://#" target="_blank" rel="external">尚未上线</a><br><img src="/image/xf-%E6%95%99%E8%82%B2%E5%B9%B4%E5%BA%A6%E7%9B%98%E7%82%B9.jpg" alt="教育年度盘点"></p>
-<h3 id="数读中学专题-成都七中"><a href="#数读中学专题-成都七中" class="headerlink" title="数读中学专题-成都七中"></a>数读中学专题-成都七中</h3><p>网页链接：<a href="http://www.eol.cn/html/zhongxue/sdzx-7z/" target="_blank" rel="external">数读中学系列专题—成都七中｜中国教育在线</a><br><img src="/image/xf_%E6%95%B0%E8%AF%B4%E4%B8%AD%E5%AD%A6%E6%94%B9.jpg" alt="成都七中"></p>
-<h3 id="新高三生规划"><a href="#新高三生规划" class="headerlink" title="新高三生规划"></a>新高三生规划</h3><p>网页链接：<a href="http://www.eol.cn/html/g/tjgk/32.shtml" target="_blank" rel="external">2017年高三生学习规划|高三规划|中国教育在线</a><br><img src="/image/xf_%E5%9B%BE%E8%A7%A3%E9%AB%98%E8%80%83.jpg" alt="高三规划"></p>
-<h3 id="2016国庆专题"><a href="#2016国庆专题" class="headerlink" title="2016国庆专题"></a>2016国庆专题</h3><p>网页链接：<a href="http://#" target="_blank" rel="external">已下线</a><br><img src="/image/xf_%E5%9B%BD%E5%BA%86%E4%B8%93%E9%A2%98%E6%94%B9.jpg" alt="国庆专题"></p>
-<h3 id="高三你准备好了吗？"><a href="#高三你准备好了吗？" class="headerlink" title="高三你准备好了吗？"></a>高三你准备好了吗？</h3><p>网页链接：<a href="http://www.eol.cn/html/g/gsnzbhlm/index.shtml" target="_blank" rel="external">高三,你准备好了吗_中国教育在线</a><br><img src="/image/%E9%AB%98%E4%B8%89%E4%BD%A0%E5%87%86%E5%A4%87%E5%A5%BD%E4%BA%86%E5%90%97.jpg" alt="高三准备好了吗"></p>
-<h3 id="图解小升初"><a href="#图解小升初" class="headerlink" title="图解小升初"></a>图解小升初</h3><p>网页链接：<a href="http://www.eol.cn/html/jijiao/xiao/2015tj/23/index.shtml" target="_blank" rel="external">图解小升初：小升初过后，初中英语怎么学？</a><br><img src="/image/xf_%E5%9B%BE%E8%A7%A3%E5%B0%8F%E5%8D%87%E5%88%9D23.png" alt="图解小升初"></p>
+          女朋友的部分网页设计作品
+教育年度盘点网页链接：尚未上线
+数读中学专题-成都七中网页链接：数读中学系列专题—成都七中｜中国教育在线
+新高三生规划网页链接：2017年高三生学习规划|高三规划|中国教育在线
+2016国庆专题网页链接：已下线
+高三你准备好了吗？网页链接：高三,你准备好了吗_中国教育在线
+图解小升初网页链接：图解小升初：小升初过后，初中英语怎么学？
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/网页设计作品.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1164,32 +1139,22 @@
       
         
           
-            <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在一个<code>2^k*2^k</code>个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。</p>
-<p><img src="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png" alt="棋盘图"></p>
-<p>棋盘覆盖问题是指，要用下图中的四种不同形态的L型骨牌覆盖棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不能重叠覆盖。</p>
-<p><img src="http://images.cnitblog.com/blog/328951/201306/14221040-4f79c8f9b1c1467e9f1f272737ba9ad7.x-png" alt="L型骨牌"></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>采用分治法来求解此问题</p>
-<ol>
-<li>若k=2，则直接用一个L型骨牌来覆盖非特殊方格</li>
-<li>k&gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特殊方格位于四个棋盘中的一个。其他三个子棋盘也可转化为特殊棋盘，做法是用一个L型骨牌覆盖三个子棋盘的连接处的三个方格，如图所示。此时原问题转化为4个小规模棋盘的覆盖问题，可递归求解。</li>
-</ol>
-<p><img src="http://images.cnitblog.com/blog/328951/201306/14221452-5dde1a9cdb6d41dd8c73f0e23ce0abb1.x-png" alt="四个子棋盘"></p>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ol>
-<li>设置一个全局变量mark，用于记录骨牌的序号</li>
-<li>如果边长为2，则将给定的特殊方格(x,y)用给定的序号标记，其他三个方格用mark标记。</li>
-<li><p>如果边长&gt;2，则把棋盘分割为四部分，判断特殊方格所处的子棋盘。对于有特殊方格的棋盘，继续递归求解。对于其他3个子棋盘：</p>
-<ul>
-<li>左上角的子棋盘：其右下角方格为“特殊方格”</li>
-<li>右上角的子棋盘：其右下角方格为“特殊方格”</li>
-<li>左下角的子棋盘：其右上角方格为“特殊方格”</li>
-<li>右下角的子棋盘：其左上角方格为“特殊方格”</li>
-</ul>
-</li>
-</ol>
-<p>这三个子棋盘的假想的“特殊方格”用同一个骨牌覆盖（标记相同），继续递归处理。</p>
-<h2 id="Python语言实现"><a href="#Python语言实现" class="headerlink" title="Python语言实现"></a>Python语言实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line">mark = <span class="number">1</span></div><div class="line">list = []</div><div class="line"><span class="comment"># 生成棋盘</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initTable</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">global</span> list;</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">        row = []</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</div><div class="line">            row.append(<span class="number">-1</span>)</div><div class="line">        list.append(row)</div><div class="line"></div><div class="line"><span class="comment"># 检查特殊点区域</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(midx, midy, x, y)</span>:</span></div><div class="line">    <span class="keyword">if</span> x &lt; midx <span class="keyword">and</span> y &lt; midy:</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>  <span class="comment"># 左上</span></div><div class="line">    <span class="keyword">elif</span> x &gt;= midx <span class="keyword">and</span> y &gt;= midy:</div><div class="line">        <span class="keyword">return</span> <span class="number">3</span>  <span class="comment"># 右下</span></div><div class="line">    <span class="keyword">elif</span> x &gt;= midx <span class="keyword">and</span> y &lt; midy:</div><div class="line">        <span class="keyword">return</span> <span class="number">2</span>  <span class="comment"># 右上</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>  <span class="comment"># 左下</span></div><div class="line"></div><div class="line"><span class="comment"># 覆盖x1~x2行，y1~y2列，特殊点为(x,y),用markX填充特殊点</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cover</span><span class="params">(x1, x2, y1, y2, x, y, markX)</span>:</span></div><div class="line">    <span class="keyword">global</span> mark</div><div class="line">    <span class="comment"># 如果是2*2的格子</span></div><div class="line">    <span class="keyword">if</span> x2 - x1 == <span class="number">1</span>:</div><div class="line">        <span class="comment"># 填充特殊点</span></div><div class="line">        list[x][y] = markX</div><div class="line">        <span class="comment"># 填充其他3个格子</span></div><div class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(x1, x2 + <span class="number">1</span>):</div><div class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(y1, y2 + <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> row != x <span class="keyword">or</span> col != y:</div><div class="line">                    list[row][col] = mark</div><div class="line">        mark += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="comment"># 其他情况: 2*2以上的格子</span></div><div class="line">    <span class="comment"># 用midx,midy把棋盘分为4部分</span></div><div class="line">    midx = (x1 + x2 + <span class="number">1</span>) / <span class="number">2</span></div><div class="line">    midy = (y1 + y2 + <span class="number">1</span>) / <span class="number">2</span></div><div class="line">    covered = &#123;<span class="number">0</span>:<span class="keyword">False</span>, <span class="number">1</span>:<span class="keyword">False</span>, <span class="number">2</span>:<span class="keyword">False</span>, <span class="number">3</span>:<span class="keyword">False</span>&#125;</div><div class="line">    <span class="comment"># 检查特殊点在哪个区域</span></div><div class="line">    area = check(midx, midy, x, y)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">0</span>:  <span class="comment"># 特殊格子在左上</span></div><div class="line">        cover(x1, midx - <span class="number">1</span>, y1, midy - <span class="number">1</span>, x, y, markX)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">1</span>:  <span class="comment"># 特殊格子在右上</span></div><div class="line">        cover(x1, midx - <span class="number">1</span>, midy, y2, x, y, markX)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">2</span>:  <span class="comment"># 特殊格子在左下</span></div><div class="line">        cover(midx, x2, y1, midy - <span class="number">1</span>, x, y, markX)</div><div class="line">    <span class="keyword">if</span> area == <span class="number">3</span>:  <span class="comment"># 特殊格子在右下</span></div><div class="line">        cover(midx, x2, midy, y2, x, y, markX)</div><div class="line">        </div><div class="line">    <span class="comment"># 标记已经处理过的区域</span></div><div class="line">    covered[area] = <span class="keyword">True</span> </div><div class="line">    <span class="comment"># 其他3个区域 取内角的三个小格子为特殊点</span></div><div class="line">    newMark = mark</div><div class="line">    mark += <span class="number">1</span></div><div class="line">    <span class="comment"># 处理其他3个区域</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">0</span>]: </div><div class="line">        cover(x1, midx - <span class="number">1</span>, y1, midy - <span class="number">1</span>, midx - <span class="number">1</span>, midy - <span class="number">1</span>, newMark)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">1</span>]:</div><div class="line">        cover(x1, midx - <span class="number">1</span>, midy, y2, midx - <span class="number">1</span>, midy, newMark)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">2</span>]:</div><div class="line">        cover(midx, x2, y1, midy - <span class="number">1</span>, midx, midy - <span class="number">1</span>, newMark)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> covered[<span class="number">3</span>]:</div><div class="line">        cover(midx, x2, midy, y2, midx, midy, newMark)</div><div class="line">        </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">printTable</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">global</span> list</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(list)):</div><div class="line">        row = <span class="string">""</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(list)):</div><div class="line">            row += (str(list[i][j]) + <span class="string">"\t"</span>)</div><div class="line">        print(row+<span class="string">"\n"</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    n = <span class="number">8</span></div><div class="line">    initTable(n)</div><div class="line">    cover(<span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>)</div><div class="line">    printTable()</div></pre></td></tr></table></figure>
+          问题描述在一个2^k*2^k个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。
 
-          
+棋盘覆盖问题是指，要用下图中的四种不同形态的L型骨牌覆盖棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不能重叠覆盖。
+
+解题思路采用分治法来求解此问题
+
+若k=2，则直接用一个L型骨牌来覆盖非特殊方格
+k&gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/棋盘覆盖问题.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1325,30 +1290,20 @@
       
         
           
-            <h2 id="安装Django"><a href="#安装Django" class="headerlink" title="安装Django"></a>安装Django</h2><p>用pip安装Django：<br><code>pip install Django</code></p>
-<p>检查是否安装成功</p>
-<p>python命令行下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> django</div><div class="line">django.VERSION</div><div class="line"><span class="comment">#django.get_version()</span></div></pre></td></tr></table></figure></p>
-<p>若能显示出版本信息，则安装成功</p>
-<h2 id="Django基本命令"><a href="#Django基本命令" class="headerlink" title="Django基本命令"></a>Django基本命令</h2><p>创建一个Django project<br><code>django-admin.py startproject project-name</code></p>
-<p>创建app<br><code>python manage.py startapp app-name</code></p>
-<p>启动测试服务器</p>
-<ol>
-<li><code>python manage.py runserver</code></li>
-<li>使用其他端口<code>python manage.py runserver port</code></li>
-<li>监听所有可用ip(内外网情况下)<code>python manage.py runserver 0.0.0.0:port</code></li>
-</ol>
-<h2 id="视图和网址"><a href="#视图和网址" class="headerlink" title="视图和网址"></a>视图和网址</h2><p>新建项目 “mysite”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">django-admin.py startproject mysite</div></pre></td></tr></table></figure></p>
-<p>创建成功后，目录样式为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysite</div><div class="line">├── manage.py</div><div class="line">└── mysite</div><div class="line">    ├── __init__.py</div><div class="line">    ├── settings.py</div><div class="line">    ├── urls.py</div><div class="line">    └── wsgi.py</div></pre></td></tr></table></figure>
-<p>在外层mysite目录下，创建app “test”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage.py startapp test</div></pre></td></tr></table></figure></p>
-<p>test下目录结构为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">test/</div><div class="line">├── __init__.py</div><div class="line">├── admin.py</div><div class="line">├── models.py</div><div class="line">├── tests.py</div><div class="line">└── views.py</div></pre></td></tr></table></figure></p>
-<p>把新建的app “test” 加入到INSTALLED_APPS中<br><code>vim mysite/mysite/settings.py</code><br>修改INSTALLED_APPS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = (</div><div class="line">    &apos;django.contrib.admin&apos;,</div><div class="line">    &apos;django.contrib.auth&apos;,</div><div class="line">    &apos;django.contrib.contenttypes&apos;,</div><div class="line">    &apos;django.contrib.sessions&apos;,</div><div class="line">    &apos;django.contrib.messages&apos;,</div><div class="line">    &apos;django.contrib.staticfiles&apos;,</div><div class="line">    &apos;test&apos;,</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<p>定义视图函数<br>修改<code>mysite/test/views.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">u"李博伟正在学习Django"</span>)</div></pre></td></tr></table></figure></p>
-<p>定义视图函数的URL<br>修改<code>mysite/mysite/urls.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</div><div class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</div><div class="line"><span class="keyword">from</span> learn <span class="keyword">import</span> views <span class="keyword">as</span> test_views  <span class="comment"># 修改这里</span></div><div class="line"> </div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^$'</span>, test_views.index),  <span class="comment"># 修改这里</span></div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">]</div></pre></td></tr></table></figure></p>
-<p>在<code>url()</code>中用正则表达式定义了网址的形式，和该网址对应的视图函数</p>
-<p>运行<code>python manage.py runserver</code>查看效果</p>
-
-          
+          安装Django用pip安装Django：pip install Django
+检查是否安装成功
+python命令行下123import djangodjango.VERSION#django.get_version()
+若能显示出版本信息，则安装成功
+Django基本命令创建一个Django projectdjango-admin.py startproject project-name
+创建a
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Django环境搭建及简单的视图与网址的配置.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1484,17 +1439,18 @@
       
         
           
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，<br>从而实现免费上网。</p>
-<h2 id="所需要的工具"><a href="#所需要的工具" class="headerlink" title="所需要的工具"></a>所需要的工具</h2><p>shadowsocks、支持ipv6的VPS</p>
-<p>支持ipv6的VPS我推荐Conoha，我一直在用，百兆带宽、SSD、不限流量、基本配置900日元/月，可以支付宝付款，总之优点很多。<br>链接如下<br><a href="https://www.conoha.jp/referral/?token=WLoRtpcmNe7GzQc77Zz3qFUgHqVXJh3DstkHzd2P_o1UsydAlTM-Q47" target="_blank" rel="external">Conoha主机</a></p>
-<p>shadowsocks的安装和一些配置可以参考<br><a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">Shadowsocks 使用说明</a><br><a href="http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/" target="_blank" rel="external">科学上网之 Shadowsocks 安装及优化加速</a></p>
-<h2 id="IPv6-shadowsocks配置"><a href="#IPv6-shadowsocks配置" class="headerlink" title="IPv6 shadowsocks配置"></a>IPv6 shadowsocks配置</h2><h3 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h3><p>若按照上面的链接中的方法安装shadowsocks，其配置文件路径为<code>/etc/shadowsocks.json</code></p>
-<p>修改配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;server&quot;:&quot;::&quot;,</div><div class="line">    &quot;server_port&quot;:8989,</div><div class="line">    &quot;local_address&quot;: &quot;127.0.0.1&quot;,</div><div class="line">    &quot;local_port&quot;:1080,</div><div class="line">    &quot;password&quot;:&quot;你的密码&quot;,</div><div class="line">    &quot;timeout&quot;:600,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>与ipv4的不同之处为<code>&quot;sever&quot;:&quot;::&quot;</code>，如此修改即可启用ipv6</p>
-<p>启动shadowsocks服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start</div></pre></td></tr></table></figure></p>
-<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>客户端配置见下图，在服务器地址处填写服务器的ipv6地址<br><img src="http://odszv0fof.bkt.clouddn.com/shadowsocks.png" alt="客户端配置"></p>
-
-          
+          背景很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，从而实现免费上网。
+所需要的工具shadowsocks、支持ipv6的VPS
+支持ipv6的VPS我推荐Conoha，我一直在用，百兆带宽、SSD、不限流量、基本配置900日元/月，可以支付宝付款，总之优点很多。链接如下Conoha主机
+shadowsock
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/搭建shadowsocks服务器实现ipv6免费上网.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1630,24 +1586,17 @@
       
         
           
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。<br>其实也差不了多少，毕竟我对python也用的不多，哈哈。</p>
-<p>课件是个好东西，但是每次都要手动下载很烦，就想写个东西帮我完成这繁琐的事情。正好最近研究了一下requests库和beautifulsoup，<br>可以用来练练手。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>原理很简单了，登录，然后访问课程中心的网页，分析标签找链接，最后取得课件的下载地址。</p>
-<p>使用requests库访问网页，调用requests.Session()，在session中请求网页能保留登录信息，不用自己再处理cookie等，很方便。</p>
-<p>使用beautifulsoup处理html中的标签，基本上用beautifulsoup的函数就能满足需求，必要的时候再用一些正则。</p>
-<p>下载文件也用requests。</p>
-<p>根据文件名判断文件是否已经存在，若存在则跳过下载。</p>
-<h2 id="开发-运行环境"><a href="#开发-运行环境" class="headerlink" title="开发/运行环境"></a>开发/运行环境</h2><p>Windows下的python3.5</p>
-<p>python模块：requests,bs4</p>
-<p>python2.7下在win控制台执行时的编码问题、中文路径问题在python3下完美解决，python3只有unicode，没有那么多字符串类型了。</p>
-<h2 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h2><p>在脚本当前路径新建user.txt文件，在文件第一行输入登录名、密码，以空格分隔。例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxx.ucas.ac.cn 123456</div></pre></td></tr></table></figure></p>
-<p>在win控制台，执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python download_courseware.py</div></pre></td></tr></table></figure></p>
-<h2 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h2><p>控制台显示：<br><img src="http://odszv0fof.bkt.clouddn.com/%E8%AF%BE%E4%BB%B6%E8%84%9A%E6%9C%AC1.png" alt="控制台1"></p>
-<p><img src="http://odszv0fof.bkt.clouddn.com/%E8%AF%BE%E4%BB%B6%E4%B8%8B%E8%BD%BD2.png" alt="控制台2"></p>
-<p>下载好的课件在各个课程名称的文件夹下<br><img src="http://odszv0fof.bkt.clouddn.com/%E8%AF%BE%E4%BB%B6%E4%B8%8B%E8%BD%BD3.png" alt="运行结果"></p>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p><a href="https://github.com/libowei1213/CoursewareDownload" target="_blank" rel="external">libowei1213/CoursewareDownload</a></p>
-
-          
+          简介终于用python写了个东西出来，之前一直在用2.7，但是在遇到十分恼火的编码问题和室友的强烈推荐后，我被迫转到了3.5。其实也差不了多少，毕竟我对python也用的不多，哈哈。
+课件是个好东西，但是每次都要手动下载很烦，就想写个东西帮我完成这繁琐的事情。正好最近研究了一下requests库和beautifulsoup，可以用来练练手。
+原理原理很简单了，登录，然后访问课程中心的网页，分析标签
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/国科大课件下载脚本.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1783,12 +1732,18 @@
       
         
           
-            <p>##出现的问题##<br>Android Studio启动时出现IllegalStateException错误，导致无法使用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">java.lang.IllegalStateException: failed to create a child event loop at </div><div class="line">...</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>##解决方法<br>管理员权限打开Windows命令行，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netsh winsock reset</div></pre></td></tr></table></figure></p>
-<p>重启计算机，再次启动Android Studio，无错误。</p>
-
-          
+          ##出现的问题##Android Studio启动时出现IllegalStateException错误，导致无法使用。
+123java.lang.IllegalStateException: failed to create a child event loop at ......
+##解决方法管理员权限打开Windows命令行，执行命令1netsh winsock reset
+重启计算机，再次启
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Android-Studio-failed-to-create-a-child-event-loop.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1897,6 +1852,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -2134,21 +2096,18 @@
 
 
   
-    
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "cf430319302742b9a50fd82c00ca3171",
-        target: "cloud-tie-wrapper"
-      };
-    </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
   
 
 
 
 
+
+  
 
 
 

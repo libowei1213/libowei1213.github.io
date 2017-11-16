@@ -79,6 +79,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="博伟的博客" type="application/atom+xml" />
+
 
 
 
@@ -402,28 +404,18 @@
       
         
           
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>作为国科大研一新生，选课是一件头疼的事。已经开始选课有一周了，我还没有确定要保留哪些课，还有些想上的课名额已经满了。看来自己写个抢课的脚本是当下要做的一件大事。</p>
-<p>本来想用python写的，无奈自己水平不够，只能用js写写控制台脚本，基本上也能满足需求。</p>
-<hr>
-<h2 id="选课过程分析"><a href="#选课过程分析" class="headerlink" title="选课过程分析"></a>选课过程分析</h2><p>选课实际上就是发送一些http请求，使用firebug我发现选课时浏览器 Post <a href="http://jwxk.ucas.ac.cn/courseManage/saveCourse" target="_blank" rel="external">http://jwxk.ucas.ac.cn/courseManage/saveCourse</a></p>
-<p>参数为所选课程的id，若选择课程id为123456的课，则提交的参数为“sids=123456”，若将其选为学位课，则多提交一个参数“did_123456=123456”</p>
-<hr>
-<h2 id="得到课程id"><a href="#得到课程id" class="headerlink" title="得到课程id"></a>得到课程id</h2><p>在这个页面选中所有的checkbox，再点击下面的按钮，可以查看所有可选的课程列表</p>
-<p><img src="http://od4xu3l0l.bkt.clouddn.com/0908-%E9%80%89%E8%AF%BE%E7%B3%BB%E7%BB%9F%E9%A1%B5%E9%9D%A2.png" alt="选课页面"></p>
-<p>ajax提交请求模拟这一过程，分析返回的网页数据，可以得到课程的id、编号、课程名等信息。</p>
-<hr>
-<h2 id="使用脚本"><a href="#使用脚本" class="headerlink" title="使用脚本"></a>使用脚本</h2><p>需要事先登录<a href="http://jwxk.ucas.ac.cn/courseManage/main" target="_blank" rel="external">国科大选课系统的选择课程页面</a>，按F12唤出控制台，手动修改脚本前面的两个数组（课程编号、是否为学位课），再执行这个js控制台脚本</p>
-<hr>
-<h2 id="代码及下载"><a href="#代码及下载" class="headerlink" title="代码及下载"></a>代码及下载</h2><p>部分代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'POST'</span>,</div><div class="line">	<span class="attr">url</span>: <span class="string">'http://jwxk.ucas.ac.cn'</span>+url,</div><div class="line">	<span class="attr">data</span>: postData,</div><div class="line">	<span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</div><div class="line">		$(result).find(<span class="string">'tbody tr'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> classId = $(<span class="keyword">this</span>).children().find(<span class="string">':input'</span>).val();</div><div class="line">			<span class="keyword">var</span> className = $(<span class="keyword">this</span>).children().eq(<span class="number">3</span>).text();</div><div class="line">			<span class="keyword">var</span> classCode = $(<span class="keyword">this</span>).children().eq(<span class="number">2</span>).text();</div><div class="line">			classList.push(<span class="keyword">new</span> course(classCode,className,classId));</div><div class="line">		&#125;);</div><div class="line">		<span class="comment">//执行抢课函数，5秒一次</span></div><div class="line">		<span class="built_in">window</span>.setInterval(run,<span class="number">5000</span>); </div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>(i&lt;classList.length)&#123;</div><div class="line">	<span class="keyword">if</span>(classList[i].classCode==favorClass[index])&#123;</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">	i++;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//没有要选的课，返回</span></div><div class="line"><span class="keyword">if</span>(i&gt;=classList.length)&#123;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//构造Post参数</span></div><div class="line"><span class="keyword">var</span> data=<span class="string">'sids='</span>+classList[i].classId;</div><div class="line"><span class="keyword">if</span>(isXuewei[index])&#123;</div><div class="line">	data=data+<span class="string">'&amp;did_'</span>+classList[i].classId+<span class="string">'='</span>+classList[i].classId;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$.ajax(&#123;</div><div class="line">	<span class="attr">type</span>: <span class="string">"POST"</span>,</div><div class="line">	<span class="attr">url</span>: ajaxUrl,</div><div class="line">	<span class="attr">data</span>: data,</div><div class="line">	<span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> reg=<span class="string">'&lt;label id="loginError" class="error"&gt;(.*)&lt;/label&gt;'</span></div><div class="line">		<span class="keyword">var</span> group=result.match(reg);</div><div class="line">		<span class="keyword">if</span>(group)&#123;</div><div class="line">			<span class="built_in">console</span>.info(group[<span class="number">1</span>]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line">index=(index+<span class="number">1</span>)%favorClass.length;</div></pre></td></tr></table></figure>
-<p><a href="http://od4xu3l0l.bkt.clouddn.com/%E9%80%89%E8%AF%BE2.js" target="_blank" rel="external">下载脚本</a></p>
-<hr>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p>5秒Post一次，选的上选不上看运气咯。</p>
-<p>随便试了几个课，结果如下</p>
-<p><img src="http://od4xu3l0l.bkt.clouddn.com/0908-%E7%BB%93%E6%9E%9C%E6%88%AA%E5%9B%BE.png" alt="脚本演示"></p>
+          简介作为国科大研一新生，选课是一件头疼的事。已经开始选课有一周了，我还没有确定要保留哪些课，还有些想上的课名额已经满了。看来自己写个抢课的脚本是当下要做的一件大事。
+本来想用python写的，无奈自己水平不够，只能用js写写控制台脚本，基本上也能满足需求。
 
-          
+选课过程分析选课实际上就是发送一些http请求，使用firebug我发现选课时浏览器 Post http://jwxk.ucas.ac.cn
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/国科大抢课脚本.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -532,6 +524,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -769,21 +768,18 @@
 
 
   
-    
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "cf430319302742b9a50fd82c00ca3171",
-        target: "cloud-tie-wrapper"
-      };
-    </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
   
 
 
 
 
+
+  
 
 
 
