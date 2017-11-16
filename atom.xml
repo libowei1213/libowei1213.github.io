@@ -182,9 +182,9 @@
     </summary>
     
     
-      <category term="卷积神经网络" scheme="http://libowei.net/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="TensorFlow" scheme="http://libowei.net/tags/TensorFlow/"/>
+    
+      <category term="卷积神经网络" scheme="http://libowei.net/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -235,11 +235,11 @@
     
       <category term="tensorflow" scheme="http://libowei.net/tags/tensorflow/"/>
     
+      <category term="卷积神经网络" scheme="http://libowei.net/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
       <category term="深度学习" scheme="http://libowei.net/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="CNN" scheme="http://libowei.net/tags/CNN/"/>
-    
-      <category term="卷积神经网络" scheme="http://libowei.net/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -264,11 +264,11 @@
     
       <category term="tensorflow" scheme="http://libowei.net/tags/tensorflow/"/>
     
+      <category term="卷积神经网络" scheme="http://libowei.net/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
       <category term="深度学习" scheme="http://libowei.net/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="CNN" scheme="http://libowei.net/tags/CNN/"/>
-    
-      <category term="卷积神经网络" scheme="http://libowei.net/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -490,11 +490,11 @@
     </summary>
     
     
+      <category term="python" scheme="http://libowei.net/tags/python/"/>
+    
       <category term="脚本" scheme="http://libowei.net/tags/%E8%84%9A%E6%9C%AC/"/>
     
       <category term="国科大" scheme="http://libowei.net/tags/%E5%9B%BD%E7%A7%91%E5%A4%A7/"/>
-    
-      <category term="python" scheme="http://libowei.net/tags/python/"/>
     
   </entry>
   
