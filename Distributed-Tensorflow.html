@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="centos,tensorflow," />
+  <meta name="keywords" content="Tensorflow,分布式," />
 
 
 
@@ -91,22 +91,16 @@
 
 
 
-<meta name="description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。
-而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
+<meta name="description" content="执行简单的TensorFlow集群，执行下面语句：12345678# Start a TensorFlow server as a single-process &amp;quot;cluster&amp;quot;.$ python&amp;gt;&amp;gt;&amp;gt; import tensorflow as tf&amp;gt;&amp;gt;&amp;gt; c = tf.constant(&amp;quot;Hello, distributed T">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS安装TensorFlow">
-<meta property="og:url" content="http://libowei.net/CentOS安装TensorFlow.html">
+<meta property="og:title" content="Distributed Tensorflow">
+<meta property="og:url" content="http://libowei.net/Distributed-Tensorflow.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。
-而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
-<meta property="og:updated_time" content="2017-11-10T04:12:10.167Z">
+<meta property="og:description" content="执行简单的TensorFlow集群，执行下面语句：12345678# Start a TensorFlow server as a single-process &amp;quot;cluster&amp;quot;.$ python&amp;gt;&amp;gt;&amp;gt; import tensorflow as tf&amp;gt;&amp;gt;&amp;gt; c = tf.constant(&amp;quot;Hello, distributed T">
+<meta property="og:updated_time" content="2017-11-16T11:35:25.570Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS安装TensorFlow">
-<meta name="twitter:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。
-而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
+<meta name="twitter:title" content="Distributed Tensorflow">
+<meta name="twitter:description" content="执行简单的TensorFlow集群，执行下面语句：12345678# Start a TensorFlow server as a single-process &amp;quot;cluster&amp;quot;.$ python&amp;gt;&amp;gt;&amp;gt; import tensorflow as tf&amp;gt;&amp;gt;&amp;gt; c = tf.constant(&amp;quot;Hello, distributed T">
 
 
 
@@ -134,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://libowei.net/CentOS安装TensorFlow.html"/>
+  <link rel="canonical" href="http://libowei.net/Distributed-Tensorflow.html"/>
 
 
 
 
 
-  <title> CentOS安装TensorFlow | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Distributed Tensorflow | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -321,7 +315,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://libowei.net/CentOS安装TensorFlow.html">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/Distributed-Tensorflow.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lee">
@@ -342,7 +336,7 @@
             
             
               
-                CentOS安装TensorFlow
+                Distributed Tensorflow
               
             
           </h1>
@@ -357,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-21T10:21:26+08:00">
-                2017-07-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T19:29:43+08:00">
+                2017-11-16
               </time>
             
 
@@ -375,7 +369,7 @@
 
           
           
-             <span id="/CentOS安装TensorFlow.html" class="leancloud_visitors" data-flag-title="CentOS安装TensorFlow">
+             <span id="/Distributed-Tensorflow.html" class="leancloud_visitors" data-flag-title="Distributed Tensorflow">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -404,18 +398,47 @@
       
 
       
-        <p>在CentOS6上安装TensorFlow1.2后，<code>import tensorflow</code>时出现以下问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImportError: /lib64/libc.so.6: version `GLIBC_2.17&apos; not found</div></pre></td></tr></table></figure></p>
-<p>这个错误的原因是未安装2.17版本的glibc库。</p>
-<p>而在CentOS上，使用<code>yum install glibc</code>命令，只能更新到2.12版本。需要手动下载编译安装。</p>
-<p>glibc-2.17下载地址：<a href="https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz" target="_blank" rel="external">https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</a></p>
-<p>下载glibc并解压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</div><div class="line">tar -xvf glibc-2.17.tar.gz</div></pre></td></tr></table></figure></p>
-<p>编译安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd glibc-2.17</div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<p>查看glibc共享库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ll /lib64/libc.so.6</div></pre></td></tr></table></figure></p>
-<p>现<code>libc.so.6</code>已经软链接到2.17版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lrwxrwxrwx 1 root root 12 7月  21 10:11 /lib64/libc.so.6 -&gt; libc-2.17.so</div></pre></td></tr></table></figure></p>
-<p>可以查看系统中可使用的glibc版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strings /lib64/libc.so.6 |grep GLIBC_</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">GLIBC_2.2.5</div><div class="line">GLIBC_2.2.6</div><div class="line">GLIBC_2.3</div><div class="line">GLIBC_2.3.2</div><div class="line">GLIBC_2.3.3</div><div class="line">GLIBC_2.3.4</div><div class="line">GLIBC_2.4</div><div class="line">GLIBC_2.5</div><div class="line">GLIBC_2.6</div><div class="line">GLIBC_2.7</div><div class="line">GLIBC_2.8</div><div class="line">GLIBC_2.9</div><div class="line">GLIBC_2.10</div><div class="line">GLIBC_2.11</div><div class="line">GLIBC_2.12</div><div class="line">GLIBC_2.13</div><div class="line">GLIBC_2.14</div><div class="line">GLIBC_2.15</div><div class="line">GLIBC_2.16</div><div class="line">GLIBC_2.17</div><div class="line">GLIBC_PRIVATE</div></pre></td></tr></table></figure>
-<p>现在应该就没问题了。</p>
-<p>参考资料：<a href="http://blog.csdn.net/officercat/article/details/39520227" target="_blank" rel="external">Linux/CentOS 升级C基本运行库CLIBC的注意事项</a></p>
+        <p>执行简单的TensorFlow集群，执行下面语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Start a TensorFlow server as a single-process &quot;cluster&quot;.</div><div class="line">$ python</div><div class="line">&gt;&gt;&gt; import tensorflow as tf</div><div class="line">&gt;&gt;&gt; c = tf.constant(&quot;Hello, distributed TensorFlow!&quot;)</div><div class="line">&gt;&gt;&gt; server = tf.train.Server.create_local_server()</div><div class="line">&gt;&gt;&gt; sess = tf.Session(server.target)  # Create a session on the server.</div><div class="line">&gt;&gt;&gt; sess.run(c)</div><div class="line">&apos;Hello, distributed TensorFlow!&apos;</div></pre></td></tr></table></figure></p>
+<p><code>tf.train.Server.create_local_server</code>方法在服务器中创建了一个单一进程的集群。</p>
+<h2 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h2><p>TensorFlow集群(cluster)是一组参与TensorFlow分布式图计算的”tasks”。每个task与TensorFlow “server”关联，”server”包含一个用来创建session的master，和一个执行图运算的worker。一个集群可以被分为一个或多个jobs，每个job包含一个或多个tasks。</p>
+<p>创建集群需要在每个task中启动TensorFlow server。通常每个task运行在不同的机器上，但也可以在同一台机器上启动多个tasks（如控制不同的GPU设备）。在每个task中，需要：</p>
+<ol>
+<li>创建<code>tf.train.ClusterSpec</code>，用来描述集群中的tasks。对于每个task都是相同的。</li>
+<li>创建<code>tf.train.Server</code>，在构造函数中传入<code>tf.train.ClusterSpec</code>，用job名和task序号来指定本机的task。</li>
+</ol>
+<h3 id="创建tf-train-ClusterSpec描述集群"><a href="#创建tf-train-ClusterSpec描述集群" class="headerlink" title="创建tf.train.ClusterSpec描述集群"></a>创建<code>tf.train.ClusterSpec</code>描述集群</h3><p>集群用字典来定义：jobs名称对应网络地址列表。把这个字典传入<code>tf.train.ClusterSpec</code>构造器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tf.train.ClusterSpec(&#123;&quot;local&quot;: [&quot;localhost:2222&quot;, &quot;localhost:2223&quot;]&#125;)</div></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>/job:local/task:0</strong></li>
+<li><strong>/job:local/task:1</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">tf.train.ClusterSpec(&#123;</div><div class="line">    &quot;worker&quot;: [</div><div class="line">        &quot;worker0.example.com:2222&quot;,</div><div class="line">        &quot;worker1.example.com:2222&quot;,</div><div class="line">        &quot;worker2.example.com:2222&quot;</div><div class="line">    ],</div><div class="line">    &quot;ps&quot;: [</div><div class="line">        &quot;ps0.example.com:2222&quot;,</div><div class="line">        &quot;ps1.example.com:2222&quot;</div><div class="line">    ]&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>/job:worker/task:0</strong></li>
+<li><strong>/job:worker/task:1</strong></li>
+<li><strong>/job:worker/task:2</strong></li>
+<li><strong>/job:ps/task:0</strong></li>
+<li><strong>/job:ps/task:1</strong></li>
+</ul>
+<h3 id="在每个task中创建tf-train-Server实例"><a href="#在每个task中创建tf-train-Server实例" class="headerlink" title="在每个task中创建tf.train.Server实例"></a>在每个task中创建<code>tf.train.Server</code>实例</h3><p>一个<code>tf.train.Server</code>对象包含一组本地设备，一组与由<code>tf.train.ClusterSpec</code>定义的设备的连接，和一个可以使用这些设备进行分布式计算的<code>tf.Session</code>。每个server都是被命名的job的成员，有自己的task索引号。集群中的一个server可以同其他server进行通信。</p>
+<p>例如，要启动运行在<code>localhost:2222</code>和<code>localhost:2223</code>，有两个servers的集群，在本地主机上运行下面的脚本，启动两个不同的进程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># In task 0:</div><div class="line">cluster = tf.train.ClusterSpec(&#123;&quot;local&quot;: [&quot;localhost:2222&quot;, &quot;localhost:2223&quot;]&#125;)</div><div class="line">server = tf.train.Server(cluster, job_name=&quot;local&quot;, task_index=0)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># In task 1:</div><div class="line">cluster = tf.train.ClusterSpec(&#123;&quot;local&quot;: [&quot;localhost:2222&quot;, &quot;localhost:2223&quot;]&#125;)</div><div class="line">server = tf.train.Server(cluster, job_name=&quot;local&quot;, task_index=1)</div></pre></td></tr></table></figure>
+<h2 id="在模型中指定分布式设备"><a href="#在模型中指定分布式设备" class="headerlink" title="在模型中指定分布式设备"></a>在模型中指定分布式设备</h2><p>在特定设备上定义运算操作，可以使用相同的<code>tf.device</code>函数，用来指定op在CPU或GPU上运行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">with tf.device(&quot;/job:ps/task:0&quot;):</div><div class="line">  weights_1 = tf.Variable(...)</div><div class="line">  biases_1 = tf.Variable(...)</div><div class="line"></div><div class="line">with tf.device(&quot;/job:ps/task:1&quot;):</div><div class="line">  weights_2 = tf.Variable(...)</div><div class="line">  biases_2 = tf.Variable(...)</div><div class="line"></div><div class="line">with tf.device(&quot;/job:worker/task:7&quot;):</div><div class="line">  input, labels = ...</div><div class="line">  layer_1 = tf.nn.relu(tf.matmul(input, weights_1) + biases_1)</div><div class="line">  logits = tf.nn.relu(tf.matmul(layer_1, weights_2) + biases_2)</div><div class="line">  # ...</div><div class="line">  train_op = ...</div><div class="line"></div><div class="line">with tf.Session(&quot;grpc://worker7.example.com:2222&quot;) as sess:</div><div class="line">  for _ in range(10000):</div><div class="line">    sess.run(train_op)</div></pre></td></tr></table></figure></p>
+<p>在上面的例子中，变量是在<code>ps</code>job中的两个task里被创建，而模型的运算部分是在<code>worker</code>job中被创建。TensorFlow会在jobs之间进行数据传输（从<code>ps</code>传到<code>worker</code>是前向计算，从<code>worker</code>到’ps’是应用梯度）。</p>
+<h2 id="复制训练"><a href="#复制训练" class="headerlink" title="复制训练"></a>复制训练</h2><p>一种常见的训练配置，称为“数据并行”，在<code>worker</code>job的多个tasks中使用不同的mini-batches训练相同的模型，在一个或多个<code>ps</code>job上更新共享的参数。所有的tasks可以运行在不同的机器上。TensorFlow中有多种方法可以定义这样的结构，我们正在构建多个库，将用于简化构建复制的模型的工作。现有的方法包括：</p>
+<ul>
+<li><strong>图内复制（in-graph replication）</strong> 这种方法中，client建立单一的<code>tf.Graph</code>，图中既有创建在<code>/job:ps</code>上的<code>tf.Variable</code>等变量的集合，也有在<code>job：worker</code>上的模型的计算部分的多个副本。</li>
+<li><strong>图间复制（between-graph replication）</strong> 每个<code>/job:worker</code>task有其独立的client，通常运行在worker task相同的进程中。每个client建立包含参数的相似的图（参数原本在<code>/job:ps</code>上，通过使用<code>tf.train.replica_device_setter</code>复制到task）；和在本地task<code>/job:worker</code>上的模型计算部分的一个副本。</li>
+<li><strong>异步训练（asynchronous trainng）</strong> 每个图的副本进行独立的训练，不与其他图协同。它与上述两种复制形式兼容。</li>
+<li><strong>同步训练（synchronous training）</strong> 所有副本读取当前参数的值，并行计算梯度，然后共同应用梯度更新参数。兼容图内复制（如使用平均梯度，[CIFAR-10 多GPU训练][1]），兼容图间复制（如使用<code>tf.train.SyncReplicasOptimizer</code>)</li>
+</ul>
+<h3 id="训练程序示例"><a href="#训练程序示例" class="headerlink" title="训练程序示例"></a>训练程序示例</h3><p>下面是一个分布式训练程序，实现了<strong>图间复制</strong>和<strong>同步训练</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">import argparse</div><div class="line">import sys</div><div class="line"></div><div class="line">import tensorflow as tf</div><div class="line"></div><div class="line">FLAGS = None</div><div class="line"></div><div class="line">def main(_):</div><div class="line">  ps_hosts = FLAGS.ps_hosts.split(&quot;,&quot;)</div><div class="line">  worker_hosts = FLAGS.worker_hosts.split(&quot;,&quot;)</div><div class="line"></div><div class="line">  # Create a cluster from the parameter server and worker hosts.</div><div class="line">  cluster = tf.train.ClusterSpec(&#123;&quot;ps&quot;: ps_hosts, &quot;worker&quot;: worker_hosts&#125;)</div><div class="line"></div><div class="line">  # Create and start a server for the local task.</div><div class="line">  server = tf.train.Server(cluster,</div><div class="line">                           job_name=FLAGS.job_name,</div><div class="line">                           task_index=FLAGS.task_index)</div><div class="line"></div><div class="line">  if FLAGS.job_name == &quot;ps&quot;:</div><div class="line">    server.join()</div><div class="line">  elif FLAGS.job_name == &quot;worker&quot;:</div><div class="line"></div><div class="line">    # Assigns ops to the local worker by default.</div><div class="line">    with tf.device(tf.train.replica_device_setter(</div><div class="line">        worker_device=&quot;/job:worker/task:%d&quot; % FLAGS.task_index,</div><div class="line">        cluster=cluster)):</div><div class="line"></div><div class="line">      # Build model...</div><div class="line">      loss = ...</div><div class="line">      global_step = tf.contrib.framework.get_or_create_global_step()</div><div class="line"></div><div class="line">      train_op = tf.train.AdagradOptimizer(0.01).minimize(</div><div class="line">          loss, global_step=global_step)</div><div class="line"></div><div class="line">    # The StopAtStepHook handles stopping after running given steps.</div><div class="line">    hooks=[tf.train.StopAtStepHook(last_step=1000000)]</div><div class="line"></div><div class="line">    # The MonitoredTrainingSession takes care of session initialization,</div><div class="line">    # restoring from a checkpoint, saving to a checkpoint, and closing when done</div><div class="line">    # or an error occurs.</div><div class="line">    with tf.train.MonitoredTrainingSession(master=server.target,</div><div class="line">                                           is_chief=(FLAGS.task_index == 0),</div><div class="line">                                           checkpoint_dir=&quot;/tmp/train_logs&quot;,</div><div class="line">                                           hooks=hooks) as mon_sess:</div><div class="line">      while not mon_sess.should_stop():</div><div class="line">        # Run a training step asynchronously.</div><div class="line">        # See `tf.train.SyncReplicasOptimizer` for additional details on how to</div><div class="line">        # perform *synchronous* training.</div><div class="line">        # mon_sess.run handles AbortedError in case of preempted PS.</div><div class="line">        mon_sess.run(train_op)</div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">  parser = argparse.ArgumentParser()</div><div class="line">  parser.register(&quot;type&quot;, &quot;bool&quot;, lambda v: v.lower() == &quot;true&quot;)</div><div class="line">  # Flags for defining the tf.train.ClusterSpec</div><div class="line">  parser.add_argument(</div><div class="line">      &quot;--ps_hosts&quot;,</div><div class="line">      type=str,</div><div class="line">      default=&quot;&quot;,</div><div class="line">      help=&quot;Comma-separated list of hostname:port pairs&quot;</div><div class="line">  )</div><div class="line">  parser.add_argument(</div><div class="line">      &quot;--worker_hosts&quot;,</div><div class="line">      type=str,</div><div class="line">      default=&quot;&quot;,</div><div class="line">      help=&quot;Comma-separated list of hostname:port pairs&quot;</div><div class="line">  )</div><div class="line">  parser.add_argument(</div><div class="line">      &quot;--job_name&quot;,</div><div class="line">      type=str,</div><div class="line">      default=&quot;&quot;,</div><div class="line">      help=&quot;One of &apos;ps&apos;, &apos;worker&apos;&quot;</div><div class="line">  )</div><div class="line">  # Flags for defining the tf.train.Server</div><div class="line">  parser.add_argument(</div><div class="line">      &quot;--task_index&quot;,</div><div class="line">      type=int,</div><div class="line">      default=0,</div><div class="line">      help=&quot;Index of task within the job&quot;</div><div class="line">  )</div><div class="line">  FLAGS, unparsed = parser.parse_known_args()</div><div class="line">  tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)</div></pre></td></tr></table></figure></p>
+<p>使用两个servers和两个workers启动训练，执行下面的脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># On ps0.example.com:</div><div class="line">$ python trainer.py \</div><div class="line">     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \</div><div class="line">     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \</div><div class="line">     --job_name=ps --task_index=0</div><div class="line"># On ps1.example.com:</div><div class="line">$ python trainer.py \</div><div class="line">     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \</div><div class="line">     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \</div><div class="line">     --job_name=ps --task_index=1</div><div class="line"># On worker0.example.com:</div><div class="line">$ python trainer.py \</div><div class="line">     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \</div><div class="line">     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \</div><div class="line">     --job_name=worker --task_index=0</div><div class="line"># On worker1.example.com:</div><div class="line">$ python trainer.py \</div><div class="line">     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \</div><div class="line">     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \</div><div class="line">     --job_name=worker --task_index=1</div></pre></td></tr></table></figure></p>
+<p>##术语</p>
+<h3 id="client"><a href="#client" class="headerlink" title="client"></a>client</h3><p>client指一个程序，构建TensorFlow图和TensorFlow Session与集群进行交互。一个client进程可以与多个TensorFlow服务器进行交互（见上面的章节），一个服务器上也可以运行多个client程序。</p>
+<h3 id="cluster"><a href="#cluster" class="headerlink" title="cluster"></a>cluster</h3><p>一个TensorFlow集群包含一个或多个”jobs”，每个”job“可以分成一个或多个”tasks”。集群通常专用于特定的高级目标，如训练神经网络，并行使用许多机器。一个集群由<code>tf.train.ClusterSpec</code>对象指定。</p>
+<h3 id="job"><a href="#job" class="headerlink" title="job"></a>job</h3><p>一个job由”tasks”列表组成，这些tasks通常用于相同的目的。例如，名为<code>ps</code>（参数服务器 parameter server）的job，通常保存、更新参数的节点；而名为<code>worker</code>的job通常承载承载执行计算密集型任务的无状态节点。一个job中的tasks通常运行在不同机器上。</p>
+<h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>一个task代表一个特定的TensorFlow服务器，通常对应一个进程。一个task属于一个job，用该job的tasks列表的下标来区分。</p>
+<h3 id="TensorFlow-server"><a href="#TensorFlow-server" class="headerlink" title="TensorFlow server"></a>TensorFlow server</h3><p>运行<code>tf.train.Server</code>实例的进程，是集群的一个成员。</p>
 
       
     </div>
@@ -485,9 +508,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/centos/" rel="tag"># centos</a>
+            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
           
-            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
           
         </div>
       
@@ -500,8 +523,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/TensorFlow学习笔记：CNN-CIFAR-10.html" rel="next" title="TensorFlow学习笔记：CIFAR-10 CNN">
-                <i class="fa fa-chevron-left"></i> TensorFlow学习笔记：CIFAR-10 CNN
+              <a href="/TensorFlow运行多个计算图.html" rel="next" title="TensorFlow运行多个计算图">
+                <i class="fa fa-chevron-left"></i> TensorFlow运行多个计算图
               </a>
             
           </div>
@@ -509,10 +532,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/TensorFlow-CNN-相关API.html" rel="prev" title="TensorFlow CNN 相关API">
-                TensorFlow CNN 相关API <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -597,8 +616,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/image/学士服照片.jpg"
@@ -708,6 +736,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建集群"><span class="nav-number">1.</span> <span class="nav-text">创建集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建tf-train-ClusterSpec描述集群"><span class="nav-number">1.1.</span> <span class="nav-text">创建tf.train.ClusterSpec描述集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在每个task中创建tf-train-Server实例"><span class="nav-number">1.2.</span> <span class="nav-text">在每个task中创建tf.train.Server实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在模型中指定分布式设备"><span class="nav-number">2.</span> <span class="nav-text">在模型中指定分布式设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制训练"><span class="nav-number">3.</span> <span class="nav-text">复制训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练程序示例"><span class="nav-number">3.1.</span> <span class="nav-text">训练程序示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#client"><span class="nav-number">3.2.</span> <span class="nav-text">client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cluster"><span class="nav-number">3.3.</span> <span class="nav-text">cluster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#job"><span class="nav-number">3.4.</span> <span class="nav-text">job</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#task"><span class="nav-number">3.5.</span> <span class="nav-text">task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TensorFlow-server"><span class="nav-number">3.6.</span> <span class="nav-text">TensorFlow server</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
