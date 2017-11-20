@@ -92,7 +92,7 @@
 <meta name="description" content="一个没人知道的地方">
 <meta property="og:type" content="website">
 <meta property="og:title" content="博伟的博客">
-<meta property="og:url" content="http://libowei.net/tags/Tensorflow/index.html">
+<meta property="og:url" content="http://libowei.net/tags/TensorFlow/index.html">
 <meta property="og:site_name" content="博伟的博客">
 <meta property="og:description" content="一个没人知道的地方">
 <meta name="twitter:card" content="summary">
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://libowei.net/tags/Tensorflow/"/>
+  <link rel="canonical" href="http://libowei.net/tags/TensorFlow/"/>
 
 
 
 
 
-  <title> 标签: Tensorflow | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 标签: TensorFlow | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -305,7 +305,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        Tensorflow
+        TensorFlow
         <small>标签</small>
       </h2>
     </div>
@@ -318,9 +318,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/Distributed-Tensorflow.html" itemprop="url">
+            <a class="post-title-link" href="/TensorFlow运行多个计算图.html" itemprop="url">
               
-                <span itemprop="name">Distributed Tensorflow</span>
+                <span itemprop="name">TensorFlow运行多个计算图</span>
               
             </a>
         
@@ -328,9 +328,93 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-16T19:29:43+08:00"
-              content="2017-11-16" >
-          11-16
+              datetime="2017-11-08T09:24:17+08:00"
+              content="2017-11-08" >
+          11-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/TensorFlow-DataSet-API的一个问题.html" itemprop="url">
+              
+                <span itemprop="name">TensorFlow DataSet API的一个问题</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-11-01T10:06:48+08:00"
+              content="2017-11-01" >
+          11-01
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/TensorFlow学习笔记：Importing-Data.html" itemprop="url">
+              
+                <span itemprop="name">TensorFlow学习笔记：Importing Data</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-09-26T14:08:44+08:00"
+              content="2017-09-26" >
+          09-26
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/TensorFlow-CNN-相关API.html" itemprop="url">
+              
+                <span itemprop="name">TensorFlow CNN 相关API</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-07-24T21:03:47+08:00"
+              content="2017-07-24" >
+          07-24
         </time>
       </div>
 
@@ -508,6 +592,9 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Albert Lee</span>
+   <div class="powered-by">  
+  </div>
+  <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
 </div>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -518,17 +605,6 @@
   });
 </script>
 
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
 
 
         
@@ -880,77 +956,6 @@
             /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-  
-
-  
-
-</body>
-</html>
-et("url", url);
             newcounter.set("time", 1);
             newcounter.save(null, {
               success: function(newcounter) {
