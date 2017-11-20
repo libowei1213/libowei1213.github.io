@@ -163,11 +163,11 @@
         <title>国科大课件下载脚本</title>
         <pubTime>2016-10-02T16:31:53.000Z</pubTime>
         
-        <tag>python</tag>
-         
         <tag>脚本</tag>
          
         <tag>国科大</tag>
+         
+        <tag>python</tag>
          
          
            
@@ -237,13 +237,13 @@
         <title>TensorFlow学习笔记：CNN MNIST</title>
         <pubTime>2017-07-18T11:17:12.000Z</pubTime>
         
-        <tag>tensorflow</tag>
-         
-        <tag>卷积神经网络</tag>
-         
         <tag>深度学习</tag>
          
+        <tag>tensorflow</tag>
+         
         <tag>CNN</tag>
+         
+        <tag>卷积神经网络</tag>
          
          
            
@@ -260,13 +260,13 @@
         <title>TensorFlow学习笔记：CIFAR-10 CNN</title>
         <pubTime>2017-07-19T11:23:41.000Z</pubTime>
         
-        <tag>tensorflow</tag>
-         
-        <tag>卷积神经网络</tag>
-         
         <tag>深度学习</tag>
          
+        <tag>tensorflow</tag>
+         
         <tag>CNN</tag>
+         
+        <tag>卷积神经网络</tag>
          
          
            
@@ -376,9 +376,9 @@
         <title>CentOS安装TensorFlow</title>
         <pubTime>2017-07-21T02:21:26.000Z</pubTime>
         
-        <tag>centos</tag>
-         
         <tag>tensorflow</tag>
+         
+        <tag>centos</tag>
          
          
            
