@@ -17,6 +17,3 @@ http://libowei.net/网页设计作品.html
 http://libowei.net/棋盘覆盖问题.html
 http://libowei.net/Django环境搭建及简单的视图与网址的配置.html
 http://libowei.net/搭建shadowsocks服务器实现ipv6免费上网.html
-http://libowei.net/国科大课件下载脚本.html
-http://libowei.net/Android-Studio-failed-to-create-a-child-event-loop.html
-http://libowei.net/国科大抢课脚本.html
