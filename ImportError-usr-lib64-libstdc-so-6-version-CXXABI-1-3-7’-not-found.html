@@ -97,7 +97,7 @@ Python程序中import tensorflow as tf会出现下面的错误：123ImportError:
 <meta property="og:site_name" content="博伟的博客">
 <meta property="og:description" content="今天在CentOS上升级TensorFlow1.4版本后出现了一个问题
 Python程序中import tensorflow as tf会出现下面的错误：123ImportError: /usr/lib64/libstdc++.so.6: version `CXXABI_1.3.7&amp;apos; not found (required by /root/anaconda3/lib/python3.6">
-<meta property="og:updated_time" content="2017-11-27T08:38:33.097Z">
+<meta property="og:updated_time" content="2017-11-27T08:43:45.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ImportError: /usr/lib64/libstdc++.so.6: version CXXABI_1.3.7’ not found">
 <meta name="twitter:description" content="今天在CentOS上升级TensorFlow1.4版本后出现了一个问题
@@ -410,8 +410,8 @@ Python程序中import tensorflow as tf会出现下面的错误：123ImportError:
 <p>默认动态库升级完成。重新运行以下命令检查动态库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strings /usr/lib64/libstdc++.so.6 | grep &apos;CXXABI&apos;</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CXXABI_1.3</div><div class="line">CXXABI_1.3.1</div><div class="line">CXXABI_1.3.2</div><div class="line">CXXABI_1.3.3</div><div class="line">CXXABI_1.3.4</div><div class="line">CXXABI_1.3.5</div><div class="line">CXXABI_1.3.6</div><div class="line">CXXABI_1.3.7</div><div class="line">CXXABI_TM_1</div></pre></td></tr></table></figure>
 <p>现在<code>CXXABI</code>动态库版本更新到了1.3.7。运行TensorFlow不会报相应的错误了。</p>
-<p>附：</p>
-<p>如果安装完TensorFlow后，运行时出现<code>ImportError: /lib64/libc.so.6: version</code>GLIBC_2.17’ not found`问题，可以参考我的另一篇博客：<a href="http://libowei.net/CentOS%E5%AE%89%E8%A3%85TensorFlow.html">CentOS安装TensorFlow</a></p>
+<p>附：<br>如果安装完TensorFlow后，运行时出现下面的错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ImportError: /lib64/libc.so.6: version `GLIBC_2.17&apos; not found</div><div class="line">`</div></pre></td></tr></table></figure></p>
+<p>可以参考我的另一篇博客：<br><a href="http://libowei.net/CentOS%E5%AE%89%E8%A3%85TensorFlow.html">CentOS安装TensorFlow</a></p>
 <p>参考：<a href="http://blog.csdn.net/zx714311728/article/details/69628836" target="_blank" rel="external">http://blog.csdn.net/zx714311728/article/details/69628836</a></p>
 
       
