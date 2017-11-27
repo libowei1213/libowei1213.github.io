@@ -97,7 +97,7 @@ Python程序中import tensorflow as tf会出现下面的错误：123ImportError:
 <meta property="og:site_name" content="博伟的博客">
 <meta property="og:description" content="今天在CentOS上升级TensorFlow1.4版本后出现了一个问题
 Python程序中import tensorflow as tf会出现下面的错误：123ImportError: /usr/lib64/libstdc++.so.6: version `CXXABI_1.3.7&amp;apos; not found (required by /root/anaconda3/lib/python3.6">
-<meta property="og:updated_time" content="2017-11-24T04:54:31.527Z">
+<meta property="og:updated_time" content="2017-11-27T08:38:33.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ImportError: /usr/lib64/libstdc++.so.6: version CXXABI_1.3.7’ not found">
 <meta name="twitter:description" content="今天在CentOS上升级TensorFlow1.4版本后出现了一个问题
@@ -406,10 +406,12 @@ Python程序中import tensorflow as tf会出现下面的错误：123ImportError:
 <p>发现只有CXXABI的1.3.3版本，而TensorFlow环境需要1.3.7的版本。</p>
 <p>这个动态库是gcc的库，升级gcc后系统中应该存在最新版的libstdc++.so.6链接库文件。<br>用下面命令查找动态库文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find / -name &quot;libstdc++.so.*&quot;</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/usr/lib/libstdc++.so.5.0.7</div><div class="line">/usr/lib/libstdc++.so.6</div><div class="line">/usr/lib/libstdc++.so.6.0.13</div><div class="line">/usr/lib/libstdc++.so.5</div><div class="line">/usr/lib64/libstdc++.so.5.0.7</div><div class="line">/usr/lib64/libstdc++.so.6</div><div class="line">/usr/lib64/libstdc++.so.6.0.13</div><div class="line">/usr/lib64/libstdc++.so.5</div><div class="line">/root/anaconda3/lib/libstdc++.so.6</div><div class="line">/root/anaconda3/lib/libstdc++.so.6.0.19</div><div class="line">/root/anaconda3/pkgs/libgcc-4.8.5-2/lib/libstdc++.so.6</div><div class="line">/root/anaconda3/pkgs/libgcc-4.8.5-2/lib/libstdc++.so.6.0.19</div></pre></td></tr></table></figure>
-<p><code>/root/anaconda3/lib/libstdc++.so.6.0.19</code>为最新的动态库文件。把<code>libstdc++.so.6.0.19</code>链接到<code>libstdc++.so.6</code>上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp /root/anaconda3/lib/libstdc++.so.6.0.19 /usr/lib64/</div><div class="line">cd /usr/lib64/</div><div class="line">rm -rf libstdc++.so.6</div><div class="line">ls -n libstdc++.so.6.0.19 libstdc++.so.6</div></pre></td></tr></table></figure></p>
+<p><code>/root/anaconda3/lib/libstdc++.so.6.0.19</code>为最新的动态库文件。把<code>libstdc++.so.6.0.19</code>链接到<code>libstdc++.so.6</code>上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp /root/anaconda3/lib/libstdc++.so.6.0.19 /usr/lib64/</div><div class="line">cd /usr/lib64/</div><div class="line">rm -rf libstdc++.so.6</div><div class="line">ln -s libstdc++.so.6.0.19 libstdc++.so.6</div></pre></td></tr></table></figure></p>
 <p>默认动态库升级完成。重新运行以下命令检查动态库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strings /usr/lib64/libstdc++.so.6 | grep &apos;CXXABI&apos;</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CXXABI_1.3</div><div class="line">CXXABI_1.3.1</div><div class="line">CXXABI_1.3.2</div><div class="line">CXXABI_1.3.3</div><div class="line">CXXABI_1.3.4</div><div class="line">CXXABI_1.3.5</div><div class="line">CXXABI_1.3.6</div><div class="line">CXXABI_1.3.7</div><div class="line">CXXABI_TM_1</div></pre></td></tr></table></figure>
 <p>现在<code>CXXABI</code>动态库版本更新到了1.3.7。运行TensorFlow不会报相应的错误了。</p>
+<p>附：</p>
+<p>如果安装完TensorFlow后，运行时出现<code>ImportError: /lib64/libc.so.6: version</code>GLIBC_2.17’ not found`问题，可以参考我的另一篇博客：<a href="http://libowei.net/CentOS%E5%AE%89%E8%A3%85TensorFlow.html">CentOS安装TensorFlow</a></p>
 <p>参考：<a href="http://blog.csdn.net/zx714311728/article/details/69628836" target="_blank" rel="external">http://blog.csdn.net/zx714311728/article/details/69628836</a></p>
 
       
@@ -605,7 +607,7 @@ Python程序中import tensorflow as tf会出现下面的错误：123ImportError:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -618,7 +620,7 @@ Python程序中import tensorflow as tf会出现下面的错误：123ImportError:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
