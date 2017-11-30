@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://libowei.net/CentOS-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB.html</loc>
+    <lastmod>2017-11-30T04:38:28.752Z</lastmod>
+    <data>
+        <display>
+        <title>CentOS MySQL数据库迁移</title>
+        <pubTime>2017-11-30T03:29:39.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>centos</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://libowei.net/ImportError-usr-lib64-libstdc-so-6-version-CXXABI-1-3-7%E2%80%99-not-found.html</loc>
     <lastmod>2017-11-27T08:43:45.783Z</lastmod>
     <data>
@@ -53,13 +72,13 @@
         <title>国科大抢课脚本</title>
         <pubTime>2016-09-07T12:34:54.000Z</pubTime>
         
-        <tag>javascript</tag>
-         
         <tag>脚本</tag>
          
         <tag>国科大</tag>
          
         <tag>ucas</tag>
+         
+        <tag>javascript</tag>
          
          
            

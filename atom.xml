@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://libowei.net/"/>
-  <updated>2017-11-27T08:43:45.783Z</updated>
+  <updated>2017-11-30T04:38:28.752Z</updated>
   <id>http://libowei.net/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS MySQL数据库迁移</title>
+    <link href="http://libowei.net/CentOS-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB.html"/>
+    <id>http://libowei.net/CentOS-MySQL数据库迁移.html</id>
+    <published>2017-11-30T03:29:39.000Z</published>
+    <updated>2017-11-30T04:38:28.752Z</updated>
+    
+    <content type="html"><![CDATA[<p>CentOS操作系统下，MySQL的数据目录默认为<code>/var/lib/mysql/</code>，该路径下有以数据库名命名的文件夹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ll /var/lib/mysql</div></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">总用量 135336</div><div class="line">-rw-rw---- 1 mysql mysql 127926272 11月 30 11:37 ibdata1</div><div class="line">-rw-rw---- 1 mysql mysql   5242880 11月 30 11:37 ib_logfile0</div><div class="line">-rw-rw---- 1 mysql mysql   5242880 11月 30 11:37 ib_logfile1</div><div class="line">drwx------ 2 mysql mysql      4096 1月  25 2017 mysql</div><div class="line">srwxrwxrwx 1 mysql mysql         0 11月 27 19:22 mysql.sock</div><div class="line">drwx------ 2 mysql mysql      4096 9月   3 11:50 nba</div><div class="line">drwx------ 2 mysql mysql      4096 1月  25 2017 test</div><div class="line">drwx------ 2 mysql mysql      4096 11月 27 19:52 train</div></pre></td></tr></table></figure><p>若想移动数据库到其他机器上，只需要复制数据库文件夹到另一台装有MySQL数据库机器的<code>/var/lib/</code>下。</p><p>复制后，移动的库和表并不能被访问。默认情况下，MySQL数据库文件夹用户组和用户都为<code>mysql</code>，文件夹权限为700，文件夹内的数据文件权限为660。需要进行相应权限的修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">chown -R mysql.mysql 数据库名</div><div class="line">chown -R mysql.mysql 数据库名/*</div><div class="line"></div><div class="line">chmod 700 数据库名</div><div class="line">chmod 660 数据库名/*</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;CentOS操作系统下，MySQL的数据目录默认为&lt;code&gt;/var/lib/mysql/&lt;/code&gt;，该路径下有以数据库名命名的文件夹。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://libowei.net/tags/mysql/"/>
+    
+      <category term="centos" scheme="http://libowei.net/tags/centos/"/>
+    
+  </entry>
   
   <entry>
     <title>ImportError: /usr/lib64/libstdc++.so.6: version CXXABI_1.3.7’ not found</title>
@@ -491,31 +516,6 @@
       <category term="django" scheme="http://libowei.net/tags/django/"/>
     
       <category term="服务器" scheme="http://libowei.net/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭建shadowsocks服务器实现ipv6免费上网</title>
-    <link href="http://libowei.net/%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0ipv6%E5%85%8D%E8%B4%B9%E4%B8%8A%E7%BD%91.html"/>
-    <id>http://libowei.net/搭建shadowsocks服务器实现ipv6免费上网.html</id>
-    <published>2016-10-02T17:08:24.000Z</published>
-    <updated>2017-11-10T04:13:24.943Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，<br>从而实现免费上网。</p><h2 id="所需要的工具"><a href="#所需要的工具" class="headerlink" title="所需要的工具"></a>所需要的工具</h2><p>shadowsocks、支持ipv6的VPS</p><p>支持ipv6的VPS我推荐Conoha，我一直在用，百兆带宽、SSD、不限流量、基本配置900日元/月，可以支付宝付款，总之优点很多。<br>链接如下<br><a href="https://www.conoha.jp/referral/?token=WLoRtpcmNe7GzQc77Zz3qFUgHqVXJh3DstkHzd2P_o1UsydAlTM-Q47" target="_blank" rel="external">Conoha主机</a></p><p>shadowsocks的安装和一些配置可以参考<br><a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">Shadowsocks 使用说明</a><br><a href="http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/" target="_blank" rel="external">科学上网之 Shadowsocks 安装及优化加速</a></p><h2 id="IPv6-shadowsocks配置"><a href="#IPv6-shadowsocks配置" class="headerlink" title="IPv6 shadowsocks配置"></a>IPv6 shadowsocks配置</h2><h3 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h3><p>若按照上面的链接中的方法安装shadowsocks，其配置文件路径为<code>/etc/shadowsocks.json</code></p><p>修改配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;server&quot;:&quot;::&quot;,</div><div class="line">    &quot;server_port&quot;:8989,</div><div class="line">    &quot;local_address&quot;: &quot;127.0.0.1&quot;,</div><div class="line">    &quot;local_port&quot;:1080,</div><div class="line">    &quot;password&quot;:&quot;你的密码&quot;,</div><div class="line">    &quot;timeout&quot;:600,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>与ipv4的不同之处为<code>&quot;sever&quot;:&quot;::&quot;</code>，如此修改即可启用ipv6</p><p>启动shadowsocks服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start</div></pre></td></tr></table></figure></p><h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>客户端配置见下图，在服务器地址处填写服务器的ipv6地址<br><img src="http://odszv0fof.bkt.clouddn.com/shadowsocks.png" alt="客户端配置"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;很多高校提供一定量的免费流量，超过之后就要付费。但是ipv6的流量不需要付费。可以通过shadowsocks搭建一个走ipv6流量的代理，&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="shadowsocks" scheme="http://libowei.net/tags/shadowsocks/"/>
-    
-      <category term="ipv6" scheme="http://libowei.net/tags/ipv6/"/>
     
   </entry>
   
