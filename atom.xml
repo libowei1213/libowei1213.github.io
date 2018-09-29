@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://libowei.net/"/>
-  <updated>2018-01-18T05:33:47.564Z</updated>
+  <updated>2018-09-29T08:25:05.853Z</updated>
   <id>http://libowei.net/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode题型总结：树的遍历</title>
+    <link href="http://libowei.net/LeetCode%E9%A2%98%E5%9E%8B%E6%80%BB%E7%BB%93%EF%BC%9A%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html"/>
+    <id>http://libowei.net/LeetCode题型总结：树的遍历.html</id>
+    <published>2018-09-29T07:37:54.000Z</published>
+    <updated>2018-09-29T08:25:05.853Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode题型总结：树的遍历"><a href="#LeetCode题型总结：树的遍历" class="headerlink" title="LeetCode题型总结：树的遍历"></a>LeetCode题型总结：树的遍历</h1><p>这类题目有两种类型，一类是各种遍历方式，一类是从遍历序列构建树：</p><ul><li><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/description/" target="_blank" rel="external">LeetCode 144</a> 二叉树前序遍历</li><li><a href="https://leetcode.com/problems/binary-tree-inorder-traversal" target="_blank" rel="external">LeetCode 94</a> 二叉树中序遍历</li><li><a href="https://leetcode.com/problems/binary-tree-postorder-traversal" target="_blank" rel="external">LeetCode 145</a> 二叉树后序遍历</li><li><a href="https://leetcode.com/problems/binary-tree-level-order-traversal" target="_blank" rel="external">LeetCode 102</a> 二叉树层次遍历，按层输出</li><li><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii" target="_blank" rel="external">LeetCode 107</a> 二叉树层次遍历，从下往上按层输出</li><li><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal" target="_blank" rel="external">LeetCode 103</a> 二叉树层次遍历，蛇形输出</li><li><a href="https://leetcode.com/problems/n-ary-tree-preorder-traversal" target="_blank" rel="external">LeetCode 589</a> N-叉树前序遍历</li><li><a href="https://leetcode.com/problems/n-ary-tree-postorder-traversal" target="_blank" rel="external">LeetCode 590</a> N-叉树后序遍历</li><li><a href="https://leetcode.com/problems/n-ary-tree-level-order-traversal" target="_blank" rel="external">LeetCode 429</a> N-叉树层次遍历</li><li><a href="https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal" target="_blank" rel="external">LeetCode 106</a> 由中序、后序遍历序列构建二叉树</li><li><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal" target="_blank" rel="external">LeetCode 105</a> 由前序、中序遍历序列构建二叉树</li><li><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal" target="_blank" rel="external">LeetCode 889</a> 由前序、后序遍历序列构建二叉树</li></ul><h2 id="树的非递归遍历"><a href="#树的非递归遍历" class="headerlink" title="树的非递归遍历"></a>树的非递归遍历</h2><p>非递归遍历需要借助栈来实现</p><h3 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">preOrder</span><span class="params">(root)</span>:</span></div><div class="line">    stack = [root]</div><div class="line">    <span class="keyword">while</span> stack:</div><div class="line">        node = stack.pop(<span class="number">-1</span>)</div><div class="line">        print(node.val)</div><div class="line">        <span class="keyword">if</span> node.right:</div><div class="line">            stack.append(node.right)</div><div class="line">        <span class="keyword">if</span> node.left:</div><div class="line">            stack.append(node.left)</div></pre></td></tr></table></figure><h3 id="中序"><a href="#中序" class="headerlink" title="中序"></a>中序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">inOrder</span><span class="params">(root)</span>:</span></div><div class="line">    stack = []</div><div class="line">    <span class="keyword">while</span> stack <span class="keyword">or</span> root:</div><div class="line">        <span class="keyword">while</span> root:</div><div class="line">            stack.append(root)</div><div class="line">            root = root.left</div><div class="line"></div><div class="line">        <span class="keyword">if</span> stack:</div><div class="line">            root = stack.pop()</div><div class="line">            print(root.val)</div><div class="line">            root = root.right</div></pre></td></tr></table></figure><h3 id="后序"><a href="#后序" class="headerlink" title="后序"></a>后序</h3><p>后序遍历需要标记各子树的根节点是否访问过，第二次访问到该节点时才去读值。这里有一个比较巧妙的写法，入栈的元素为节点和其标志位。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">postOrder</span><span class="params">(root)</span>:</span></div><div class="line">    stack = [(root, <span class="keyword">False</span>)]</div><div class="line">    <span class="keyword">while</span> stack:</div><div class="line">        node, visited = stack.pop(<span class="number">-1</span>)</div><div class="line">        <span class="keyword">if</span> visited:</div><div class="line">            print(node.val)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            stack.append((node, <span class="keyword">True</span>))</div><div class="line">            <span class="keyword">if</span> node.right:</div><div class="line">                stack.append((node.right, <span class="keyword">False</span>))</div><div class="line">            <span class="keyword">if</span> node.left:</div><div class="line">                stack.append((node.left, <span class="keyword">False</span>))</div></pre></td></tr></table></figure></p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul><li><a href="https://github.com/libowei1213/LeetCode/blob/master/144.%20Binary%20Tree%20Preorder%20Traversal.py" target="_blank" rel="external">144. Binary Tree Preorder Traversal.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/145.%20Binary%20Tree%20Postorder%20Traversal.py" target="_blank" rel="external">145. Binary Tree Postorder Traversal.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/94.%20Binary%20Tree%20Inorder%20Traversal.py" target="_blank" rel="external">94. Binary Tree Inorder Traversal.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/102.%20Binary%20Tree%20Level%20Order%20Traversal.py" target="_blank" rel="external">102. Binary Tree Level Order Traversal.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/107.%20Binary%20Tree%20Level%20Order%20Traversal%20II.py" target="_blank" rel="external">107. Binary Tree Level Order Traversal II.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/103.%20Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.py" target="_blank" rel="external">103. Binary Tree Zigzag Level Order Traversal.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/589.%20N-ary%20Tree%20Preorder%20Traversal.py" target="_blank" rel="external">589. N-ary Tree Preorder Traversal.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/590.%20N-ary%20Tree%20Postorder%20Traversal.py" target="_blank" rel="external">590. N-ary Tree Postorder Traversal.py</a></li><li><a href="https://github.com/libowei1213/LeetCode/blob/master/429.%20N-ary%20Tree%20Level%20Order%20Traversal.py" target="_blank" rel="external">429. N-ary Tree Level Order Traversal.py</a></li></ul><h2 id="由遍历序列构建二叉树"><a href="#由遍历序列构建二叉树" class="headerlink" title="由遍历序列构建二叉树"></a>由遍历序列构建二叉树</h2><p>已知中序序列和[前序、后序]其中之一可以唯一确定一颗二叉树：</p><ol><li>前序遍历的第一个节点为根节点。构建根节点。</li><li>从中序遍历序列中找到根节点，根节点以左为左子树序列，以右为右子树序列。</li><li>再从前序遍历序列中，以相等长度找到左子树和右子树序列。</li><li>上两步分别得到左子树的中序和前序序列、右子树的中序和前序序列。可以递归的构建二叉树。</li></ol><p>已知后序序列的构建方法相似。后序序列的最后一个节点为根节点。</p><p>题解：<br><a href="https://github.com/libowei1213/LeetCode/blob/master/106.%20Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.py" target="_blank" rel="external">106. Construct Binary Tree from Inorder and Postorder Traversal.py</a><br><a href="https://github.com/libowei1213/LeetCode/blob/master/105.%20Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.py" target="_blank" rel="external">105. Construct Binary Tree from Preorder and Inorder Traversal.py</a></p><p>已知前序、后序序列，可得到的二叉树不唯一。下面给出一种构造方法：</p><ol><li>前序的第一个节点、后序的最后一个节点为根节点。从序列中去除这个结点，构造根节点。</li><li>原前序的第二个节点为左子树的根节点，从后序序列中找到这个节点的位置i，后序序列该节点为左子树序列最后一个节点，即postOrder[:i+1]为左子树，postOrder[i+1:]为右子树。 再从前序序列中找到左子树所有元素出现的最大位置k，则前序序列中preOrder[:k+1]为左子树，preOrdr[k+1:]为右子树。</li><li>分别得到左右子树的前序、后序序列，递归的构造左右子树。</li></ol><p>题解：<br><a href="https://github.com/libowei1213/LeetCode/blob/master/889.%20Construct%20Binary%20Tree%20from%20Preorder%20and%20Postorder%20Traversal.py" target="_blank" rel="external">889. Construct Binary Tree from Preorder and Postorder Traversal.py</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;LeetCode题型总结：树的遍历&quot;&gt;&lt;a href=&quot;#LeetCode题型总结：树的遍历&quot; class=&quot;headerlink&quot; title=&quot;LeetCode题型总结：树的遍历&quot;&gt;&lt;/a&gt;LeetCode题型总结：树的遍历&lt;/h1&gt;&lt;p&gt;这类题目有两种类型，
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://libowei.net/tags/LeetCode/"/>
+    
+      <category term="树" scheme="http://libowei.net/tags/%E6%A0%91/"/>
+    
+  </entry>
   
   <entry>
     <title>使用wordcloud工具生成虎扑新闻词云图</title>
@@ -494,30 +519,6 @@
     
     
       <category term="中国特色社会主义" scheme="http://libowei.net/tags/%E4%B8%AD%E5%9B%BD%E7%89%B9%E8%89%B2%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网页设计作品</title>
-    <link href="http://libowei.net/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E4%BD%9C%E5%93%81.html"/>
-    <id>http://libowei.net/网页设计作品.html</id>
-    <published>2016-11-05T04:48:30.000Z</published>
-    <updated>2017-11-23T04:14:28.355Z</updated>
-    
-    <content type="html"><![CDATA[<p>女朋友的部分网页设计作品</p><h3 id="教育年度盘点"><a href="#教育年度盘点" class="headerlink" title="教育年度盘点"></a>教育年度盘点</h3><p>网页链接：<a href="http://#" target="_blank" rel="external">尚未上线</a><br><img src="/image/xf-%E6%95%99%E8%82%B2%E5%B9%B4%E5%BA%A6%E7%9B%98%E7%82%B9.jpg" alt="教育年度盘点"></p><h3 id="数读中学专题-成都七中"><a href="#数读中学专题-成都七中" class="headerlink" title="数读中学专题-成都七中"></a>数读中学专题-成都七中</h3><p>网页链接：<a href="http://www.eol.cn/html/zhongxue/sdzx-7z/" target="_blank" rel="external">数读中学系列专题—成都七中｜中国教育在线</a><br><img src="/image/xf_%E6%95%B0%E8%AF%B4%E4%B8%AD%E5%AD%A6%E6%94%B9.jpg" alt="成都七中"></p><h3 id="新高三生规划"><a href="#新高三生规划" class="headerlink" title="新高三生规划"></a>新高三生规划</h3><p>网页链接：<a href="http://www.eol.cn/html/g/tjgk/32.shtml" target="_blank" rel="external">2017年高三生学习规划|高三规划|中国教育在线</a><br><img src="/image/xf_%E5%9B%BE%E8%A7%A3%E9%AB%98%E8%80%83.jpg" alt="高三规划"></p><h3 id="2016国庆专题"><a href="#2016国庆专题" class="headerlink" title="2016国庆专题"></a>2016国庆专题</h3><p>网页链接：<a href="http://#" target="_blank" rel="external">已下线</a><br><img src="/image/xf_%E5%9B%BD%E5%BA%86%E4%B8%93%E9%A2%98%E6%94%B9.jpg" alt="国庆专题"></p><h3 id="高三你准备好了吗？"><a href="#高三你准备好了吗？" class="headerlink" title="高三你准备好了吗？"></a>高三你准备好了吗？</h3><p>网页链接：<a href="http://www.eol.cn/html/g/gsnzbhlm/index.shtml" target="_blank" rel="external">高三,你准备好了吗_中国教育在线</a><br><img src="/image/%E9%AB%98%E4%B8%89%E4%BD%A0%E5%87%86%E5%A4%87%E5%A5%BD%E4%BA%86%E5%90%97.jpg" alt="高三准备好了吗"></p><h3 id="图解小升初"><a href="#图解小升初" class="headerlink" title="图解小升初"></a>图解小升初</h3><p>网页链接：<a href="http://www.eol.cn/html/jijiao/xiao/2015tj/23/index.shtml" target="_blank" rel="external">图解小升初：小升初过后，初中英语怎么学？</a><br><img src="/image/xf_%E5%9B%BE%E8%A7%A3%E5%B0%8F%E5%8D%87%E5%88%9D23.png" alt="图解小升初"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;女朋友的部分网页设计作品&lt;/p&gt;
-&lt;h3 id=&quot;教育年度盘点&quot;&gt;&lt;a href=&quot;#教育年度盘点&quot; class=&quot;headerlink&quot; title=&quot;教育年度盘点&quot;&gt;&lt;/a&gt;教育年度盘点&lt;/h3&gt;&lt;p&gt;网页链接：&lt;a href=&quot;http://#&quot; target=&quot;_b
-      
-    
-    </summary>
-    
-    
-      <category term="ui" scheme="http://libowei.net/tags/ui/"/>
     
   </entry>
   

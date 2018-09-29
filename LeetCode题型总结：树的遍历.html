@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="centos,tensorflow," />
+  <meta name="keywords" content="LeetCode,树," />
 
 
 
@@ -89,22 +89,40 @@
 
 
 
-<meta name="description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。
-而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
+<meta name="description" content="LeetCode题型总结：树的遍历这类题目有两种类型，一类是各种遍历方式，一类是从遍历序列构建树：
+
+LeetCode 144 二叉树前序遍历
+LeetCode 94 二叉树中序遍历
+LeetCode 145 二叉树后序遍历
+LeetCode 102 二叉树层次遍历，按层输出
+LeetCode 107 二叉树层次遍历，从下往上按层输出
+LeetCode 103 二叉树层次遍历，蛇形输出
+LeetC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS安装TensorFlow">
-<meta property="og:url" content="http://libowei.net/CentOS安装TensorFlow.html">
+<meta property="og:title" content="LeetCode题型总结：树的遍历">
+<meta property="og:url" content="http://libowei.net/LeetCode题型总结：树的遍历.html">
 <meta property="og:site_name" content="博伟的博客">
-<meta property="og:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。
-而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
-<meta property="og:updated_time" content="2017-11-10T04:12:10.167Z">
+<meta property="og:description" content="LeetCode题型总结：树的遍历这类题目有两种类型，一类是各种遍历方式，一类是从遍历序列构建树：
+
+LeetCode 144 二叉树前序遍历
+LeetCode 94 二叉树中序遍历
+LeetCode 145 二叉树后序遍历
+LeetCode 102 二叉树层次遍历，按层输出
+LeetCode 107 二叉树层次遍历，从下往上按层输出
+LeetCode 103 二叉树层次遍历，蛇形输出
+LeetC">
+<meta property="og:updated_time" content="2018-09-29T08:25:05.853Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS安装TensorFlow">
-<meta name="twitter:description" content="在CentOS6上安装TensorFlow1.2后，import tensorflow时出现以下问题：1ImportError: /lib64/libc.so.6: version `GLIBC_2.17&amp;apos; not found
-这个错误的原因是未安装2.17版本的glibc库。
-而在CentOS上，使用yum install glibc命令，只能更新到2.12版本。需要手动下载编译安装。">
+<meta name="twitter:title" content="LeetCode题型总结：树的遍历">
+<meta name="twitter:description" content="LeetCode题型总结：树的遍历这类题目有两种类型，一类是各种遍历方式，一类是从遍历序列构建树：
+
+LeetCode 144 二叉树前序遍历
+LeetCode 94 二叉树中序遍历
+LeetCode 145 二叉树后序遍历
+LeetCode 102 二叉树层次遍历，按层输出
+LeetCode 107 二叉树层次遍历，从下往上按层输出
+LeetCode 103 二叉树层次遍历，蛇形输出
+LeetC">
 
 
 
@@ -132,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="http://libowei.net/CentOS安装TensorFlow.html"/>
+  <link rel="canonical" href="http://libowei.net/LeetCode题型总结：树的遍历.html"/>
 
 
 
 
 
-  <title> CentOS安装TensorFlow | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> LeetCode题型总结：树的遍历 | 博伟的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -319,7 +337,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://libowei.net/CentOS安装TensorFlow.html">
+    <link itemprop="mainEntityOfPage" href="http://libowei.net/LeetCode题型总结：树的遍历.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert Lee">
@@ -340,7 +358,7 @@
             
             
               
-                CentOS安装TensorFlow
+                LeetCode题型总结：树的遍历
               
             
           </h1>
@@ -355,8 +373,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-21T10:21:26+08:00">
-                2017-07-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T15:37:54+08:00">
+                2018-09-29
               </time>
             
 
@@ -373,7 +391,7 @@
 
           
           
-             <span id="/CentOS安装TensorFlow.html" class="leancloud_visitors" data-flag-title="CentOS安装TensorFlow">
+             <span id="/LeetCode题型总结：树的遍历.html" class="leancloud_visitors" data-flag-title="LeetCode题型总结：树的遍历">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -402,18 +420,52 @@
       
 
       
-        <p>在CentOS6上安装TensorFlow1.2后，<code>import tensorflow</code>时出现以下问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImportError: /lib64/libc.so.6: version `GLIBC_2.17&apos; not found</div></pre></td></tr></table></figure></p>
-<p>这个错误的原因是未安装2.17版本的glibc库。</p>
-<p>而在CentOS上，使用<code>yum install glibc</code>命令，只能更新到2.12版本。需要手动下载编译安装。</p>
-<p>glibc-2.17下载地址：<a href="https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz" target="_blank" rel="external">https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</a></p>
-<p>下载glibc并解压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</div><div class="line">tar -xvf glibc-2.17.tar.gz</div></pre></td></tr></table></figure></p>
-<p>编译安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd glibc-2.17</div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<p>查看glibc共享库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ll /lib64/libc.so.6</div></pre></td></tr></table></figure></p>
-<p>现<code>libc.so.6</code>已经软链接到2.17版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lrwxrwxrwx 1 root root 12 7月  21 10:11 /lib64/libc.so.6 -&gt; libc-2.17.so</div></pre></td></tr></table></figure></p>
-<p>可以查看系统中可使用的glibc版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strings /lib64/libc.so.6 |grep GLIBC_</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">GLIBC_2.2.5</div><div class="line">GLIBC_2.2.6</div><div class="line">GLIBC_2.3</div><div class="line">GLIBC_2.3.2</div><div class="line">GLIBC_2.3.3</div><div class="line">GLIBC_2.3.4</div><div class="line">GLIBC_2.4</div><div class="line">GLIBC_2.5</div><div class="line">GLIBC_2.6</div><div class="line">GLIBC_2.7</div><div class="line">GLIBC_2.8</div><div class="line">GLIBC_2.9</div><div class="line">GLIBC_2.10</div><div class="line">GLIBC_2.11</div><div class="line">GLIBC_2.12</div><div class="line">GLIBC_2.13</div><div class="line">GLIBC_2.14</div><div class="line">GLIBC_2.15</div><div class="line">GLIBC_2.16</div><div class="line">GLIBC_2.17</div><div class="line">GLIBC_PRIVATE</div></pre></td></tr></table></figure>
-<p>现在应该就没问题了。</p>
-<p>参考资料：<a href="http://blog.csdn.net/officercat/article/details/39520227" target="_blank" rel="external">Linux/CentOS 升级C基本运行库CLIBC的注意事项</a></p>
+        <h1 id="LeetCode题型总结：树的遍历"><a href="#LeetCode题型总结：树的遍历" class="headerlink" title="LeetCode题型总结：树的遍历"></a>LeetCode题型总结：树的遍历</h1><p>这类题目有两种类型，一类是各种遍历方式，一类是从遍历序列构建树：</p>
+<ul>
+<li><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/description/" target="_blank" rel="external">LeetCode 144</a> 二叉树前序遍历</li>
+<li><a href="https://leetcode.com/problems/binary-tree-inorder-traversal" target="_blank" rel="external">LeetCode 94</a> 二叉树中序遍历</li>
+<li><a href="https://leetcode.com/problems/binary-tree-postorder-traversal" target="_blank" rel="external">LeetCode 145</a> 二叉树后序遍历</li>
+<li><a href="https://leetcode.com/problems/binary-tree-level-order-traversal" target="_blank" rel="external">LeetCode 102</a> 二叉树层次遍历，按层输出</li>
+<li><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii" target="_blank" rel="external">LeetCode 107</a> 二叉树层次遍历，从下往上按层输出</li>
+<li><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal" target="_blank" rel="external">LeetCode 103</a> 二叉树层次遍历，蛇形输出</li>
+<li><a href="https://leetcode.com/problems/n-ary-tree-preorder-traversal" target="_blank" rel="external">LeetCode 589</a> N-叉树前序遍历</li>
+<li><a href="https://leetcode.com/problems/n-ary-tree-postorder-traversal" target="_blank" rel="external">LeetCode 590</a> N-叉树后序遍历</li>
+<li><a href="https://leetcode.com/problems/n-ary-tree-level-order-traversal" target="_blank" rel="external">LeetCode 429</a> N-叉树层次遍历</li>
+<li><a href="https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal" target="_blank" rel="external">LeetCode 106</a> 由中序、后序遍历序列构建二叉树</li>
+<li><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal" target="_blank" rel="external">LeetCode 105</a> 由前序、中序遍历序列构建二叉树</li>
+<li><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal" target="_blank" rel="external">LeetCode 889</a> 由前序、后序遍历序列构建二叉树</li>
+</ul>
+<h2 id="树的非递归遍历"><a href="#树的非递归遍历" class="headerlink" title="树的非递归遍历"></a>树的非递归遍历</h2><p>非递归遍历需要借助栈来实现</p>
+<h3 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">preOrder</span><span class="params">(root)</span>:</span></div><div class="line">    stack = [root]</div><div class="line">    <span class="keyword">while</span> stack:</div><div class="line">        node = stack.pop(<span class="number">-1</span>)</div><div class="line">        print(node.val)</div><div class="line">        <span class="keyword">if</span> node.right:</div><div class="line">            stack.append(node.right)</div><div class="line">        <span class="keyword">if</span> node.left:</div><div class="line">            stack.append(node.left)</div></pre></td></tr></table></figure>
+<h3 id="中序"><a href="#中序" class="headerlink" title="中序"></a>中序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">inOrder</span><span class="params">(root)</span>:</span></div><div class="line">    stack = []</div><div class="line">    <span class="keyword">while</span> stack <span class="keyword">or</span> root:</div><div class="line">        <span class="keyword">while</span> root:</div><div class="line">            stack.append(root)</div><div class="line">            root = root.left</div><div class="line"></div><div class="line">        <span class="keyword">if</span> stack:</div><div class="line">            root = stack.pop()</div><div class="line">            print(root.val)</div><div class="line">            root = root.right</div></pre></td></tr></table></figure>
+<h3 id="后序"><a href="#后序" class="headerlink" title="后序"></a>后序</h3><p>后序遍历需要标记各子树的根节点是否访问过，第二次访问到该节点时才去读值。这里有一个比较巧妙的写法，入栈的元素为节点和其标志位。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">postOrder</span><span class="params">(root)</span>:</span></div><div class="line">    stack = [(root, <span class="keyword">False</span>)]</div><div class="line">    <span class="keyword">while</span> stack:</div><div class="line">        node, visited = stack.pop(<span class="number">-1</span>)</div><div class="line">        <span class="keyword">if</span> visited:</div><div class="line">            print(node.val)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            stack.append((node, <span class="keyword">True</span>))</div><div class="line">            <span class="keyword">if</span> node.right:</div><div class="line">                stack.append((node.right, <span class="keyword">False</span>))</div><div class="line">            <span class="keyword">if</span> node.left:</div><div class="line">                stack.append((node.left, <span class="keyword">False</span>))</div></pre></td></tr></table></figure></p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/144.%20Binary%20Tree%20Preorder%20Traversal.py" target="_blank" rel="external">144. Binary Tree Preorder Traversal.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/145.%20Binary%20Tree%20Postorder%20Traversal.py" target="_blank" rel="external">145. Binary Tree Postorder Traversal.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/94.%20Binary%20Tree%20Inorder%20Traversal.py" target="_blank" rel="external">94. Binary Tree Inorder Traversal.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/102.%20Binary%20Tree%20Level%20Order%20Traversal.py" target="_blank" rel="external">102. Binary Tree Level Order Traversal.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/107.%20Binary%20Tree%20Level%20Order%20Traversal%20II.py" target="_blank" rel="external">107. Binary Tree Level Order Traversal II.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/103.%20Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.py" target="_blank" rel="external">103. Binary Tree Zigzag Level Order Traversal.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/589.%20N-ary%20Tree%20Preorder%20Traversal.py" target="_blank" rel="external">589. N-ary Tree Preorder Traversal.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/590.%20N-ary%20Tree%20Postorder%20Traversal.py" target="_blank" rel="external">590. N-ary Tree Postorder Traversal.py</a></li>
+<li><a href="https://github.com/libowei1213/LeetCode/blob/master/429.%20N-ary%20Tree%20Level%20Order%20Traversal.py" target="_blank" rel="external">429. N-ary Tree Level Order Traversal.py</a></li>
+</ul>
+<h2 id="由遍历序列构建二叉树"><a href="#由遍历序列构建二叉树" class="headerlink" title="由遍历序列构建二叉树"></a>由遍历序列构建二叉树</h2><p>已知中序序列和[前序、后序]其中之一可以唯一确定一颗二叉树：</p>
+<ol>
+<li>前序遍历的第一个节点为根节点。构建根节点。</li>
+<li>从中序遍历序列中找到根节点，根节点以左为左子树序列，以右为右子树序列。</li>
+<li>再从前序遍历序列中，以相等长度找到左子树和右子树序列。</li>
+<li>上两步分别得到左子树的中序和前序序列、右子树的中序和前序序列。可以递归的构建二叉树。</li>
+</ol>
+<p>已知后序序列的构建方法相似。后序序列的最后一个节点为根节点。</p>
+<p>题解：<br><a href="https://github.com/libowei1213/LeetCode/blob/master/106.%20Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.py" target="_blank" rel="external">106. Construct Binary Tree from Inorder and Postorder Traversal.py</a><br><a href="https://github.com/libowei1213/LeetCode/blob/master/105.%20Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.py" target="_blank" rel="external">105. Construct Binary Tree from Preorder and Inorder Traversal.py</a></p>
+<p>已知前序、后序序列，可得到的二叉树不唯一。下面给出一种构造方法：</p>
+<ol>
+<li>前序的第一个节点、后序的最后一个节点为根节点。从序列中去除这个结点，构造根节点。</li>
+<li>原前序的第二个节点为左子树的根节点，从后序序列中找到这个节点的位置i，后序序列该节点为左子树序列最后一个节点，即postOrder[:i+1]为左子树，postOrder[i+1:]为右子树。 再从前序序列中找到左子树所有元素出现的最大位置k，则前序序列中preOrder[:k+1]为左子树，preOrdr[k+1:]为右子树。</li>
+<li>分别得到左右子树的前序、后序序列，递归的构造左右子树。</li>
+</ol>
+<p>题解：<br><a href="https://github.com/libowei1213/LeetCode/blob/master/889.%20Construct%20Binary%20Tree%20from%20Preorder%20and%20Postorder%20Traversal.py" target="_blank" rel="external">889. Construct Binary Tree from Preorder and Postorder Traversal.py</a></p>
 
       
     </div>
@@ -484,9 +536,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/centos/" rel="tag"># centos</a>
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
-            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+            <a href="/tags/树/" rel="tag"># 树</a>
           
         </div>
       
@@ -499,8 +551,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/TensorFlow学习笔记：CNN-CIFAR-10.html" rel="next" title="TensorFlow学习笔记：CIFAR-10 CNN">
-                <i class="fa fa-chevron-left"></i> TensorFlow学习笔记：CIFAR-10 CNN
+              <a href="/使用wordcloud工具生成虎扑新闻词云图.html" rel="next" title="使用wordcloud工具生成虎扑新闻词云图">
+                <i class="fa fa-chevron-left"></i> 使用wordcloud工具生成虎扑新闻词云图
               </a>
             
           </div>
@@ -508,10 +560,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/TensorFlow-CNN-相关API.html" rel="prev" title="TensorFlow CNN 相关API">
-                TensorFlow CNN 相关API <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -596,8 +644,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/image/学士服照片.jpg"
@@ -700,6 +757,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LeetCode题型总结：树的遍历"><span class="nav-number">1.</span> <span class="nav-text">LeetCode题型总结：树的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#树的非递归遍历"><span class="nav-number">1.1.</span> <span class="nav-text">树的非递归遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前序"><span class="nav-number">1.1.1.</span> <span class="nav-text">前序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中序"><span class="nav-number">1.1.2.</span> <span class="nav-text">中序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后序"><span class="nav-number">1.1.3.</span> <span class="nav-text">后序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">1.1.4.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#由遍历序列构建二叉树"><span class="nav-number">1.2.</span> <span class="nav-text">由遍历序列构建二叉树</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
