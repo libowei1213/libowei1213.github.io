@@ -114,9 +114,9 @@
     </summary>
     
     
-      <category term="mysql" scheme="http://libowei.net/tags/mysql/"/>
-    
       <category term="centos" scheme="http://libowei.net/tags/centos/"/>
+    
+      <category term="mysql" scheme="http://libowei.net/tags/mysql/"/>
     
   </entry>
   
