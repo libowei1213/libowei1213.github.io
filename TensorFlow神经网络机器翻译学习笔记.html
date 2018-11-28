@@ -106,8 +106,8 @@ Encoder把源句子转换为”含义”向量，再通过decoder产生翻译。
 <meta property="og:image" content="http://libowei.net/image/1512979222432.png">
 <meta property="og:image" content="http://libowei.net/image/1513058152940.png">
 <meta property="og:image" content="http://libowei.net/image/1513058623382.png">
-<meta property="og:image" content="http://libowei.net/./1513058830172.png">
-<meta property="og:updated_time" content="2017-12-13T03:31:09.583Z">
+<meta property="og:image" content="http://libowei.net/image/1513058830172.png">
+<meta property="og:updated_time" content="2018-11-28T02:30:54.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorFlow神经网络机器翻译学习笔记">
 <meta name="twitter:description" content="基础神经网络机器翻译在过去，传统的短语翻译系统通过将源句分解成多个块，然后用短语翻译短语来完成它们的任务。这导致不流利的翻译。我们人类这样翻译句子：阅读整个源句子，理解其意义，再进行翻译。神经网络机器翻译模仿这个过程。
@@ -520,7 +520,7 @@ Encoder把源句子转换为”含义”向量，再通过decoder产生翻译。
 <li>注意力向量作为下一个时间步的输入。</li>
 </ol>
 <p>前三步可表示为：<br><img src="/image/1513058623382.png" alt="Alt text"></p>
-<p><code>score</code>函数用来比较目标隐藏状态$h_t$和每个源隐藏状态$\overline{h}_s$，结果归一化生成注意力权重（基于源位置的概率分布）。打分函数有多种，常用的评分函数包括乘法和加法形式。<br><img src="./1513058830172.png" alt="Alt text"><br>注意力向量用于得到softmax结果和损失。这与普通的seq2seq模型最上层的隐藏状态相似。</p>
+<p><code>score</code>函数用来比较目标隐藏状态$h_t$和每个源隐藏状态$\overline{h}_s$，结果归一化生成注意力权重（基于源位置的概率分布）。打分函数有多种，常用的评分函数包括乘法和加法形式。<br><img src="/image/1513058830172.png" alt="Alt text"><br>注意力向量用于得到softmax结果和损失。这与普通的seq2seq模型最上层的隐藏状态相似。</p>
 <p>注意力机制的变形取决于评分函数和注意力函数的变换，和之前的状态$h_{t-1}$是否用于评分函数。从经验上来说，我们发现只有某些选项起作用。第一点是注意力机制的基本形式：需要有源和目标之间的直接连接。第二点是在下一时间步传入注意力向量非常重要，用于告知网络以前的注意力决策。最后，评分函数的选择往往会导致不同的性能。</p>
 <h3 id="Attention-API"><a href="#Attention-API" class="headerlink" title="Attention API"></a>Attention API</h3><p>在实现上借用了memory network的一些术语。与之不同的是，注意力机制的记忆是只读的。隐藏状态集（Luong的$W\overline{h}_s$，或Bahdaniu的$W_2\overline{h}_s$形式）即为记忆（memory）。在每个时间步，使用当前的隐藏状态作为查询（query），决定读取哪部分记忆。通常，查询需要与对应于每个记忆集的键进行比较。在注意力机制的上述呈现中，我们碰巧使用了一组源隐藏状态作为键（Bahdanau的$W_1h_t$）。可以从这种memory network中获得灵感，得到其他形式的注意力。</p>
 <p>Luong 2015形式的注意力机制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># attention_states: [batch_size, max_time, num_units]</div><div class="line">attention_states = tf.transpose(encoder_outputs, [1, 0, 2])</div><div class="line"></div><div class="line"># Create an attention mechanism</div><div class="line">attention_mechanism = tf.contrib.seq2seq.LuongAttention(</div><div class="line">    num_units, attention_states,</div><div class="line">    memory_sequence_length=source_sequence_length)</div></pre></td></tr></table></figure></p>

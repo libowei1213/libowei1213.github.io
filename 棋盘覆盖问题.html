@@ -109,10 +109,10 @@ k&amp;gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特">
 
 若k=2，则直接用一个L型骨牌来覆盖非特殊方格
 k&amp;gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特">
-<meta property="og:image" content="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png">
-<meta property="og:image" content="http://images.cnitblog.com/blog/328951/201306/14221040-4f79c8f9b1c1467e9f1f272737ba9ad7.x-png">
-<meta property="og:image" content="http://images.cnitblog.com/blog/328951/201306/14221452-5dde1a9cdb6d41dd8c73f0e23ce0abb1.x-png">
-<meta property="og:updated_time" content="2017-11-23T04:14:02.617Z">
+<meta property="og:image" content="http://libowei.net/image/14220958-a1cb3c8a13174c96901a174c1c04cd99.png">
+<meta property="og:image" content="http://libowei.net/image/14221040-4f79c8f9b1c1467e9f1f272737ba9ad7.png">
+<meta property="og:image" content="http://libowei.net/image/14221452-5dde1a9cdb6d41dd8c73f0e23ce0abb1.png">
+<meta property="og:updated_time" content="2018-11-28T02:44:22.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="棋盘覆盖问题">
 <meta name="twitter:description" content="问题描述在一个2^k*2^k个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。
@@ -123,7 +123,7 @@ k&amp;gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特">
 
 若k=2，则直接用一个L型骨牌来覆盖非特殊方格
 k&amp;gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特">
-<meta name="twitter:image" content="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png">
+<meta name="twitter:image" content="http://libowei.net/image/14220958-a1cb3c8a13174c96901a174c1c04cd99.png">
 
 
 
@@ -422,15 +422,15 @@ k&amp;gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特">
 
       
         <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在一个<code>2^k*2^k</code>个方格组成的棋盘中，恰有一个方格与其他方格不同，称该方格为一特殊方格，如图所示，红色方格为特殊方格。</p>
-<p><img src="http://images.cnitblog.com/blog/328951/201306/14220958-a1cb3c8a13174c96901a174c1c04cd99.x-png" alt="棋盘图"></p>
+<p><img src="/image/14220958-a1cb3c8a13174c96901a174c1c04cd99.png" alt="棋盘图"></p>
 <p>棋盘覆盖问题是指，要用下图中的四种不同形态的L型骨牌覆盖棋盘上除特殊方格以外的所有方格，且任何2个L型骨牌不能重叠覆盖。</p>
-<p><img src="http://images.cnitblog.com/blog/328951/201306/14221040-4f79c8f9b1c1467e9f1f272737ba9ad7.x-png" alt="L型骨牌"></p>
+<p><img src="/image/14221040-4f79c8f9b1c1467e9f1f272737ba9ad7.png" alt="L型骨牌"></p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>采用分治法来求解此问题</p>
 <ol>
 <li>若k=2，则直接用一个L型骨牌来覆盖非特殊方格</li>
 <li>k&gt;3时，可把原棋盘分成四个2^(k-1)阶的子棋盘，特殊方格位于四个棋盘中的一个。其他三个子棋盘也可转化为特殊棋盘，做法是用一个L型骨牌覆盖三个子棋盘的连接处的三个方格，如图所示。此时原问题转化为4个小规模棋盘的覆盖问题，可递归求解。</li>
 </ol>
-<p><img src="http://images.cnitblog.com/blog/328951/201306/14221452-5dde1a9cdb6d41dd8c73f0e23ce0abb1.x-png" alt="四个子棋盘"></p>
+<p><img src="/image/14221452-5dde1a9cdb6d41dd8c73f0e23ce0abb1.png" alt="四个子棋盘"></p>
 <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ol>
 <li>设置一个全局变量mark，用于记录骨牌的序号</li>
 <li>如果边长为2，则将给定的特殊方格(x,y)用给定的序号标记，其他三个方格用mark标记。</li>
